@@ -1,0 +1,11 @@
+.home-menu {
+  padding-top: 50px;
+}
+.menu-titel {
+  font-weight: 400;
+  font-size: 50px;
+  width: 100%;
+  text-align: center;
+  color: var(--color-four);
+  font-family: "Caprasimo", sans-serif;
+}
