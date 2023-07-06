@@ -56,7 +56,7 @@ const Navbar = () => {
 
           <ul className={click ? "nav-menu active" : "nav-menu"}>
             <li className="item-a" onClick={handleClick}>
-              <NavLink className={"nav-link"} to="/rustica-webpage">
+              <NavLink className={"nav-link"} to="/rustica-webpage" end>
                 Home
               </NavLink>
             </li>
