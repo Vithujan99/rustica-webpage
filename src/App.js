@@ -12,10 +12,10 @@ function App() {
     <div>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/menu" element={<Menu />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/rustica-webpage" element={<Home />} />
+        <Route path="/rustica-webpage/menu" element={<Menu />} />
+        <Route path="/rustica-webpage/checkout" element={<Checkout />} />
+        <Route path="/rustica-webpage/about" element={<About />} />
       </Routes>
     </div>
   );

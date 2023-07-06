@@ -40,13 +40,13 @@ const Navbar = () => {
               </span>
             </li>
             <li className="infob">
-              <Link className={"nav-link info-logo"} to="/">
+              <Link className={"nav-link info-logo"} to="/rustica-webpage">
                 <img className="logo" src={logo} alt="logo" width={200} />
               </Link>
               <span className="info-zeit">Offen</span>
             </li>
             <li className="infoc">
-              <NavLink className={"nav-link"} to="/checkout">
+              <NavLink className={"nav-link"} to="/rustica-webpage/checkout">
                 <FaShoppingCart size={30} style={{ color: "#fff" }} />
               </NavLink>
             </li>
@@ -56,17 +56,17 @@ const Navbar = () => {
 
           <ul className={click ? "nav-menu active" : "nav-menu"}>
             <li className="item-a" onClick={handleClick}>
-              <NavLink className={"nav-link"} to="/">
+              <NavLink className={"nav-link"} to="/rustica-webpage">
                 Home
               </NavLink>
             </li>
             <li className="item-b" onClick={handleClick}>
-              <NavLink className={"nav-link"} to="/menu">
+              <NavLink className={"nav-link"} to="/rustica-webpage/menu">
                 Menu
               </NavLink>
             </li>
             <li className="item-c" onClick={handleClick}>
-              <NavLink className={"nav-link"} to="/about">
+              <NavLink className={"nav-link"} to="/rustica-webpage/about">
                 Über uns
               </NavLink>
             </li>
