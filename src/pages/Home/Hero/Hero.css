@@ -48,7 +48,7 @@
 
 @media (max-width: 800px) {
   .hero-img {
-    height: calc(100vh);
+    height: calc(80vh);
     background-size: cover;
   }
   .hero-content {
@@ -62,6 +62,29 @@
   }
   .spacial-word {
     font-weight: 700;
+    color: #ffeeca;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero-img {
+    height: 50vh;
+  }
+  .hero-content {
+    padding-top: 10vh;
+    font-size: 12px;
+    color: #e2e4d9;
+  }
+  .hero-heading {
+    font-size: 20px;
+    color: #ffeeca;
+  }
+  .hero-heading span {
+    font-size: 25px;
+    color: #ffeeca;
+  }
+  .spacial-word {
+    font-weight: 600;
     color: #ffeeca;
   }
 }
