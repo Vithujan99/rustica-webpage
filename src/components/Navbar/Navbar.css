@@ -316,4 +316,10 @@
   .item-d:hover .nav-link {
     color: black;
   }
+
+  @media (max-width: 450px) {
+    .infoa {
+      font-size: 15px;
+    }
+  }
 }
