@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/rustica-webpage/static/css/main.e455e75d.css",
-    "main.js": "/rustica-webpage/static/js/main.bc10f57b.js",
+    "main.js": "/rustica-webpage/static/js/main.2941eaf1.js",
     "static/media/pizza-time-tasty-homemade-traditional-pizza-italian-recipe.jpg": "/rustica-webpage/static/media/pizza-time-tasty-homemade-traditional-pizza-italian-recipe.e393ddccffd513575e10.jpg",
     "static/media/rustica.png": "/rustica-webpage/static/media/rustica.36f57689d8d8d3cf38f3.png",
     "index.html": "/rustica-webpage/index.html",
     "main.e455e75d.css.map": "/rustica-webpage/static/css/main.e455e75d.css.map",
-    "main.bc10f57b.js.map": "/rustica-webpage/static/js/main.bc10f57b.js.map"
+    "main.2941eaf1.js.map": "/rustica-webpage/static/js/main.2941eaf1.js.map"
   },
   "entrypoints": [
     "static/css/main.e455e75d.css",
-    "static/js/main.bc10f57b.js"
+    "static/js/main.2941eaf1.js"
   ]
 }
