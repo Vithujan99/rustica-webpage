@@ -7,13 +7,14 @@ const Hero = () => {
     <div className="hero-img container">
       <div className="hero-content">
         <h1 className="hero-heading">
-          Welcome to <span>Rustica</span>
+          Willkommen zu <span>Rustica</span>
         </h1>
         <p className="hero-text">
-          The best gourmet restaurant available in Manhatten
+          Das beste verfügbare Restaurant in Mönchengladbach
         </p>
         <p className="hero-text">
-          Book online or call<span className="spacial-word"> 021668544178</span>
+          Buche Online oder rufe
+          <span className="spacial-word"> 021668544178</span>
         </p>
       </div>
     </div>
