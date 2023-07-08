@@ -77,12 +77,15 @@
 .item-c {
   grid-area: itemc;
 }
+.item-d {
+  grid-area: itemd;
+}
 .nav-menu {
   width: 100%;
   display: grid;
   margin-bottom: 10px;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-areas: ". itema . itemb . itemc .";
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-areas: "itema itemb itemc itemd";
 }
 .nav-menu li {
   display: flex;
@@ -169,10 +172,9 @@
   color: black;
 }
 
-@media (max-width: 1100px) {
-  .nav-menu {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-areas: ". itema . itemb . itemc itemc";
+@media (max-width: 870px) {
+  .nav-menu .nav-link {
+    font-size: 15px;
   }
 }
 
@@ -229,14 +231,14 @@
     top: 110px;
     left: -100%;
     width: 100%;
-    height: 150px;
-    background-color: black;
+    height: 200px;
     grid-template-columns: 1fr;
-    grid-template-rows: 50px 50px 50px;
+    grid-template-rows: 50px 50px 50px 50px;
     grid-template-areas:
       "itema"
       "itemb"
-      "itemc";
+      "itemc"
+      "itemd";
 
     transition: 0.3s;
     z-index: 20;
@@ -260,12 +262,18 @@
 
     transition: all 0.2s ease;
   }
+  .nav-menu .nav-link {
+    background-color: black;
+  }
   .nav-menu .nav-link:hover {
     background-color: var(--color-accent1);
   }
   .nav-menu.active .active {
-    background-color: transparent;
+    background-color: black;
     color: var(--color-accent1);
+  }
+  .nav-menu.active .nav-link:hover {
+    background-color: var(--color-accent1);
   }
   .item-a {
     transition: 0.2s;
@@ -296,6 +304,16 @@
     color: black;
   }
   .item-c:hover .nav-link {
+    color: black;
+  }
+  .item-d {
+    transition: 0.2s;
+  }
+  .item-d:hover {
+    background-color: var(--color-accent1);
+    color: black;
+  }
+  .item-d:hover .nav-link {
     color: black;
   }
 }

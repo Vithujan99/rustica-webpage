@@ -1,11 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./MenuContent.css";
 
 const MenuContent = () => {
   return (
     <div class="home-menu container">
-      <h2 className="menu-titel">Menu</h2>
+      <div className="button-holder">
+        <Link className="menu-titel" to="/rustica-webpage/menu">
+          Menu
+        </Link>
+      </div>
       <div>
         <ul>
           <li>Menu1</li>

@@ -1,26 +1,21 @@
-.home-menu {
+.rent-content {
   padding-top: 50px;
-  padding-bottom: 50px;
+  background-color: var(--color-orginal);
 }
-.menu-titel {
+.rent-titel {
   font-family: "Caprasimo", sans-serif;
   font-weight: 400;
   font-size: 50px;
   width: 100%;
   text-align: center;
-  color: var(--color-four);
-  border: 5px solid white;
+  color: white;
+  border: 5px solid var(--color-orginal);
   border-radius: 25px;
   padding: 4px 10px;
-
   transition: all 0.2s ease;
 }
-.button-holder {
-  text-align: center;
-  padding: 10px 0;
-}
-.menu-titel:hover {
-  border: 5px solid var(--color-four);
+.rent-titel:hover {
+  border: 5px solid white;
   border-radius: 25px;
   padding: 5px 15px;
   transition: all 0.2s ease;

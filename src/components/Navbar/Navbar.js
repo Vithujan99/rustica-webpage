@@ -14,7 +14,7 @@ const Navbar = () => {
   //change nav when scrolling
   const [scroll, setScroll] = useState(false);
   const changeScroll = () => {
-    if (window.scrollY >= 90 && window.innerWidth >= 1100) {
+    if (window.scrollY >= 90 && window.innerWidth >= 800) {
       setScroll(true);
     } else {
       setScroll(false);
@@ -66,6 +66,11 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li className="item-c" onClick={handleClick}>
+              <NavLink className={"nav-link"} to="/rustica-webpage/rent">
+                Raum Buchen
+              </NavLink>
+            </li>
+            <li className="item-d" onClick={handleClick}>
               <NavLink className={"nav-link"} to="/rustica-webpage/about">
                 Über uns
               </NavLink>

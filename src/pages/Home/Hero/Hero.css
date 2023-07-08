@@ -7,6 +7,7 @@
   color: #e2e4d9;
 }
 .hero-img {
+  width: 100%;
   height: calc(100vh + 175px);
   background-image: url("../../../asset/pizza-time-tasty-homemade-traditional-pizza-italian-recipe.jpg");
   background-repeat: no-repeat;
