@@ -1,13 +1,12 @@
 .rent-content {
   padding-top: 50px;
-  padding-bottom: 50px;
+  padding-bottom: 100px;
   background-color: var(--color-orginal);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
-.button-holder {
+.titel-holder {
   margin-bottom: 50px;
 }
 .rent-titel {

@@ -7,7 +7,7 @@ import "./RentContent.css";
 const RentContent = () => {
   return (
     <div class="rent-content">
-      <div className="button-holder">
+      <div className="titel-holder">
         <Link className="rent-titel" to="/rustica-webpage/rent">
           Raum Buchen
         </Link>

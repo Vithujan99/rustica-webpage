@@ -5,13 +5,13 @@ import "./MenuContent.css";
 
 const MenuContent = () => {
   return (
-    <div class="home-menu container">
-      <div className="button-holder">
+    <div class="home-menu">
+      <div className="titel-holder">
         <Link className="menu-titel" to="/rustica-webpage/menu">
           Menu
         </Link>
       </div>
-      <div>
+      <div class="container">
         <ul>
           <li>Menu1</li>
           <li>Menu2</li>

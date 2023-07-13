@@ -2,6 +2,9 @@
   padding-top: 50px;
   padding-bottom: 50px;
 }
+.titel-holder {
+  text-align: center;
+}
 .menu-titel {
   font-family: "Caprasimo", sans-serif;
   font-weight: 400;
@@ -15,10 +18,7 @@
 
   transition: all 0.2s ease;
 }
-.button-holder {
-  text-align: center;
-  padding: 10px 0;
-}
+
 .menu-titel:hover {
   border: 5px solid var(--color-four);
   border-radius: 25px;
