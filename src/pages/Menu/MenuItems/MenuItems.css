@@ -1,0 +1,24 @@
+.test {
+  width: 100%;
+  height: 300vh;
+  display: flex;
+  flex-direction: row;
+}
+.left-Item-buttons {
+  background-color: red;
+  width: 200px;
+  height: calc(100vh - 127px);
+  position: sticky;
+  top: 127px;
+}
+.item-holder {
+  background-color: antiquewhite;
+  width: 100%;
+}
+.right-Item-buttons {
+  background-color: red;
+  width: 200px;
+  height: calc(100vh - 127px);
+  position: sticky;
+  top: 127px;
+}

@@ -91,10 +91,14 @@ const Navbar = () => {
             </li>
             <li className="infoc">
               <NavLink className={"nav-link"} to="/rustica-webpage/checkout">
-                <FaShoppingCart
-                  size={scroll ? 27 : 30}
-                  style={{ color: "#fff" }}
-                />
+                <div className="shopping-cart-holder">
+                  <FaShoppingCart
+                    className="shpping-cart"
+                    size={scroll ? 45 : 50}
+                    style={{ color: "#fff" }}
+                  />
+                  <div className="items-in-shop">3</div>
+                </div>
               </NavLink>
             </li>
           </ul>

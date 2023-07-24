@@ -1,0 +1,23 @@
+.black-box {
+  width: 100%;
+  height: 100px;
+  background-color: black;
+}
+.menu-hero-img {
+  height: calc(100vh);
+  background-image: url("../../../asset/vintage-old-rustic-cutlery-dark.jpg");
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+}
+.menu-hero-titel {
+  font-family: "Parisienne", sans-serif;
+  color: rgb(252, 31, 31);
+  text-shadow: 8px 8px black;
+  font-weight: 400;
+  font-size: 100px;
+  margin-top: 30vh;
+}
