@@ -4,7 +4,7 @@
   background-color: black;
 }
 .menu-hero-img {
-  height: calc(100vh);
+  height: calc(100vh - 100px);
   background-image: url("../../../asset/vintage-old-rustic-cutlery-dark.jpg");
   background-size: cover;
   display: flex;
@@ -19,5 +19,11 @@
   text-shadow: 8px 8px black;
   font-weight: 400;
   font-size: 100px;
-  margin-top: 30vh;
+  margin-top: 45vh;
+}
+
+@media (max-width: 800px) {
+  .black-box {
+    display: none;
+  }
 }

@@ -1,0 +1,38 @@
+.item-card {
+  position: relative;
+  padding: 20px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item-name {
+  font-size: 18px;
+  font-weight: 600;
+}
+.item-stoff {
+}
+.item-beschreibung {
+}
+.item-preis {
+  position: absolute;
+  font-size: 18px;
+  font-weight: 500;
+  bottom: 50px;
+}
+.item-kaufen {
+  position: absolute;
+  width: 80%;
+  bottom: 5px;
+  font-size: 17px;
+  border-radius: 10px;
+  border: 2px solid black;
+  transition: all 0.2s ease;
+}
+.item-kaufen:hover {
+  background-color: rgb(252, 31, 31);
+  color: white;
+  border: white;
+  transition: all 0.2s ease;
+}
