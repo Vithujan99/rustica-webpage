@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import pizza from "../../../data/pizza.json";
+import { getDataByType } from "../../../data/productsStore";
+
 import MenuItem from "./MenuItem/MenuItem";
 import "./MenuItems.css";
 
 const MenuItems = () => {
   const [titel, handleTitel] = useState("Pizza");
-  const setTitel = (clickedTitel) => {
-    handleTitel(clickedTitel);
-  };
-  const [items, handleItems] = useState(pizza);
+
+  const [items, handleItems] = useState(getDataByType("Pizza"));
   const setItems = (clickedItem) => {
-    handleItems(require("../../../data/" + clickedItem + ".json"));
+    handleItems(getDataByType(clickedItem));
+    handleTitel(clickedItem);
   };
 
   return (
@@ -28,8 +28,7 @@ const MenuItems = () => {
               titel === "Pizza" ? "item-button item-active" : "item-button"
             }
             onClick={() => {
-              setItems("pizza");
-              setTitel("Pizza");
+              setItems("Pizza");
             }}
           >
             Pizza
@@ -41,8 +40,7 @@ const MenuItems = () => {
                 : "item-button"
             }
             onClick={() => {
-              setItems("pizzabrötchen");
-              setTitel("Pizzabrötchen");
+              setItems("Pizzabrötchen");
             }}
           >
             Pizza-
@@ -53,8 +51,7 @@ const MenuItems = () => {
               titel === "Salate" ? "item-button item-active" : "item-button"
             }
             onClick={() => {
-              setItems("salate");
-              setTitel("Salate");
+              setItems("Salate");
             }}
           >
             Salate
@@ -80,8 +77,7 @@ const MenuItems = () => {
                 : "item-button"
             }
             onClick={() => {
-              setItems("pizza");
-              setTitel("Rustica Spezial Teil 1");
+              setItems("Pizza");
             }}
           >
             Rustica Spezial Teil 1

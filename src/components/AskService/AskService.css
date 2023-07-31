@@ -1,0 +1,36 @@
+.askServiceContainer .blackBackground {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.askService {
+  width: 50%;
+  height: 50%;
+  background-color: black;
+  z-index: 105;
+  position: fixed;
+  top: 25%;
+  right: 25%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.askService.hide {
+  display: none;
+}
+
+.askServiceButton {
+  width: 50%;
+  height: 100%;
+  font-size: 25px;
+  background-color: black;
+  border: none;
+  color: var(--color-accent1);
+}
+.askServiceButton.left {
+  border-right: 2px solid var(--color-accent1);
+}
+
+.askServiceButton.right {
+  border-left: 2px solid var(--color-accent1);
+}

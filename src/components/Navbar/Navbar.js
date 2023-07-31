@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
+import { TimeContext } from "../../context/TimeContext";
 import { FaBars, FaTimes, FaShoppingCart } from "react-icons/fa";
-import Holidays from "date-holidays";
 
 import "./Navbar.css";
 import logo from "../../asset/rustica.png";
+
 const Navbar = () => {
+  const cart = useContext(CartContext);
+  const time = useContext(TimeContext);
+
   //setting active Route
   const [click, setClick] = useState(false);
   const handleClick = () => {
@@ -22,124 +27,140 @@ const Navbar = () => {
     }
   };
   window.addEventListener("scroll", changeScroll);
-  var hd = new Holidays("DE", "nw");
-  const [open, setTime] = useState(false);
-  useEffect(() => {
-    const handleOpen = setInterval(() => {
-      var Now = new Date();
-      const time = Now.getHours() * 100 + Now.getMinutes();
-      if (hd.isHoliday(Now)) {
-        if (time <= 2230 && time >= 1700) {
-          setTime(true);
-        }
-      } else if (Now.getDay() === 1 || Now.getDay() === 2) {
-        if (time <= 2230 && time >= 1730) {
-          setTime(true);
-        }
-      } else if (Now.getDay() === 3 || Now.getDay() === 4) {
-        if (time <= 1430 && time >= 1130) {
-          setTime(true);
-          console.log(Now.toTimeString());
-        } else if (time <= 1730 && time >= 2230) {
-          setTime(true);
-        }
-      } else if (Now.getDay() === 5) {
-        if (time <= 1430 && time >= 1130) {
-          setTime(true);
-        } else if (time <= 2300 && time >= 1730) {
-          setTime(true);
-        }
-      } else if (Now.getDay() === 6) {
-        if (time <= 2300 && time >= 1700) {
-          setTime(true);
-        }
-      } else if (Now.getDay() === 0) {
-        if (time <= 2230 && time >= 1700) {
-          setTime(true);
-        }
-      } else {
-        setTime(false);
-      }
-    }, []);
-    return () => clearInterval(handleOpen);
-  });
+
+  //hanldes when clicked on ShoppingCart
+  const [show, setShow] = useState(false);
+  const handleClose = () => {
+    setShow(false);
+  };
+  const handleShow = () => {
+    setShow(true);
+  };
 
   return (
-    <div className={scroll ? "moving-header-nav" : "header-nav"}>
-      <div className="container">
-        <div className={scroll ? "moving-nav-bar" : "nav-bar"}>
-          <ul className={scroll ? "moving-nav-info" : "nav-info"}>
-            <div className="hamburger" onClick={handleClick}>
-              {click ? (
-                <FaTimes size={22} style={{ color: "#fff" }} />
-              ) : (
-                <FaBars size={22} style={{ color: "#fff" }} />
-              )}
-            </div>
-            <li className="infoa">
-              <span>
-                +02166 <b style={{ color: "#ffc300" }}>8544178</b>
-              </span>
-            </li>
-            <li className={scroll ? "moving-infob" : "infob"}>
-              <Link className={"nav-link info-logo"} to="/rustica-webpage">
-                <img className="logo" src={logo} alt="logo" width={200} />
-              </Link>
-              <span className="info-zeit">
-                {open ? "Offen" : "Geschlossen"}
-              </span>
-            </li>
-            <li className="infoc">
-              <NavLink className={"nav-link"} to="/rustica-webpage/checkout">
-                <div className="shopping-cart-holder">
+    <div>
+      <div className={scroll ? "moving-header-nav" : "header-nav"}>
+        <div className="container">
+          <div className={scroll ? "moving-nav-bar" : "nav-bar"}>
+            <ul className={scroll ? "moving-nav-info" : "nav-info"}>
+              <div className="hamburger" onClick={handleClick}>
+                {click ? (
+                  <FaTimes size={22} style={{ color: "#fff" }} />
+                ) : (
+                  <FaBars size={22} style={{ color: "#fff" }} />
+                )}
+              </div>
+              <li className="infoa">
+                <span>
+                  +02166 <b style={{ color: "#ffc300" }}>8544178</b>
+                </span>
+              </li>
+              <li className={scroll ? "moving-infob" : "infob"}>
+                <Link className={"nav-link info-logo"} to="/rustica-webpage">
+                  <img className="logo" src={logo} alt="logo" width={200} />
+                </Link>
+                <span className="info-zeit">
+                  {time.isOpen() ? "Offen" : "Geschlossen"}
+                </span>
+              </li>
+              <li className="infoc">
+                <div className="shopping-cart-holder" onClick={handleShow}>
                   <FaShoppingCart
                     className="shpping-cart"
                     size={scroll ? 45 : 50}
                     style={{ color: "#fff" }}
                   />
-                  <div className="items-in-shop">3</div>
+                  <div className="items-in-shop">{cart.getTotalCount()}</div>
                 </div>
-              </NavLink>
-            </li>
-          </ul>
+              </li>
+            </ul>
 
-          <div className={scroll ? "moving-divider" : "divider"}></div>
+            <div className={scroll ? "moving-divider" : "divider"}></div>
 
-          <ul className={click ? "nav-menu active" : "nav-menu"}>
-            <li className="item-a" onClick={handleClick}>
-              <NavLink
-                className={scroll ? "moving-nav-link" : "nav-link"}
-                to="/rustica-webpage"
-                end
-              >
-                Home
-              </NavLink>
-            </li>
-            <li className="item-b" onClick={handleClick}>
-              <NavLink
-                className={scroll ? "moving-nav-link" : "nav-link"}
-                to="/rustica-webpage/menu"
-              >
-                Menu
-              </NavLink>
-            </li>
-            <li className="item-c" onClick={handleClick}>
-              <NavLink
-                className={scroll ? "moving-nav-link" : "nav-link"}
-                to="/rustica-webpage/rent"
-              >
-                Raum Buchen
-              </NavLink>
-            </li>
-            <li className="item-d" onClick={handleClick}>
-              <NavLink
-                className={scroll ? "moving-nav-link" : "nav-link"}
-                to="/rustica-webpage/about"
-              >
-                Über uns
-              </NavLink>
-            </li>
-          </ul>
+            <ul className={click ? "nav-menu active" : "nav-menu"}>
+              <li className="item-a" onClick={handleClick}>
+                <NavLink
+                  className={scroll ? "moving-nav-link" : "nav-link"}
+                  to="/rustica-webpage"
+                  end
+                >
+                  Home
+                </NavLink>
+              </li>
+              <li className="item-b" onClick={handleClick}>
+                <NavLink
+                  className={scroll ? "moving-nav-link" : "nav-link"}
+                  to="/rustica-webpage/menu"
+                >
+                  Menu
+                </NavLink>
+              </li>
+              <li className="item-c" onClick={handleClick}>
+                <NavLink
+                  className={scroll ? "moving-nav-link" : "nav-link"}
+                  to="/rustica-webpage/rent"
+                >
+                  Raum Buchen
+                </NavLink>
+              </li>
+              <li className="item-d" onClick={handleClick}>
+                <NavLink
+                  className={scroll ? "moving-nav-link" : "nav-link"}
+                  to="/rustica-webpage/about"
+                >
+                  Über uns
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div
+        className={show ? "blackBackground" : "blackBackground hide"}
+        onClick={handleClose}
+      ></div>
+      <div className={show ? "barShoppedItems" : "barShoppedItems hide"}>
+        <div className="closeBar" onClick={handleClose}>
+          X
+        </div>
+        <div className="barTitel">Warenkorb</div>
+        <div className="barBody">
+          {cart.getTotalCount() > 0 ? (
+            <>
+              {time.isOpen() ? (
+                <></>
+              ) : (
+                <p>zur Zeit geschlossen - nur Vorbestellung möglich</p>
+              )}
+              <p>Items in your cart:</p>
+              {cart.items.map((currentProduct) => (
+                <h1>{currentProduct.id}</h1>
+              ))}
+              <h3>Gesamt: {cart.getTotalCost().toFixed(2)}</h3>
+              <div className="barBodyFooter">
+                {cart.getTotalCost < 10 ? (
+                  <p>Mindestbestellwert für Lieferung (ohne Getränke) 10,00€</p>
+                ) : (
+                  <>
+                    <button>Zur Kasse</button>
+                    <button>Wahrenkorb leeren</button>
+                  </>
+                )}
+              </div>
+            </>
+          ) : (
+            <>
+              <h3>Noch keine Waren hinzugefügt!</h3>
+              {time.isOpen() ? (
+                <></>
+              ) : (
+                <p className="barGeschlossenText">
+                  zur Zeit geschlossen - nur Vorbestellung möglich
+                </p>
+              )}
+            </>
+          )}
         </div>
       </div>
     </div>

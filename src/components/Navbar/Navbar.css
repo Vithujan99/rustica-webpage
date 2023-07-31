@@ -3,7 +3,7 @@
   position: fixed;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.9);
-  z-index: 9999;
+  z-index: 50;
   transition: all 0.2s ease;
 }
 .nav-bar {
@@ -149,7 +149,7 @@
   position: fixed;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.8);
-  z-index: 9999;
+  z-index: 50;
   border-bottom: 3px solid var(--color-accent2);
   transition: all 0.2s ease;
 }
@@ -224,6 +224,73 @@
   color: black;
 }
 
+.blackBackground {
+  position: fixed;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.barShoppedItems {
+  width: 20vw;
+  height: 100vh;
+  background-color: black;
+  z-index: 105;
+  position: fixed;
+  top: 0;
+  right: 0;
+  transition: right 0.3s ease;
+}
+.closeBar {
+  cursor: pointer;
+  position: absolute;
+  left: 5px;
+  top: 8px;
+  width: 32px;
+  height: 20px;
+  opacity: 1;
+}
+
+.closeBar:hover {
+  opacity: 0.7;
+}
+
+.closeBar:before,
+.closeBar:after {
+  position: absolute;
+  left: 15px;
+  content: " ";
+  height: 20px;
+  width: 2px;
+  background-color: white;
+}
+.closeBar:before {
+  transform: rotate(45deg);
+}
+.closeBar:after {
+  transform: rotate(-45deg);
+}
+.barTitel {
+  font-size: 23px;
+  font-weight: 600;
+  color: var(--color-accent1);
+  margin-top: 20px;
+  text-align: center;
+}
+
+.barBody {
+  color: white;
+  padding: 20px;
+}
+.blackBackground.hide {
+  display: none;
+}
+
+.barShoppedItems.hide {
+  right: -30vw;
+  transition: right 0.3s ease;
+}
+
 @media (max-width: 1100px) {
   .moving-infob .info-zeit {
     right: -5%;
@@ -243,7 +310,7 @@
     position: static;
     width: 100%;
     background-color: rgba(0, 0, 0, 1);
-    z-index: 9999;
+    z-index: 50;
   }
   .nav-bar {
     display: grid;
