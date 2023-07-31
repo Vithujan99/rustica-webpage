@@ -1,12 +1,12 @@
 import { createContext, useState } from "react";
 
 export const ServiceContext = createContext({
-  sercice: "",
+  service: {},
   setService: () => {},
 });
 
 export function ServiceProvider({ children }) {
-  const [ser, handleService] = useState();
+  const [ser, handleService] = useState("null");
 
   function setService(choosenService) {
     handleService(choosenService);
