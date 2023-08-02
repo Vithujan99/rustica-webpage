@@ -98,3 +98,33 @@
 .askPLZ.hide {
   display: none;
 }
+
+.plz-text {
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.plz-input {
+  font-size: 25px;
+  width: 25%;
+  text-align: center;
+  outline: 0;
+}
+
+.plz-button {
+  position: absolute;
+  background-color: var(--color-accent1);
+  bottom: 70px;
+  border: 0;
+  font-size: 20px;
+  border-radius: 15px;
+}
+
+.plz-error-text {
+  position: absolute;
+  bottom: 70px;
+  color: red;
+  font-size: 17px;
+  font-weight: 500;
+}

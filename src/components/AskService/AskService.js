@@ -42,8 +42,34 @@ const AskService = () => {
         </div>
       ) : (
         <div className={show ? "askPLZ" : "askPLZ hide"}>
-          <div>Gebe Posleitzahl an</div>
-          <input></input>
+          <label className="plz-text">Gebe Postleitzahl an</label>
+          <input
+            className="plz-input"
+            type="text"
+            name="PLZ"
+            minLength="5"
+            maxLength="5"
+            required
+            value={serv.getPlz()}
+            onChange={(e) => serv.setPlz(e.target.value)}
+          />
+          {serv.testPlz() ? (
+            <button className="plz-button" onClick={() => handleClose()}>
+              Submit
+            </button>
+          ) : (
+            <>
+              {serv.getPlz().length === 5 ? (
+                <>
+                  <p className="plz-error-text">
+                    Befindet sich nicht im Liefergebiet
+                  </p>
+                </>
+              ) : (
+                <></>
+              )}
+            </>
+          )}
         </div>
       )}
     </div>
