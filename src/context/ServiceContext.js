@@ -21,9 +21,6 @@ export function ServiceProvider({ children }) {
   function setPlz(newPlz) {
     handlePlz(newPlz);
   }
-  function getPlz() {
-    return posleitzahl;
-  }
 
   function testPlz() {
     return Posleitzahlen.includes(posleitzahl);
@@ -34,7 +31,6 @@ export function ServiceProvider({ children }) {
     plz: posleitzahl,
     setService,
     setPlz,
-    getPlz,
     testPlz,
   };
   return (

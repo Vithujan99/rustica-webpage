@@ -36,3 +36,177 @@
   border: white;
   transition: all 0.2s ease;
 }
+
+/*Extra Ingredient*/
+.ask-zusatz-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 500;
+}
+.ask-zusatz-container.hide {
+  display: none;
+}
+.ask-zusatz-container .black-background {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.ask-zusatz-content {
+  position: fixed;
+  width: 40%;
+  height: 90%;
+  top: 5%;
+  left: 30%;
+  background-color: black;
+  border: 3px solid white;
+  color: white;
+  padding: 10px;
+}
+
+.ask-zusatz-head {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.ask-zusatz-head-titel {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  font-size: 20px;
+}
+.ask-zusatz-close {
+  color: black;
+  cursor: pointer;
+  position: absolute;
+  right: 0px;
+  top: 1px;
+  width: 32px;
+  height: 20px;
+  opacity: 1;
+}
+.ask-zusatz-close:hover {
+  opacity: 0.7;
+}
+.ask-zusatz-close:before,
+.ask-zusatz-close:after {
+  position: absolute;
+  right: 10px;
+  content: " ";
+  height: 20px;
+  width: 2px;
+  background-color: white;
+}
+.ask-zusatz-close:before {
+  transform: rotate(45deg);
+}
+.ask-zusatz-close:after {
+  transform: rotate(-45deg);
+}
+
+.ask-zusatz-head-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+.ask-zusatz-head-header-summe {
+  font-size: 20px;
+}
+.ask-zusatz-head-header-summe span {
+  color: var(--color-accent1);
+  font-weight: 600;
+}
+.ask-zusatz-head-item-kaufen {
+}
+.ask-zusatz-head-added-items {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+  border: 2px solid var(--color-accent1);
+  padding: 5px 5px 5px 5px;
+  max-height: 120px;
+  overflow-y: scroll;
+}
+.ask-zusatz-head-added-items::-webkit-scrollbar-track {
+  background-color: black;
+}
+
+.ask-zusatz-head-added-items::-webkit-scrollbar {
+  width: 5px;
+  background-color: black;
+}
+
+.ask-zusatz-head-added-items::-webkit-scrollbar-thumb {
+  background-color: #ffc300;
+}
+.ask-zusatz-head-added-item {
+  display: flex;
+  flex-direction: row;
+  align-items: self-start;
+}
+.ask-zusatz-item-count {
+  color: #ffc300;
+}
+
+/*Extra Ingredient Körper*/
+.ask-zusatz-body {
+  min-height: 450px;
+  max-height: 450px;
+  overflow-y: scroll;
+}
+.ask-zusatz-body::-webkit-scrollbar-track {
+  background-color: black;
+}
+
+.ask-zusatz-body::-webkit-scrollbar {
+  width: 5px;
+  background-color: black;
+}
+
+.ask-zusatz-body::-webkit-scrollbar-thumb {
+  background-color: white;
+}
+
+.ask-zusatz-body-section {
+  margin-top: 20px;
+}
+.ask-zusatz-body-section-name {
+  font-size: 17px;
+  font-weight: 600;
+}
+.ask-zusatz-body-section-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 5px;
+  padding: 10px 7px 0px 7px;
+}
+.ask-zusatz-body-section-item {
+  display: flex;
+  flex-direction: row;
+  align-items: self-start;
+}
+
+.ask-zusatz-item-button {
+  background-color: white;
+  color: black;
+  font-weight: 600;
+  font-size: 20px;
+  margin-top: 2px;
+  margin-right: 2px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.ask-zusatz-body-section-item-add:hover {
+  background-color: var(--color-accent1);
+}

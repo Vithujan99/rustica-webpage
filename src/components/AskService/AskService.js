@@ -23,7 +23,7 @@ const AskService = () => {
             onClick={() => serv.setService("Lieferung")}
           >
             <div className="deliveryImage">
-              <TbTruckDelivery size={100} style={{ color: "#fff" }} />
+              <TbTruckDelivery size="auto" style={{ color: "#fff" }} />
             </div>
             <button className="askServiceButton left">Lieferung</button>
           </div>
@@ -35,7 +35,7 @@ const AskService = () => {
             }}
           >
             <div className="pickUpImage">
-              <BsShop size={100} style={{ color: "#fff" }} />
+              <BsShop size="auto" style={{ color: "#fff" }} />
             </div>
             <button className="askServiceButton right">Abholung</button>
           </div>
@@ -50,7 +50,7 @@ const AskService = () => {
             minLength="5"
             maxLength="5"
             required
-            value={serv.getPlz()}
+            value={serv.plz}
             onChange={(e) => serv.setPlz(e.target.value)}
           />
           {serv.testPlz() ? (
@@ -59,7 +59,7 @@ const AskService = () => {
             </button>
           ) : (
             <>
-              {serv.getPlz().length === 5 ? (
+              {serv.plz.length === 5 ? (
                 <>
                   <p className="plz-error-text">
                     Befindet sich nicht im Liefergebiet
@@ -70,6 +70,12 @@ const AskService = () => {
               )}
             </>
           )}
+          <button
+            className="back-button"
+            onClick={() => serv.setService("null")}
+          >
+            Zurück
+          </button>
         </div>
       )}
     </div>

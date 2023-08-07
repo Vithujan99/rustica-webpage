@@ -224,15 +224,22 @@
   color: black;
 }
 
+/*Css for Bar*/
+
 .blackBackground {
   position: fixed;
+  top: 0;
   z-index: 100;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
 }
+.blackBackground.hide {
+  display: none;
+}
+
 .barShoppedItems {
-  width: 20vw;
+  width: 450px;
   height: 100vh;
   background-color: black;
   z-index: 105;
@@ -241,6 +248,11 @@
   right: 0;
   transition: right 0.3s ease;
 }
+.barShoppedItems.hide {
+  right: -450px;
+  transition: right 0.3s ease;
+}
+
 .closeBar {
   cursor: pointer;
   position: absolute;
@@ -270,25 +282,82 @@
 .closeBar:after {
   transform: rotate(-45deg);
 }
+/*Bar Content*/
+.barContent {
+  color: white;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: 500;
+}
 .barTitel {
   font-size: 23px;
   font-weight: 600;
   color: var(--color-accent1);
-  margin-top: 20px;
+  margin-top: 30px;
   text-align: center;
 }
-
 .barBody {
-  color: white;
-  padding: 20px;
+  padding-top: 15px;
 }
-.blackBackground.hide {
-  display: none;
+.barFooter {
+  padding-top: 10px;
+}
+.barFooterService-buttons {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+}
+.barFooterService-button {
+  width: 100px;
+  border-radius: 15px;
+  border: 3px solid black;
+  padding: auto;
+  transition: right 0.3s ease;
+}
+.barFooterService-button:hover {
+  background-color: var(--color-accent1);
+  transition: right 0.3s ease;
+}
+.barFooterService-button.active {
+  background-color: var(--color-accent1);
+  border: 3px solid white;
+  transition: right 0.3s ease;
+}
+.barFooterService-input {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+.bar-plz-text {
+  font-weight: 500;
+}
+.bar-plz-input {
+  font-size: 17px;
+  width: 25%;
+  text-align: center;
+  outline: 0;
+}
+.bar-plz-error-text {
+  color: red;
+  font-size: 17px;
+  font-weight: 500;
+}
+.barFooterKaufen {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
 }
 
-.barShoppedItems.hide {
-  right: -30vw;
-  transition: right 0.3s ease;
+.barFooterKaufen-button {
+  width: 100%;
+
+  border: 0;
 }
 
 @media (max-width: 1100px) {
@@ -329,6 +398,9 @@
     grid-template-areas:
       "hamburger infob infob infob infob infob infob"
       "infoa infoa infoa . . . infoc";
+  }
+  .infoc {
+    margin-right: 20px;
   }
   .nav-info li {
     display: flex;
@@ -450,10 +522,12 @@
   .item-d:hover .nav-link {
     color: black;
   }
-
-  @media (max-width: 450px) {
-    .infoa {
-      font-size: 15px;
-    }
+}
+@media (max-width: 450px) {
+  .infoa {
+    font-size: 15px;
+  }
+  .barShoppedItems {
+    width: 300px;
   }
 }

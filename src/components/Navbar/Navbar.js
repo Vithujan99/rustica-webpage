@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
+import { ServiceContext } from "../../context/ServiceContext";
 import { TimeContext } from "../../context/TimeContext";
 import { FaBars, FaTimes, FaShoppingCart } from "react-icons/fa";
 
@@ -9,6 +10,7 @@ import logo from "../../asset/rustica.png";
 
 const Navbar = () => {
   const cart = useContext(CartContext);
+  const serv = useContext(ServiceContext);
   const time = useContext(TimeContext);
 
   //setting active Route
@@ -124,33 +126,115 @@ const Navbar = () => {
         <div className="closeBar" onClick={handleClose}>
           X
         </div>
-        <div className="barTitel">Warenkorb</div>
-        <div className="barBody">
+        <div className="barContent">
+          <div className="barTitel">Warenkorb</div>
           {cart.getTotalCount() > 0 ? (
             <>
-              {time.isOpen() ? (
-                <></>
-              ) : (
-                <p>zur Zeit geschlossen - nur Vorbestellung möglich</p>
-              )}
-              <p>Items in your cart:</p>
-              {cart.items.map((currentProduct) => (
-                <h1>{currentProduct.id}</h1>
-              ))}
-              <h3>Gesamt: {cart.getTotalCost().toFixed(2)}</h3>
-              <div className="barBodyFooter">
-                {cart.getTotalCost < 10 ? (
+              <div className="barBody">
+                {time.isOpen() ? (
+                  <></>
+                ) : (
+                  <p>zur Zeit geschlossen - nur Vorbestellung möglich</p>
+                )}
+                <p>Aktuell im Wagen:</p>
+
+                {cart.items.map((currentProduct) => (
+                  <h1>{currentProduct.id + " " + currentProduct.quantity}</h1>
+                ))}
+              </div>
+              <div className="barFooter">
+                <h3>Gesamt: {cart.getTotalCost().toFixed(2)}</h3>
+
+                {cart.getTotalCost() < 10.0 ? (
                   <p>Mindestbestellwert für Lieferung (ohne Getränke) 10,00€</p>
                 ) : (
                   <>
-                    <button>Zur Kasse</button>
-                    <button>Wahrenkorb leeren</button>
+                    <div className="barFooterService-buttons">
+                      <button
+                        className={
+                          serv.service === "Lieferung"
+                            ? "barFooterService-button active"
+                            : "barFooterService-button"
+                        }
+                        onClick={() => serv.setService("Lieferung")}
+                      >
+                        Liefern
+                      </button>
+                      <button
+                        className={
+                          serv.service === "Abholung"
+                            ? "barFooterService-button active"
+                            : "barFooterService-button"
+                        }
+                        onClick={() => serv.setService("Abholung")}
+                      >
+                        Abholen
+                      </button>
+                    </div>
+                    {serv.service === "Lieferung" ? (
+                      <div className="barFooterService-input">
+                        <label className="bar-plz-text">
+                          Gebe Postleitzahl an
+                        </label>
+                        <input
+                          className="bar-plz-input"
+                          type="text"
+                          name="PLZ"
+                          minLength="5"
+                          maxLength="5"
+                          required
+                          value={serv.plz}
+                          onChange={(e) => serv.setPlz(e.target.value)}
+                        />
+                        {serv.testPlz() ? (
+                          <></>
+                        ) : (
+                          <>
+                            {serv.plz.length === 5 ? (
+                              <>
+                                <p className="bar-plz-error-text">
+                                  Befindet sich nicht im Liefergebiet
+                                </p>
+                              </>
+                            ) : (
+                              <></>
+                            )}
+                          </>
+                        )}
+                      </div>
+                    ) : (
+                      <></>
+                    )}
+                    <div className="barFooterKaufen">
+                      {serv.service === "Abholung" ? (
+                        <button className="barFooterKaufen-button">
+                          Zur Kasse
+                        </button>
+                      ) : (
+                        <>
+                          {serv.testPlz() ? (
+                            <button className="barFooterKaufen-button">
+                              Zur Kasse
+                            </button>
+                          ) : (
+                            <></>
+                          )}
+                        </>
+                      )}
+
+                      <button
+                        className="barFooterKaufen-button"
+                        onClick={() => cart.deleteCart()}
+                      >
+                        Wahrenkorb leeren
+                      </button>
+                    </div>
                   </>
                 )}
               </div>
             </>
           ) : (
-            <>
+            <div className="barBody">
               <h3>Noch keine Waren hinzugefügt!</h3>
               {time.isOpen() ? (
                 <></>
@@ -159,7 +243,7 @@ const Navbar = () => {
                   zur Zeit geschlossen - nur Vorbestellung möglich
                 </p>
               )}
-            </>
+            </div>
           )}
         </div>
       </div>

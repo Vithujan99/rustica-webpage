@@ -8,6 +8,7 @@ export const CartContext = createContext({
   addOneToCart: () => {},
   removeOneFromCart: () => {},
   deleteFromCart: () => {},
+  deleteCart: () => {},
   getTotalCost: () => {},
   getTotalCount: () => {},
 });
@@ -15,25 +16,41 @@ export const CartContext = createContext({
 export function CartProvider({ children }) {
   const [cartProducts, setCartProducts] = useState([]);
 
-  function getProductQuantity(id) {
+  function getProductQuantity(id, ingredientsIds) {
     const quantity = cartProducts.find(
-      (product) => product.id === id
+      (product) =>
+        product.id === id &&
+        JSON.stringify(product.ingredientsIds) ===
+          JSON.stringify(ingredientsIds)
     )?.quantity; //If there exist no Product with id it wont call quantity.
     if (quantity === undefined) {
       return 0;
     }
+
     return quantity;
   }
 
-  function addOneToCart(id) {
-    const quantity = getProductQuantity(id);
+  function addOneToCart(id, ingredientsIds) {
+    const sortedIngredients = [...ingredientsIds].sort(
+      (a, b) => a.ingredientId - b.ingredientId
+    );
+    const quantity = getProductQuantity(id, sortedIngredients);
     if (quantity === 0) {
-      setCartProducts([...cartProducts, { id: id, quantity: 1 }]);
+      setCartProducts([
+        ...cartProducts,
+        { id: id, quantity: 1, ingredientsIds: sortedIngredients },
+      ]);
     } else {
       setCartProducts(
         cartProducts.map((product) =>
-          product.id === id
-            ? { ...product, quantity: product.quantity + 1 }
+          product.id === id &&
+          JSON.stringify(product.ingredientsIds) ===
+            JSON.stringify(sortedIngredients)
+            ? {
+                ...product,
+                quantity: product.quantity + 1,
+                ingredientsIds: sortedIngredients,
+              }
             : product
         )
       );
@@ -41,7 +58,7 @@ export function CartProvider({ children }) {
   }
 
   function removeOneFromCart(id) {
-    const quantity = getProductQuantity(id);
+    const quantity = getProductQuantity(id, undefined);
     if (quantity === 1) {
       deleteFromCart(id);
     } else {
@@ -57,6 +74,9 @@ export function CartProvider({ children }) {
 
   function deleteFromCart(id) {
     setCartProducts(cartProducts.filter((product) => product.id !== id));
+  }
+  function deleteCart() {
+    setCartProducts([]);
   }
 
   function getTotalCost() {
@@ -79,6 +99,7 @@ export function CartProvider({ children }) {
     addOneToCart,
     removeOneFromCart,
     deleteFromCart,
+    deleteCart,
     getTotalCost,
     getTotalCount,
   };

@@ -23,6 +23,7 @@
 
 .deliverySide {
   width: 50%;
+  min-width: 200px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -41,6 +42,7 @@
 }
 .deliveryImage {
   height: 50%;
+  width: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,6 +50,7 @@
 
 .pickUpSide {
   width: 50%;
+  min-width: 200px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -66,6 +69,7 @@
 }
 .pickUpImage {
   height: 50%;
+  width: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,6 +124,23 @@
   font-size: 20px;
   border-radius: 15px;
 }
+.back-button {
+  position: absolute;
+  color: white;
+  background-color: black;
+  top: 30px;
+  border: 0;
+  font-size: 20px;
+  border-radius: 15px;
+  border: 2px solid white;
+  transition: all 0.2s ease;
+}
+
+.back-button:hover {
+  color: black;
+  background-color: white;
+  transition: all 0.2s ease;
+}
 
 .plz-error-text {
   position: absolute;
@@ -127,4 +148,57 @@
   color: red;
   font-size: 17px;
   font-weight: 500;
+}
+
+@media (max-width: 830px) {
+  .askService {
+    top: 20%;
+    right: 25%;
+    width: 50%;
+    height: 60%;
+    transition: none;
+  }
+  .deliverySide {
+    width: 100%;
+    height: 50%;
+    border: 0;
+    border-bottom: 2px solid var(--color-accent1);
+    justify-content: center;
+  }
+  .deliveryImage {
+    height: 60%;
+    width: 100px;
+  }
+  .pickUpSide {
+    width: 100%;
+    height: 50%;
+    border: 0;
+    border-top: 2px solid var(--color-accent1);
+    justify-content: center;
+  }
+  .pickUpImage {
+    height: 60%;
+    width: 100px;
+  }
+  .askServiceButton {
+    height: 25%;
+  }
+}
+
+@media (max-width: 800px) {
+  .askServiceContainer .blackBackground {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+}
+
+@media (max-width: 450px) {
+  .deliverySide {
+    min-width: 100px;
+  }
+  .pickUpSide {
+    min-width: 100px;
+  }
+  .askServiceButton {
+    font-size: 15px;
+  }
 }

@@ -4,7 +4,7 @@ const productsArray = [
     items: [
       { id: 54, name: "MARGHERITA", price: 5 },
       { id: 2, name: "Computer", price: 1199 },
-      { id: 3, name: "Banana", price: 1.05 },
+      { id: 3, name: "Banana", price: 1.05, zusatz: "Zusatz1" },
       { id: 4, name: "Kartoffel", price: 1.05 },
     ],
   },
