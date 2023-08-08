@@ -14,14 +14,16 @@ export const CartContext = createContext({
 });
 
 export function CartProvider({ children }) {
+  //Man kann auch sessionStorage benutzten
   const storedCartProducts = JSON.parse(localStorage.getItem("cartProducts"));
+  console.log(storedCartProducts);
   const [cartProducts, setCartProducts] = useState(
     storedCartProducts === null ? [] : storedCartProducts
   );
   useEffect(() => {
     localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
   }, [cartProducts]);
-  console.log(cartProducts);
+
   function getProductQuantity(id, ingredientsIds) {
     const quantity = cartProducts.find(
       (product) =>
@@ -42,16 +44,16 @@ export function CartProvider({ children }) {
         (a, b) => a.ingredientId - b.ingredientId
       );
     }
-
+    var currentCartProducts = JSON.parse(localStorage.getItem("cartProducts"));
     const quantity = getProductQuantity(id, ingredientsIds);
     if (quantity === 0) {
       setCartProducts([
-        ...cartProducts,
+        ...currentCartProducts,
         { id: id, quantity: 1, ingredientsIds: ingredientsIds },
       ]);
     } else {
       setCartProducts(
-        cartProducts.map((product) =>
+        currentCartProducts.map((product) =>
           product.id === id &&
           JSON.stringify(product.ingredientsIds) ===
             JSON.stringify(ingredientsIds)

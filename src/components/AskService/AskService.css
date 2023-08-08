@@ -1,3 +1,6 @@
+.askServiceContainer.hide {
+  display: none;
+}
 .askServiceContainer .blackBackground {
   background-color: rgba(0, 0, 0, 0.7);
 }

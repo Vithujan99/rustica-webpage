@@ -11,7 +11,13 @@ const AskService = () => {
     setShow(false);
   };
   return (
-    <div className="askServiceContainer">
+    <div
+      className={
+        sessionStorage.getItem("ser") === "Abholung" || serv.askPlz
+          ? "askServiceContainer hide"
+          : "askServiceContainer"
+      }
+    >
       <div
         className={show ? "blackBackground" : "blackBackground hide"}
         onClick={handleClose}
@@ -41,7 +47,9 @@ const AskService = () => {
           </div>
         </div>
       ) : (
-        <div className={show ? "askPLZ" : "askPLZ hide"}>
+        <div
+          className={show && serv.askPlz === null ? "askPLZ" : "askPLZ hide"}
+        >
           <label className="plz-text">Gebe Postleitzahl an</label>
           <input
             className="plz-input"
@@ -54,7 +62,13 @@ const AskService = () => {
             onChange={(e) => serv.setPlz(e.target.value)}
           />
           {serv.testPlz() ? (
-            <button className="plz-button" onClick={() => handleClose()}>
+            <button
+              className="plz-button"
+              onClick={() => {
+                handleClose();
+                serv.setAskPlzShow();
+              }}
+            >
               Submit
             </button>
           ) : (
