@@ -31,25 +31,28 @@ export function CartProvider({ children }) {
   }
 
   function addOneToCart(id, ingredientsIds) {
-    const sortedIngredients = [...ingredientsIds].sort(
-      (a, b) => a.ingredientId - b.ingredientId
-    );
-    const quantity = getProductQuantity(id, sortedIngredients);
+    if (ingredientsIds !== undefined) {
+      ingredientsIds = [...ingredientsIds].sort(
+        (a, b) => a.ingredientId - b.ingredientId
+      );
+    }
+
+    const quantity = getProductQuantity(id, ingredientsIds);
     if (quantity === 0) {
       setCartProducts([
         ...cartProducts,
-        { id: id, quantity: 1, ingredientsIds: sortedIngredients },
+        { id: id, quantity: 1, ingredientsIds: ingredientsIds },
       ]);
     } else {
       setCartProducts(
         cartProducts.map((product) =>
           product.id === id &&
           JSON.stringify(product.ingredientsIds) ===
-            JSON.stringify(sortedIngredients)
+            JSON.stringify(ingredientsIds)
             ? {
                 ...product,
                 quantity: product.quantity + 1,
-                ingredientsIds: sortedIngredients,
+                ingredientsIds: ingredientsIds,
               }
             : product
         )
