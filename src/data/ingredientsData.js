@@ -1,5 +1,6 @@
 const ingredientsData = [
   {
+    name: "Zusatz1",
     price: 0.3,
     items: [
       { id: 201, name: "Knoblauch" },
@@ -7,6 +8,7 @@ const ingredientsData = [
     ],
   },
   {
+    name: "Zusatz1",
     price: 0.5,
     items: [
       {
@@ -20,6 +22,29 @@ const ingredientsData = [
     ],
   },
   {
+    name: "Zusatz1",
+    price: 1.2,
+    items: [
+      {
+        id: 205,
+        name: "Ananas",
+      },
+      {
+        id: 206,
+        name: "Artischocke",
+      },
+      {
+        id: 207,
+        name: "Brokkoli",
+      },
+      {
+        id: 208,
+        name: "Champignon",
+      },
+    ],
+  },
+  {
+    name: "Zusatz2",
     price: 1.2,
     items: [
       {
@@ -42,6 +67,11 @@ const ingredientsData = [
   },
 ];
 
+function getZusatzIngredientstData(zusatz) {
+  console.log(ingredientsData.find((item) => item.name === zusatz));
+  return ingredientsData.find((item) => item.name === zusatz);
+}
+
 function getPriceWithIngredientsData(id) {
   let data = ingredientsData.find((data) =>
     data.items.find((item) => item.id === id)
@@ -61,4 +91,9 @@ function getIngredientstData(id) {
   return undefined;
 }
 
-export { ingredientsData, getIngredientstData, getPriceWithIngredientsData };
+export {
+  ingredientsData,
+  getZusatzIngredientstData,
+  getIngredientstData,
+  getPriceWithIngredientsData,
+};

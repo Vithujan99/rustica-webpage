@@ -17,7 +17,9 @@ export function IngredientsProvider({ children }) {
 
   function handleItemId(id) {
     if (itemId !== id) {
-      setItems([...oldItems, itemId, ingredients]);
+      if (itemId !== 0) {
+        setItems([...oldItems, { itemId: itemId, ingredients: ingredients }]);
+      }
       const item = oldItems.find((oldItem) => oldItem.itemId === id);
       if (item === undefined) {
         setItemId(id);

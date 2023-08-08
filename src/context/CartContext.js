@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { getProductData } from "../data/productsStore";
 
 //Function are not defined here, but this indicates that we have room for thease Function
@@ -14,8 +14,14 @@ export const CartContext = createContext({
 });
 
 export function CartProvider({ children }) {
-  const [cartProducts, setCartProducts] = useState([]);
-
+  const storedCartProducts = JSON.parse(localStorage.getItem("cartProducts"));
+  const [cartProducts, setCartProducts] = useState(
+    storedCartProducts === null ? [] : storedCartProducts
+  );
+  useEffect(() => {
+    localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
+  }, [cartProducts]);
+  console.log(cartProducts);
   function getProductQuantity(id, ingredientsIds) {
     const quantity = cartProducts.find(
       (product) =>
