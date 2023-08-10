@@ -5,6 +5,7 @@ export const IngredientsContext = createContext({
   ingredientsArray: [],
   handleItemId: () => {},
   addIngredient: () => {},
+  addDressingIngredient: () => {},
   removeIngredient: () => {},
   getTotalCost: () => {},
   removeItem: () => {},
@@ -17,18 +18,25 @@ export function IngredientsProvider({ children }) {
 
   function handleItemId(id) {
     if (itemId !== id) {
-      if (itemId !== 0) {
-        setItems([...oldItems, { itemId: itemId, ingredients: ingredients }]);
-      }
-      const item = oldItems.find((oldItem) => oldItem.itemId === id);
-      if (item === undefined) {
-        setItemId(id);
-        setIngredients([]);
-      } else {
-        setItemId(item.itemId);
-        setIngredients(item.ingredients);
-      }
+      setIngredients([]);
     }
+    //Wichtig funktioniert so nicht(soll sich alte Ingredients merken damit user acuh zwischen Items wechseln kann)
+    //if (itemId !== id) {
+    //  setItems(
+    //    oldItems.map((item) =>
+    //      item.itemId === itemId ? { ...item, ingredients: ingredients } : item
+    //    )
+    //  );
+    //  const item = oldItems.find((oldItem) => oldItem.itemId === id);
+    //  if (item === undefined) {
+    //    setItemId(id);
+    //    setIngredients([]);
+    //    setItems([...oldItems, { itemId: id, ingredients: [] }]);
+    //  } else {
+    //    setItemId(item.itemId);
+    //    setIngredients(item.ingredients);
+    //  }
+    //}
   }
 
   function getIngridientQuantity(ingredientId) {
@@ -58,6 +66,12 @@ export function IngredientsProvider({ children }) {
         )
       );
     }
+  }
+
+  function addDressingIngredient(id, ingredientId) {
+    handleItemId(id);
+    ingredientId = parseInt(ingredientId);
+    setIngredients([{ ingredientId: ingredientId, quantity: 1 }]);
   }
 
   function removeIngredient(id, ingredientId) {
@@ -105,6 +119,7 @@ export function IngredientsProvider({ children }) {
     ingredientsArray: ingredients,
     handleItemId,
     addIngredient,
+    addDressingIngredient,
     removeIngredient,
     getTotalCost,
     removeItem,

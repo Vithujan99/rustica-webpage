@@ -20,10 +20,16 @@ export const MenuItem = ({ data }) => {
   function setZusatzName(name) {
     handleZusatzName(name);
   }
+
+  const [text, handleText] = useState("");
+  function setText(newText) {
+    handleText(newText.target.value);
+  }
+
   return (
     <div className="item-card">
       <div className="item-name">
-        {("0" + data.id).slice(-3)}.{data.name}
+        {("0" + data.id).slice(-3)}.{data.name.toUpperCase()}
       </div>
       <div className="item-stoff"></div>
       <div className="item-beschreibung">{data.beschreibung}</div>
@@ -33,7 +39,7 @@ export const MenuItem = ({ data }) => {
         className="item-kaufen"
         onClick={() => {
           if (data.zusatz === undefined) {
-            cart.addOneToCart(data.id, undefined);
+            cart.addOneToCart(data.id, undefined, undefined);
           } else {
             setShowZusatz(true);
             ingredients.handleItemId(data.id);
@@ -74,12 +80,17 @@ export const MenuItem = ({ data }) => {
               <button
                 className="ask-zusatz-head-item-kaufen"
                 onClick={() => {
-                  cart.addOneToCart(data.id, ingredients.ingredientsArray);
+                  cart.addOneToCart(
+                    data.id,
+                    ingredients.ingredientsArray,
+                    text
+                  );
                   ingredients.removeItem(data.id);
+                  handleText("");
                   setShowZusatz(false);
                 }}
               >
-                In den Einkaufswagen
+                Hinzufügen
               </button>
             </div>
             <div className="ask-zusatz-head-added-items">
@@ -108,31 +119,83 @@ export const MenuItem = ({ data }) => {
             </div>
           </div>
           <div className="ask-zusatz-body">
-            {ingredientsData.map((ingredientSection) =>
-              ingredientSection.name === zusatzName ? (
-                <div className="ask-zusatz-body-section">
-                  <p className="ask-zusatz-body-section-name">
-                    Zutaten für:{formatCurrency(ingredientSection.price)}
-                  </p>
-                  <div className="ask-zusatz-body-section-items">
-                    {ingredientSection.items.map((ingredient) => (
-                      <div className="ask-zusatz-body-section-item">
-                        <div
-                          onClick={() =>
-                            ingredients.addIngredient(data.id, ingredient.id)
-                          }
-                          className="ask-zusatz-item-button"
-                        >
-                          +
-                        </div>
-                        <p>{ingredient.name}</p>
+            {zusatzName === "Zusatz2" ? (
+              <div className="ask-zusatz-body-section">
+                <label className="ask-zusatz-body-section-name" for="salatIng">
+                  Salat Dressing
+                </label>
+                <br></br>
+                <select
+                  className="ask-zusatz-body-section-select"
+                  onChange={(event) => {
+                    ingredients.addDressingIngredient(
+                      data.id,
+                      event.target.value
+                    );
+                  }}
+                  name="salatIngredients"
+                  id="salatIng"
+                >
+                  {ingredientsData.map((ingredientSection) =>
+                    ingredientSection.name === zusatzName ? (
+                      ingredientSection.items.map((ingredient) => (
+                        <option value={ingredient.id}>{ingredient.name}</option>
+                      ))
+                    ) : (
+                      <></>
+                    )
+                  )}
+                </select>
+              </div>
+            ) : (
+              <>
+                {ingredientsData.map((ingredientSection) =>
+                  ingredientSection.name === zusatzName ? (
+                    <div className="ask-zusatz-body-section">
+                      <p className="ask-zusatz-body-section-name">
+                        Zutaten für:{formatCurrency(ingredientSection.price)}
+                      </p>
+                      <div className="ask-zusatz-body-section-items">
+                        {ingredientSection.items.map((ingredient) => (
+                          <div className="ask-zusatz-body-section-item">
+                            <div
+                              onClick={() => {
+                                ingredients.addIngredient(
+                                  data.id,
+                                  ingredient.id
+                                );
+                              }}
+                              className="ask-zusatz-item-button"
+                            >
+                              +
+                            </div>
+                            <p>{ingredient.name}</p>
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  ) : (
+                    <></>
+                  )
+                )}
+                <div className="ask-zusatz-body-section-textfeld-container">
+                  <label className="ask-zusatz-body-section-textfeld-beschreibung">
+                    {" "}
+                    Hinweis:{" "}
+                    <span>
+                      z.B. dunkel backen, ohne Oregano, schneiden, etc. (
+                      Sonstige Extra-Zutaten werden bei der Lieferung/Abholung
+                      zusätzlich berechnet).
+                    </span>
+                  </label>
+
+                  <textarea
+                    className="ask-zusatz-body-section-textfeld"
+                    value={text}
+                    onChange={(event) => setText(event)}
+                  ></textarea>
                 </div>
-              ) : (
-                <></>
-              )
+              </>
             )}
           </div>
         </div>

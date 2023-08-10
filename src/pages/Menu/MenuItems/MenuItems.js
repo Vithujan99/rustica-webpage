@@ -21,7 +21,7 @@ const MenuItems = () => {
           <h2 className="item-tiel">{titel}</h2>
         </div>
       </div>
-      <div className="test">
+      <div className="items-show-holder">
         <div className="left-Item-buttons">
           <button
             className={
@@ -43,8 +43,7 @@ const MenuItems = () => {
               setItems("Pizzabrötchen");
             }}
           >
-            Pizza-
-            <br /> brötchen
+            Pizzabrötchen
           </button>
           <button
             className={

@@ -16,7 +16,6 @@ export const CartContext = createContext({
 export function CartProvider({ children }) {
   //Man kann auch sessionStorage benutzten
   const storedCartProducts = JSON.parse(localStorage.getItem("cartProducts"));
-  console.log(storedCartProducts);
   const [cartProducts, setCartProducts] = useState(
     storedCartProducts === null ? [] : storedCartProducts
   );
@@ -24,43 +23,50 @@ export function CartProvider({ children }) {
     localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
   }, [cartProducts]);
 
-  function getProductQuantity(id, ingredientsIds) {
+  function getProductQuantity(id, ingredientsIds, description) {
     const quantity = cartProducts.find(
       (product) =>
         product.id === id &&
         JSON.stringify(product.ingredientsIds) ===
-          JSON.stringify(ingredientsIds)
+          JSON.stringify(ingredientsIds) &&
+        product.description === description
     )?.quantity; //If there exist no Product with id it wont call quantity.
     if (quantity === undefined) {
       return 0;
     }
-
     return quantity;
   }
 
-  function addOneToCart(id, ingredientsIds) {
+  function addOneToCart(id, ingredientsIds, description) {
     if (ingredientsIds !== undefined) {
       ingredientsIds = [...ingredientsIds].sort(
         (a, b) => a.ingredientId - b.ingredientId
       );
     }
     var currentCartProducts = JSON.parse(localStorage.getItem("cartProducts"));
-    const quantity = getProductQuantity(id, ingredientsIds);
+    const quantity = getProductQuantity(id, ingredientsIds, description);
     if (quantity === 0) {
       setCartProducts([
         ...currentCartProducts,
-        { id: id, quantity: 1, ingredientsIds: ingredientsIds },
+        {
+          id: id,
+          quantity: 1,
+          ingredientsIds: ingredientsIds,
+          description: description,
+        },
       ]);
     } else {
       setCartProducts(
         currentCartProducts.map((product) =>
           product.id === id &&
           JSON.stringify(product.ingredientsIds) ===
-            JSON.stringify(ingredientsIds)
+            JSON.stringify(ingredientsIds) &&
+          product.description === description
             ? {
                 ...product,
                 quantity: product.quantity + 1,
                 ingredientsIds: ingredientsIds,
+                description: description,
               }
             : product
         )
