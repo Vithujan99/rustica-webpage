@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/rustica-webpage/static/css/main.c7745ce8.css",
-    "main.js": "/rustica-webpage/static/js/main.3a71aa2c.js",
+    "main.css": "/rustica-webpage/static/css/main.48817938.css",
+    "main.js": "/rustica-webpage/static/js/main.2ebea76a.js",
     "static/media/pizza-time-tasty-homemade-traditional-pizza-italian-recipe.jpg": "/rustica-webpage/static/media/pizza-time-tasty-homemade-traditional-pizza-italian-recipe.e393ddccffd513575e10.jpg",
     "static/media/vintage-old-rustic-cutlery-dark.jpg": "/rustica-webpage/static/media/vintage-old-rustic-cutlery-dark.1c8bd080e005c921989a.jpg",
     "static/media/white-ing-drawing.jpg": "/rustica-webpage/static/media/white-ing-drawing.5604f6227627f7718a74.jpg",
     "static/media/rustica.png": "/rustica-webpage/static/media/rustica.36f57689d8d8d3cf38f3.png",
     "index.html": "/rustica-webpage/index.html",
-    "main.c7745ce8.css.map": "/rustica-webpage/static/css/main.c7745ce8.css.map",
-    "main.3a71aa2c.js.map": "/rustica-webpage/static/js/main.3a71aa2c.js.map"
+    "main.48817938.css.map": "/rustica-webpage/static/css/main.48817938.css.map",
+    "main.2ebea76a.js.map": "/rustica-webpage/static/js/main.2ebea76a.js.map"
   },
   "entrypoints": [
-    "static/css/main.c7745ce8.css",
-    "static/js/main.3a71aa2c.js"
+    "static/css/main.48817938.css",
+    "static/js/main.2ebea76a.js"
   ]
 }
