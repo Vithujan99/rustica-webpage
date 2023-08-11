@@ -47,7 +47,7 @@ export const MenuItem = ({ data }) => {
           }
         }}
       >
-        In den Einkaufswagen
+        Hinzufügen
       </button>
 
       <div
