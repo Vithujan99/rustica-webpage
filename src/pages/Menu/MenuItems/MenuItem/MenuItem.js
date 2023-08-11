@@ -133,6 +133,7 @@ export const MenuItem = ({ data }) => {
                       event.target.value
                     );
                   }}
+                  required
                   name="salatIngredients"
                   id="salatIng"
                 >
@@ -178,25 +179,25 @@ export const MenuItem = ({ data }) => {
                     <></>
                   )
                 )}
-                <div className="ask-zusatz-body-section-textfeld-container">
-                  <label className="ask-zusatz-body-section-textfeld-beschreibung">
-                    {" "}
-                    Hinweis:{" "}
-                    <span>
-                      z.B. dunkel backen, ohne Oregano, schneiden, etc. (
-                      Sonstige Extra-Zutaten werden bei der Lieferung/Abholung
-                      zusätzlich berechnet).
-                    </span>
-                  </label>
-
-                  <textarea
-                    className="ask-zusatz-body-section-textfeld"
-                    value={text}
-                    onChange={(event) => setText(event)}
-                  ></textarea>
-                </div>
               </>
             )}
+            <div className="ask-zusatz-body-section-textfeld-container">
+              <label className="ask-zusatz-body-section-textfeld-beschreibung">
+                {" "}
+                Hinweis:{" "}
+                <span>
+                  z.B. dunkel backen, ohne Oregano, schneiden, etc. ( Sonstige
+                  Extra-Zutaten werden bei der Lieferung/Abholung zusätzlich
+                  berechnet).
+                </span>
+              </label>
+
+              <textarea
+                className="ask-zusatz-body-section-textfeld"
+                value={text}
+                onChange={(event) => setText(event)}
+              ></textarea>
+            </div>
           </div>
         </div>
       </div>

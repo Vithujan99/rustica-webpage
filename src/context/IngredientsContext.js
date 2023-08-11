@@ -71,7 +71,11 @@ export function IngredientsProvider({ children }) {
   function addDressingIngredient(id, ingredientId) {
     handleItemId(id);
     ingredientId = parseInt(ingredientId);
-    setIngredients([{ ingredientId: ingredientId, quantity: 1 }]);
+    if (ingredientId === 234) {
+      setIngredients([]);
+    } else {
+      setIngredients([{ ingredientId: ingredientId, quantity: 1 }]);
+    }
   }
 
   function removeIngredient(id, ingredientId) {

@@ -1,7 +1,7 @@
 .item-card {
   position: relative;
   padding: 20px;
-  height: 300px;
+  height: 275px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,21 +14,23 @@
 .item-stoff {
 }
 .item-beschreibung {
+  text-align: center;
 }
 .item-preis {
   position: absolute;
   font-size: 18px;
   font-weight: 500;
-  bottom: 50px;
+  bottom: 65px;
 }
 .item-kaufen {
   position: absolute;
   width: 80%;
-  bottom: 5px;
+  bottom: 20px;
   font-size: 17px;
   border-radius: 10px;
   border: 2px solid black;
   transition: all 0.2s ease;
+  background-color: white;
 }
 .item-kaufen:hover {
   background-color: rgb(252, 31, 31);
@@ -252,13 +254,154 @@
 }
 
 @media (max-width: 800px) {
+  .item-card {
+    position: relative;
+    padding: 20px;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .item-name {
+    position: absolute;
+    font-size: 22px;
+    font-weight: 600;
+    top: 2px;
+    left: 5px;
+  }
+  .item-stoff {
+  }
+  .item-beschreibung {
+    position: absolute;
+    text-align: left;
+    width: 400px;
+    bottom: 5px;
+    left: 7px;
+  }
+  .item-preis {
+    position: absolute;
+    font-size: 22px;
+    line-height: 1;
+    font-weight: 600;
+    top: 48px;
+    margin-top: -10px;
+    right: 170px;
+  }
+  .item-kaufen {
+    position: absolute;
+    width: 160px;
+    height: 100px;
+    bottom: 0px;
+    right: 0px;
+    font-size: 17px;
+    text-align: left;
+    border-radius: 0 15px 15px 0;
+    border: 5px solid black;
+    border-left: 5px solid black;
+    background-color: white;
+    transition: all 0.2s ease;
+  }
+  .item-kaufen:hover {
+    border: 5px solid black;
+    border-left: 0px;
+    background-color: rgb(252, 31, 31);
+    color: white;
+    transition: all 0.2s ease;
+  }
+  /*Extra ingredients*/
   .ask-zusatz-content {
     width: 450px;
     left: 50%;
     margin-left: -225px;
   }
 }
+@media (max-width: 800px) {
+  .item-beschreibung {
+    width: 350px;
+  }
+}
+@media (max-width: 615px) {
+  .item-card {
+    height: 150px;
+  }
+  .item-stoff {
+  }
+  .item-beschreibung {
+    width: 250px;
+  }
+  .item-preis {
+    top: 73px;
+    right: 150px;
+  }
+  .item-kaufen {
+    position: absolute;
+    padding: 0 0 0 5px;
+    width: 140px;
+    height: 150px;
+    bottom: 0px;
+    right: 0px;
+    font-size: 17px;
+    transition: all 0.2s ease;
+  }
+}
+
 @media (max-width: 550px) {
+  .item-card {
+    position: relative;
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .item-name {
+    position: absolute;
+    font-size: 18px;
+    font-weight: 600;
+    top: 2px;
+    left: 5px;
+  }
+  .item-stoff {
+  }
+  .item-beschreibung {
+    position: absolute;
+    font-size: 15px;
+    text-align: left;
+    width: 200px;
+    left: 7px;
+  }
+  .item-preis {
+    position: absolute;
+    font-size: 18px;
+    line-height: 1;
+    font-weight: 600;
+    top: 73px;
+    margin-top: -10px;
+    right: 150px;
+  }
+  .item-kaufen {
+    position: absolute;
+    padding: 0 0 0 10px;
+    width: 140px;
+    height: 150px;
+    bottom: 0px;
+    right: 0px;
+    font-size: 15px;
+    text-align: left;
+    border-radius: 0 15px 15px 0;
+    border: 5px solid black;
+    border-left: 5px solid black;
+    background-color: white;
+    transition: all 0.2s ease;
+  }
+  .item-kaufen:hover {
+    border: 5px solid black;
+    border-left: 0px;
+    background-color: rgb(252, 31, 31);
+    color: white;
+    transition: all 0.2s ease;
+  }
+
   .ask-zusatz-content {
     width: 350px;
     left: 50%;
@@ -295,10 +438,104 @@
     font-size: 16px;
   }
 }
+
 @media (max-width: 550px) {
   .ask-zusatz-content {
     width: 300px;
     left: 50%;
     margin-left: -150px;
+  }
+}
+
+@media (max-width: 460px) {
+  .item-card {
+    position: relative;
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .item-name {
+    position: absolute;
+    width: 150px;
+    word-wrap: normal;
+    font-size: 18px;
+    font-weight: 600;
+    top: 2px;
+    left: 5px;
+  }
+  .item-stoff {
+  }
+  .item-beschreibung {
+    position: absolute;
+    font-size: 13px;
+    text-align: left;
+    width: 180px;
+    left: 7px;
+  }
+  .item-preis {
+    position: absolute;
+    font-size: 18px;
+    line-height: 1;
+    font-weight: 600;
+    top: 73px;
+    margin-top: -10px;
+    right: 105px;
+  }
+  .item-kaufen {
+    position: absolute;
+    padding: 0 0 0 5px;
+    width: 100px;
+    height: 150px;
+    bottom: 0px;
+    right: 0px;
+    font-size: 11px;
+    text-align: left;
+    border-radius: 0 15px 15px 0;
+    border: 5px solid black;
+    border-left: 5px solid black;
+    background-color: white;
+    transition: all 0.2s ease;
+  }
+  .item-kaufen:hover {
+    border: 5px solid black;
+    border-left: 0px;
+    background-color: rgb(252, 31, 31);
+    color: white;
+    transition: all 0.2s ease;
+  }
+}
+@media (max-width: 425px) {
+  .item-name {
+    position: absolute;
+    font-size: 17px;
+    font-weight: 600;
+    top: 2px;
+    left: 5px;
+  }
+  .item-beschreibung {
+    width: 120px;
+  }
+}
+@media (max-width: 376px) {
+  .item-beschreibung {
+    font-size: 11px;
+    width: 125px;
+  }
+}
+@media (max-width: 326px) {
+  .item-name {
+    font-size: 13px;
+    word-wrap: normal;
+    width: 125px;
+  }
+  .item-preis {
+    font-size: 13px;
+  }
+}
+@media (max-width: 281px) {
+  .item-beschreibung {
+    font-size: 9px;
+    width: 79px;
   }
 }

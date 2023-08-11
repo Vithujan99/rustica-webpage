@@ -3,13 +3,54 @@ import { getDataByType } from "../../../data/productsStore";
 
 import MenuItem from "./MenuItem/MenuItem";
 import "./MenuItems.css";
-
+const allButtons = [
+  "Pizza",
+  "Pizzabrötchen",
+  "Salate",
+  "Spaghetti",
+  "Maccheroni",
+  "Tagliatelle",
+  "Tortellini",
+  "Gnocchi",
+  "Rustica Spezial Teil 1",
+  "Reisgerichte",
+  "Überbackenes",
+  "Fitnessküche",
+  "Pfannkuchen",
+  "Carne",
+  "Getränk außer Haus",
+  "Dessert",
+];
+const leftButtons = [
+  "Pizza",
+  "Pizzabrötchen",
+  "Salate",
+  "Spaghetti",
+  "Maccheroni",
+  "Tagliatelle",
+  "Tortellini",
+  "Gnocchi",
+];
+const rightButtons = [
+  "Rustica Spezial Teil 1",
+  "Reisgerichte",
+  "Überbackenes",
+  "Fitnessküche",
+  "Pfannkuchen",
+  "Carne",
+  "Getränk außer Haus",
+  "Dessert",
+];
 const MenuItems = () => {
   const [titel, handleTitel] = useState("Pizza");
-
   const [items, handleItems] = useState(getDataByType("Pizza"));
   const setItems = (clickedItem) => {
-    handleItems(getDataByType(clickedItem));
+    //normalerweiße handleItems(getDataByType(clickedItem)); Bis die Daten gefüült sind benutzen wir:
+    handleItems(
+      getDataByType(clickedItem) === undefined
+        ? getDataByType("Pizza")
+        : getDataByType(clickedItem)
+    );
     handleTitel(clickedItem);
   };
 
@@ -21,45 +62,36 @@ const MenuItems = () => {
           <h2 className="item-tiel">{titel}</h2>
         </div>
       </div>
-      <div className="items-show-holder">
+      <div className="items-show-container">
+        <div className="all-Item-buttons">
+          {allButtons.map((item) => (
+            <button
+              className={
+                titel === item
+                  ? "all-item-button all-item-active"
+                  : "all-item-button"
+              }
+              onClick={() => {
+                setItems(item);
+              }}
+            >
+              {item}
+            </button>
+          ))}
+        </div>
         <div className="left-Item-buttons">
-          <button
-            className={
-              titel === "Pizza" ? "item-button item-active" : "item-button"
-            }
-            onClick={() => {
-              setItems("Pizza");
-            }}
-          >
-            Pizza
-          </button>
-          <button
-            className={
-              titel === "Pizzabrötchen"
-                ? "item-button item-active"
-                : "item-button"
-            }
-            onClick={() => {
-              setItems("Pizzabrötchen");
-            }}
-          >
-            Pizzabrötchen
-          </button>
-          <button
-            className={
-              titel === "Salate" ? "item-button item-active" : "item-button"
-            }
-            onClick={() => {
-              setItems("Salate");
-            }}
-          >
-            Salate
-          </button>
-          <button className="item-button">Spaghetti</button>
-          <button className="item-button">Maccheroni</button>
-          <button className="item-button">Tagliatelle</button>
-          <button className="item-button">Tortellini</button>
-          <button className="item-button">Gnocchi</button>
+          {leftButtons.map((item) => (
+            <button
+              className={
+                titel === item ? "item-button item-active" : "item-button"
+              }
+              onClick={() => {
+                setItems(item);
+              }}
+            >
+              {item}
+            </button>
+          ))}
         </div>
         <div className="item-holder">
           {items.map((item) => (
@@ -69,25 +101,18 @@ const MenuItems = () => {
           ))}
         </div>
         <div className="right-Item-buttons">
-          <button
-            className={
-              titel === "Rustica Spezial Teil 1"
-                ? "item-button item-active"
-                : "item-button"
-            }
-            onClick={() => {
-              setItems("Pizza");
-            }}
-          >
-            Rustica Spezial Teil 1
-          </button>
-          <button className="item-button">Reisgerichte</button>
-          <button className="item-button">Überbackenes</button>
-          <button className="item-button">Fitnessküche</button>
-          <button className="item-button">Pfannkuchen</button>
-          <button className="item-button">Carne</button>
-          <button className="item-button">Getränk außer Haus</button>
-          <button className="item-button">Dessert</button>
+          {rightButtons.map((item) => (
+            <button
+              className={
+                titel === item ? "item-button item-active" : "item-button"
+              }
+              onClick={() => {
+                setItems(item);
+              }}
+            >
+              {item}
+            </button>
+          ))}
         </div>
       </div>
     </div>

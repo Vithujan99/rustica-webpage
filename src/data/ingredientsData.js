@@ -161,14 +161,18 @@ const ingredientsData = [
     items: [
       {
         id: 234,
-        name: "Cocktail-Dressing",
+        name: "Kein Dressing",
       },
       {
         id: 235,
-        name: "Essing und Öl",
+        name: "Cocktail-Dressing",
       },
       {
         id: 236,
+        name: "Essing und Öl",
+      },
+      {
+        id: 237,
         name: "Joghurt-Dressing",
       },
     ],
@@ -178,7 +182,7 @@ const ingredientsData = [
     price: 1,
     items: [
       {
-        id: 237,
+        id: 238,
         name: "extra Kräuterbutter",
       },
     ],

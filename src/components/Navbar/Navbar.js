@@ -22,7 +22,11 @@ const Navbar = () => {
   //change nav when scrolling
   const [scroll, setScroll] = useState(false);
   const changeScroll = () => {
-    if (window.scrollY >= 90 && window.innerWidth >= 800) {
+    if (
+      window.scrollY >= 90 &&
+      window.innerWidth >= 800 &&
+      window.innerHeight >= 300
+    ) {
       setScroll(true);
     } else {
       setScroll(false);

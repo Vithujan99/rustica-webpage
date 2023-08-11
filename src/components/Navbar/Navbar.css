@@ -359,7 +359,22 @@
 
   border: 0;
 }
-
+@media (max-height: 450px) {
+  .moving-nav-bar {
+    display: grid;
+    grid-template-rows: 1fr;
+    height: 75px;
+    transition: all 0.2s ease;
+  }
+  .moving-header-nav .nav-menu {
+    display: none;
+  }
+}
+@media (max-height: 300px) {
+  .header-nav {
+    position: relative;
+  }
+}
 @media (max-width: 1100px) {
   .moving-infob .info-zeit {
     right: -5%;

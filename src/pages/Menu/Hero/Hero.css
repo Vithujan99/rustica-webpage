@@ -21,7 +21,11 @@
   font-size: 100px;
   margin-top: 45vh;
 }
-
+@media (max-height: 300px) {
+  .black-box {
+    display: none;
+  }
+}
 @media (max-width: 800px) {
   .black-box {
     display: none;
