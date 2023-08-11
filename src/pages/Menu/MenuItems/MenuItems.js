@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { getDataByType } from "../../../data/productsStore";
+import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 
 import MenuItem from "./MenuItem/MenuItem";
 import "./MenuItems.css";
+
 const allButtons = [
   "Pizza",
   "Pizzabrötchen",
@@ -54,6 +56,14 @@ const MenuItems = () => {
     handleTitel(clickedItem);
   };
 
+  const [showMenuBar, handleShowMenuBar] = useState(false);
+  const openShowMenuBar = () => {
+    handleShowMenuBar(true);
+  };
+  const closeShowMenuBar = () => {
+    handleShowMenuBar(false);
+  };
+
   return (
     <div>
       <div className="menu-titel-container">
@@ -63,13 +73,33 @@ const MenuItems = () => {
         </div>
       </div>
       <div className="items-show-container">
-        <div className="all-Item-buttons">
+        <div
+          className={showMenuBar ? "blackBackground" : "blackBackground hide"}
+          onClick={() => closeShowMenuBar()}
+        ></div>
+        {showMenuBar ? (
+          <div
+            onClick={() => closeShowMenuBar()}
+            className="all-Item-buttons-show close"
+          >
+            <FaAngleLeft size={50} color="#fc1f1f"></FaAngleLeft>
+          </div>
+        ) : (
+          <div
+            onClick={() => openShowMenuBar()}
+            className="all-Item-buttons-show open"
+          >
+            <FaAngleRight size={50} color="#fc1f1f"></FaAngleRight>
+          </div>
+        )}
+
+        <div
+          className={showMenuBar ? "all-Item-buttons" : "all-Item-buttons hide"}
+        >
           {allButtons.map((item) => (
             <button
               className={
-                titel === item
-                  ? "all-item-button all-item-active"
-                  : "all-item-button"
+                titel === item ? "all-item-button active" : "all-item-button"
               }
               onClick={() => {
                 setItems(item);

@@ -44,7 +44,9 @@
 .all-Item-buttons {
   display: none;
 }
-
+.all-Item-buttons-show {
+  display: none;
+}
 .left-Item-buttons {
   width: 300px;
   height: calc(100vh - 127px);
@@ -107,7 +109,6 @@
   background-color: rgba(255, 255, 255, 1);
   border-radius: 10%;
 }
-
 @media (max-height: 637px) {
   .item-button {
     font-size: 15px;
@@ -162,18 +163,65 @@
     top: 0;
     height: 100vh;
   }
+  .all-Item-buttons-show {
+    display: block;
+    position: fixed;
+    height: 50px;
+    width: 100px;
+    top: 50%;
+    z-index: 502;
+    background-color: white;
+    border-radius: 50px;
+    text-align: right;
+  }
+  .all-Item-buttons-show.close {
+    left: 250px;
+    transition: all 0.3s ease;
+  }
+  .all-Item-buttons-show.open {
+    left: -50px;
+    transition: all 0.3s ease;
+  }
   .all-Item-buttons {
     width: 300px;
     height: 100vh;
     position: fixed;
     top: 0;
-    display: none;
+    left: 0;
+    display: flex;
     flex-direction: column;
     overflow-y: scroll;
-    z-index: 501;
+    z-index: 502;
+    background-color: black;
+    transition: all 0.3s ease;
   }
+  .all-Item-buttons.hide {
+    left: -300px;
+    transition: all 0.3s ease;
+  }
+
   .all-item-button {
-    font-size: 30px;
+    width: 100%;
+    font-size: 25px;
+    background-color: white;
+    border: 0;
+    padding: 10px;
+    transition: all 0.2s ease;
+    margin-bottom: 3px;
+  }
+  .all-item-button:hover {
+    color: white;
+    background-color: var(--color-accent2);
+    padding: 25px;
+    transition: all 0.2s ease;
+  }
+
+  .all-item-button.active {
+    color: white;
+    background-color: var(--color-accent2);
+    text-shadow: 5px 5px black;
+    padding: 25px;
+    transition: all 1s ease;
   }
   .item-holder {
     padding: 50px 25px 50px 25px;
@@ -236,8 +284,8 @@
     border-radius: 137.5px 137.5px 0 0;
   }
   .item-tiel {
-    margin-top: 50px;
-    font-size: 35px;
+    margin-top: 80px;
+    font-size: 30px;
     width: 250px;
   }
 }

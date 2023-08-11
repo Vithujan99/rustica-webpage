@@ -265,6 +265,7 @@
 
   .item-name {
     position: absolute;
+    width: 450px;
     font-size: 22px;
     font-weight: 600;
     top: 2px;
@@ -286,7 +287,6 @@
     font-size: 22px;
     font-weight: 600;
     top: 2px;
-
     right: 120px;
   }
   .item-kaufen {
@@ -338,6 +338,12 @@
   .item-beschreibung {
     min-width: 300px;
   }
+  .item-preis {
+    font-size: 18px;
+    right: 24px;
+    top: 10px;
+    z-index: 2;
+  }
   .item-kaufen {
     height: 130px;
     font-size: 17px;
@@ -370,10 +376,7 @@
     left: 7px;
   }
   .item-preis {
-    position: absolute;
-    font-size: 18px;
-    font-weight: 600;
-    right: 110px;
+    right: 19px;
   }
   .item-kaufen {
     position: absolute;
@@ -461,7 +464,8 @@
     min-width: 150px;
   }
   .item-preis {
-    right: 95px;
+    right: 10px;
+    top: 15px;
   }
   .item-kaufen {
     font-size: 12px;
@@ -488,7 +492,7 @@
   .item-preis {
     font-size: 13px;
     right: 20px;
-    top: 10px;
+    top: 20px;
     z-index: 2;
   }
 }
