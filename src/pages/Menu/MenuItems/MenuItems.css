@@ -192,7 +192,7 @@
     flex-direction: column;
     overflow-y: scroll;
     z-index: 502;
-    background-color: black;
+    background-color: white;
     transition: all 0.3s ease;
   }
   .all-Item-buttons.hide {
@@ -207,7 +207,6 @@
     border: 0;
     padding: 10px;
     transition: all 0.2s ease;
-    margin-bottom: 3px;
   }
   .all-item-button:hover {
     color: white;

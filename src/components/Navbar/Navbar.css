@@ -283,7 +283,7 @@
     align-items: center;
   }
   .infob {
-    border-bottom: 2px solid var(--color-accent2);
+    border-bottom: 2px solid var(--color-accent1);
   }
   .infob img {
     margin-top: 10px;
@@ -304,8 +304,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-bottom: 2px solid var(--color-accent2);
-    border-right: 2px solid var(--color-accent2);
+    border-bottom: 2px solid var(--color-accent1);
+    border-right: 2px solid var(--color-accent1);
   }
   .nav-menu {
     position: absolute;
