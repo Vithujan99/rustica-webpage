@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/rustica-webpage/static/css/main.77fa4254.css",
-    "main.js": "/rustica-webpage/static/js/main.e0630487.js",
-    "static/media/pizza-time-tasty-homemade-traditional-pizza-italian-recipe.jpg": "/rustica-webpage/static/media/pizza-time-tasty-homemade-traditional-pizza-italian-recipe.e393ddccffd513575e10.jpg",
-    "static/media/vintage-old-rustic-cutlery-dark.jpg": "/rustica-webpage/static/media/vintage-old-rustic-cutlery-dark.1c8bd080e005c921989a.jpg",
-    "static/media/white-ing-drawing.jpg": "/rustica-webpage/static/media/white-ing-drawing.5604f6227627f7718a74.jpg",
-    "static/media/rustica.png": "/rustica-webpage/static/media/rustica.36f57689d8d8d3cf38f3.png",
+    "main.css": "/rustica-webpage/static/css/main.83f439b1.css",
+    "main.js": "/rustica-webpage/static/js/main.ebf69174.js",
+    "static/media/pizza-time-tasty-homemade-traditional-pizza-italian-recipe-low.webp": "/rustica-webpage/static/media/pizza-time-tasty-homemade-traditional-pizza-italian-recipe-low.e73ec82d8a4e17ef866f.webp",
+    "static/media/vintage-old-rustic-cutlery-dark-low.webp": "/rustica-webpage/static/media/vintage-old-rustic-cutlery-dark-low.cc04066758792b694049.webp",
+    "static/media/white-ing-drawing-low.webp": "/rustica-webpage/static/media/white-ing-drawing-low.b6493db91650e5fede63.webp",
+    "static/media/rustica.webp": "/rustica-webpage/static/media/rustica.be7c9f76bccfea2962aa.webp",
     "index.html": "/rustica-webpage/index.html",
-    "main.77fa4254.css.map": "/rustica-webpage/static/css/main.77fa4254.css.map",
-    "main.e0630487.js.map": "/rustica-webpage/static/js/main.e0630487.js.map"
+    "main.83f439b1.css.map": "/rustica-webpage/static/css/main.83f439b1.css.map",
+    "main.ebf69174.js.map": "/rustica-webpage/static/js/main.ebf69174.js.map"
   },
   "entrypoints": [
-    "static/css/main.77fa4254.css",
-    "static/js/main.e0630487.js"
+    "static/css/main.83f439b1.css",
+    "static/js/main.ebf69174.js"
   ]
 }
