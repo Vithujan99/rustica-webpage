@@ -1,7 +1,7 @@
 import React from "react";
 
 const Rent = () => {
-  return <div>Sadsa</div>;
+  return <div></div>;
 };
 
 export default Rent;
