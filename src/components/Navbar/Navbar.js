@@ -6,7 +6,7 @@ import { ShowContext } from "../../context/ShowContext";
 import { FaBars, FaTimes, FaShoppingCart } from "react-icons/fa";
 
 import "./Navbar.css";
-import logo from "../../asset/rustica.png";
+import logo from "../../asset/rustica.webp";
 import CartBar from "../CartBar/CartBar";
 
 const Navbar = () => {
