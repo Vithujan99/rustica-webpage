@@ -28,13 +28,15 @@ export const MenuItem = ({ data }) => {
 
   return (
     <div className="item-card">
-      <div className="item-name">
-        {("0" + data.id).slice(-3)}.{data.name.toUpperCase()}
-      </div>
-      <div className="item-stoff"></div>
-      <div className="item-beschreibung">{data.beschreibung}</div>
+      <div className="item-card-content">
+        <div className="item-name">
+          {("0" + data.id).slice(-3)}.{data.name.toUpperCase()}
+        </div>
+        <div className="item-stoff"></div>
+        <div className="item-beschreibung">{data.beschreibung}</div>
 
-      <div className="item-preis">{formatCurrency(data.price)}</div>
+        <div className="item-preis">{formatCurrency(data.price)}</div>
+      </div>
       <button
         className="item-kaufen"
         onClick={() => {

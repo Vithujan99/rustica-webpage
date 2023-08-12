@@ -253,20 +253,10 @@
   }
   .menu-item {
     width: 100%;
-    height: 110px;
+    height: auto;
     background-color: rgba(255, 255, 255, 1);
     margin: 0;
     border-radius: 15px;
-  }
-}
-@media (max-width: 615px) {
-  .menu-item {
-    height: 130px;
-  }
-}
-@media (max-width: 550px) {
-  .menu-item {
-    height: 150px;
   }
 }
 
