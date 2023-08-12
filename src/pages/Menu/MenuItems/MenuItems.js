@@ -98,6 +98,7 @@ const MenuItems = () => {
         >
           {allButtons.map((item) => (
             <button
+              key={item}
               className={
                 titel === item ? "all-item-button active" : "all-item-button"
               }
@@ -112,6 +113,7 @@ const MenuItems = () => {
         <div className="left-Item-buttons">
           {leftButtons.map((item) => (
             <button
+              key={item}
               className={
                 titel === item ? "item-button item-active" : "item-button"
               }
@@ -133,6 +135,7 @@ const MenuItems = () => {
         <div className="right-Item-buttons">
           {rightButtons.map((item) => (
             <button
+              key={item}
               className={
                 titel === item ? "item-button item-active" : "item-button"
               }

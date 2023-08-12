@@ -6,7 +6,7 @@ import { ShowContext } from "../../context/ShowContext";
 import { FaBars, FaTimes, FaShoppingCart } from "react-icons/fa";
 
 import "./Navbar.css";
-import logo from "../../asset/rustica.png";
+import logo from "../../asset/rustica.webp";
 import CartBar from "../CartBar/CartBar";
 
 const Navbar = () => {
@@ -57,7 +57,13 @@ const Navbar = () => {
               </li>
               <li className={scroll ? "moving-infob" : "infob"}>
                 <Link className={"nav-link info-logo"} to="/rustica-webpage">
-                  <img className="logo" src={logo} alt="logo" width={200} />
+                  <img
+                    className="logo"
+                    src={logo}
+                    alt="logo"
+                    width={200}
+                    height={55}
+                  />
                 </Link>
                 <span className="info-zeit">
                   {time.isOpen() ? "Offen" : "Geschlossen"}
