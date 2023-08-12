@@ -69,7 +69,7 @@ const AskService = () => {
                 serv.setAskPlzShow();
               }}
             >
-              Submit
+              Ok
             </button>
           ) : (
             <>

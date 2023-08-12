@@ -193,15 +193,46 @@
     background-color: rgba(0, 0, 0, 0.7);
   }
 }
+@media (max-width: 600px) {
+  .plz-text {
+    text-align: center;
+    word-wrap: normal;
+  }
+  .plz-input {
+    width: 85px;
+  }
+  .plz-error-text {
+    text-align: center;
+    word-wrap: normal;
+    bottom: 15px;
+  }
+  .plz-button {
+    bottom: 25px;
+  }
+}
 
 @media (max-width: 450px) {
+  .askService {
+    width: 250px;
+    height: 80%;
+    top: 10%;
+    left: 50%;
+    margin-left: -125px;
+    transition: none;
+  }
   .deliverySide {
     min-width: 100px;
   }
   .pickUpSide {
     min-width: 100px;
   }
+  .plz-text {
+    font-size: 18px;
+  }
   .askServiceButton {
-    font-size: 15px;
+    font-size: 18px;
+  }
+  .back-button {
+    font-size: 18px;
   }
 }

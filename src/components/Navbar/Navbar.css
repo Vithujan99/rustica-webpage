@@ -39,9 +39,11 @@
 }
 .shopping-cart-holder {
   position: relative;
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 .shpping-cart {
-  padding: 10px;
+  padding: 7px;
   border-radius: 50%;
   border: 3px solid white;
   transition: border 0.2s ease;
@@ -413,5 +415,12 @@
   }
   .infob .info-zeit {
     font-size: 15px;
+  }
+}
+@media (max-width: 300px) {
+  .infob img {
+    margin-top: 5px;
+    width: 150px;
+    height: 50px;
   }
 }
