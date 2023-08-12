@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import { TimeContext } from "../../context/TimeContext";
-import { ShowCartBarContext } from "../../context/ShowCartBarContext";
+import { ShowContext } from "../../context/ShowContext";
 import { FaBars, FaTimes, FaShoppingCart } from "react-icons/fa";
 
 import "./Navbar.css";
@@ -12,7 +12,7 @@ import CartBar from "../CartBar/CartBar";
 const Navbar = () => {
   const cart = useContext(CartContext);
   const time = useContext(TimeContext);
-  const show = useContext(ShowCartBarContext);
+  const show = useContext(ShowContext);
 
   //setting active Route
   const [click, setClick] = useState(false);
@@ -66,7 +66,7 @@ const Navbar = () => {
               <li className="infoc">
                 <div
                   className="shopping-cart-holder"
-                  onClick={() => show.handleShow()}
+                  onClick={() => show.handleBarShow()}
                 >
                   <FaShoppingCart
                     className="shpping-cart"

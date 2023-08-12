@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import { ServiceContext } from "../../context/ServiceContext";
 import { TimeContext } from "../../context/TimeContext";
-import { ShowCartBarContext } from "../../context/ShowCartBarContext";
+import { ShowContext } from "../../context/ShowContext";
 
 import "./CartBar.css";
 
@@ -10,18 +10,18 @@ const CartBar = () => {
   const cart = useContext(CartContext);
   const serv = useContext(ServiceContext);
   const time = useContext(TimeContext);
-  const show = useContext(ShowCartBarContext);
+  const show = useContext(ShowContext);
 
   return (
     <div>
       <div
         className={show.showBar ? "blackBackground" : "blackBackground hide"}
-        onClick={() => show.handleClose()}
+        onClick={() => show.handleBarClose()}
       ></div>
       <div
         className={show.showBar ? "barShoppedItems" : "barShoppedItems hide"}
       >
-        <div className="closeBar" onClick={() => show.handleClose()}>
+        <div className="closeBar" onClick={() => show.handleBarClose()}>
           X
         </div>
         <div className="barContent">

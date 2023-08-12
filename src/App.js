@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import CartProvider from "./context/CartContext";
-import ShowCartBarProvider from "./context/ShowCartBarContext";
+import ShowProvider from "./context/ShowContext";
 import IngredientsProvider from "./context/IngredientsContext";
 import TimeProvider from "./context/TimeContext";
 import ServiceProvider from "./context/ServiceContext";
@@ -20,7 +20,7 @@ function App() {
       <CartProvider>
         <IngredientsProvider>
           <ServiceProvider>
-            <ShowCartBarProvider>
+            <ShowProvider>
               <Navbar />
               <AskService />
               <Routes>
@@ -33,7 +33,7 @@ function App() {
                 />
                 <Route path="/rustica-webpage/about" element={<About />} />
               </Routes>
-            </ShowCartBarProvider>
+            </ShowProvider>
           </ServiceProvider>
         </IngredientsProvider>
       </CartProvider>
