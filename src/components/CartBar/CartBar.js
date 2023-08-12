@@ -37,7 +37,9 @@ const CartBar = () => {
                 <p>Aktuell im Wagen:</p>
 
                 {cart.items.map((currentProduct) => (
-                  <h1>{currentProduct.id + " " + currentProduct.quantity}</h1>
+                  <h1 key={currentProduct.id}>
+                    {currentProduct.id + " " + currentProduct.quantity}
+                  </h1>
                 ))}
               </div>
               <div className="barFooter">

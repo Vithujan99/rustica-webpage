@@ -57,7 +57,13 @@ const Navbar = () => {
               </li>
               <li className={scroll ? "moving-infob" : "infob"}>
                 <Link className={"nav-link info-logo"} to="/rustica-webpage">
-                  <img className="logo" src={logo} alt="logo" width={200} />
+                  <img
+                    className="logo"
+                    src={logo}
+                    alt="logo"
+                    width={200}
+                    height={55}
+                  />
                 </Link>
                 <span className="info-zeit">
                   {time.isOpen() ? "Offen" : "Geschlossen"}

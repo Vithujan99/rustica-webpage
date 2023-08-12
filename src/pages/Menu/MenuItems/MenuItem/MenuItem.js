@@ -105,7 +105,10 @@ export const MenuItem = ({ data }) => {
                   <></>
                 )}
                 {ingredients.ingredientsArray.map((ingredient) => (
-                  <div className="ask-zusatz-head-added-item">
+                  <div
+                    key={ingredient.ingredientId}
+                    className="ask-zusatz-head-added-item"
+                  >
                     <div
                       onClick={() =>
                         ingredients.removeIngredient(
@@ -152,7 +155,7 @@ export const MenuItem = ({ data }) => {
                     {ingredientsData.map((ingredientSection) =>
                       ingredientSection.name === zusatzName ? (
                         ingredientSection.items.map((ingredient) => (
-                          <option value={ingredient.id}>
+                          <option key={ingredient.id} value={ingredient.id}>
                             {ingredient.name}
                           </option>
                         ))
@@ -166,13 +169,22 @@ export const MenuItem = ({ data }) => {
                 <>
                   {ingredientsData.map((ingredientSection) =>
                     ingredientSection.name === zusatzName ? (
-                      <div className="ask-zusatz-body-section">
-                        <p className="ask-zusatz-body-section-name">
+                      <div
+                        key={ingredientSection.name}
+                        className="ask-zusatz-body-section"
+                      >
+                        <p
+                          key={ingredientSection.price}
+                          className="ask-zusatz-body-section-name"
+                        >
                           Zutaten für:{formatCurrency(ingredientSection.price)}
                         </p>
                         <div className="ask-zusatz-body-section-items">
                           {ingredientSection.items.map((ingredient) => (
-                            <div className="ask-zusatz-body-section-item">
+                            <div
+                              key={ingredient.id}
+                              className="ask-zusatz-body-section-item"
+                            >
                               <div
                                 onClick={() => {
                                   ingredients.addIngredient(

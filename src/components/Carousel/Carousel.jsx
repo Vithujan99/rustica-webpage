@@ -33,6 +33,7 @@ export const Carousel = ({ data }) => {
         {data.slides.map((_, idx) => {
           return (
             <button
+              aria-label="indicator"
               className={
                 slide === idx ? "indicator" : "indicator indicator-inactive"
               }

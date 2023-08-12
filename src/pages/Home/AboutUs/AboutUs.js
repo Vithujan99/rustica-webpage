@@ -14,7 +14,7 @@ const AboutUs = () => {
       <div className="container aboutus">
         <div className="aboutus-text"></div>
         <div className="aboutus-map">
-          <h3>ÖffnungsZeiten</h3>
+          <h2>ÖffnungsZeiten</h2>
           <ul>
             <li>
               <span>Mo-Di:</span> 17:30-22:30

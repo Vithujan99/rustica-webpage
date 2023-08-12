@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 300px 300px 0 0;
-  background-image: url("../../../asset/white-ing-drawing.webp");
+  background-image: url("../../../asset/white-ing-drawing-low.webp");
   background-size: contain;
   z-index: -2;
 
@@ -58,7 +58,7 @@
 }
 .item-holder {
   width: 100%;
-  background-image: url("../../../asset/white-ing-drawing.jpg");
+  background-image: url("../../../asset/white-ing-drawing-low.webp");
   background-size: contain;
   display: flex;
   flex-direction: row;
