@@ -33,7 +33,8 @@ export const MenuItem = ({ data }) => {
     <div className="item-card">
       <div className="item-card-content">
         <div className="item-name">
-          {("0" + data.id).slice(-3)}.{data.name.toUpperCase()}
+          <span>{("0" + data.id).slice(-3)}.</span>
+          {data.name.toUpperCase()}
         </div>
         <div className="item-stoff"></div>
         <div className="item-beschreibung">{data.beschreibung}</div>

@@ -4,13 +4,14 @@
   background-color: black;
 }
 .menu-hero-titel {
+  background-color: black;
+  padding: 10px 0px 10px 0px;
   font-family: "Parisienne", sans-serif;
   color: #fc1f1f;
-  text-shadow: 3px 3px black;
   font-weight: 500;
   font-size: 100px;
   width: 100%;
-  margin-top: 20px;
+
   text-align: center;
 }
 @media (max-height: 450px) {

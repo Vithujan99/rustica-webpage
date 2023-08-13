@@ -23,7 +23,7 @@
 .item-beschreibung {
   flex: 2;
   width: 100%;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 500;
   text-align: left;
   color: var(--color-accent2);
@@ -92,6 +92,7 @@
     font-size: 16px;
     font-weight: 500;
     text-align: right;
+    padding-right: 5px;
   }
   .item-kaufen {
     position: static;
@@ -158,6 +159,7 @@
     font-size: 16px;
     font-weight: 500;
     text-align: right;
+    padding-right: 5px;
   }
   .item-kaufen {
     position: static;

@@ -595,4 +595,19 @@ function getProductData(id) {
   return undefined;
 }
 
-export { productsArray, getDataByType, getProductData };
+function getProductDataByName(name) {
+  let productData = undefined;
+  for (const product of productsArray) {
+    productData = product.items.filter((item) =>
+      item.name.toUpperCase().includes(name.toUpperCase())
+    );
+    console.log(productData);
+    if (productData !== undefined) {
+      return productData;
+    }
+  }
+  console.log("Product data does not exist for Name:" + name);
+  return undefined;
+}
+
+export { productsArray, getDataByType, getProductData, getProductDataByName };
