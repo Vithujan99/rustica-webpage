@@ -12,12 +12,11 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  border-bottom: 0;
   border-radius: 300px 300px 0 0;
   background-image: url("../../../asset/white-ing-drawing-low.webp");
   background-size: contain;
   z-index: -2;
-
-  border-bottom: 0;
 }
 .white-background {
   position: absolute;
@@ -64,6 +63,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: flex-start;
   gap: 40px;
   padding-top: 50px;
   padding-bottom: 50px;
@@ -139,6 +139,22 @@
     height: 12.5%;
   }
 }
+
+@media (max-height: 450px) {
+  .item-holder {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .menu-item {
+    width: 100%;
+    height: auto;
+    background-color: rgba(255, 255, 255, 1);
+    margin: 0;
+    border-radius: 15px;
+  }
+}
+
 @media (max-height: 300px) {
   .left-Item-buttons {
     width: 300px;
@@ -248,8 +264,8 @@
 @media (max-width: 800px) {
   .item-holder {
     flex-direction: column;
-    align-items: center;
-    gap: 20px;
+    align-items: flex-start;
+    gap: 15px;
   }
   .menu-item {
     width: 100%;

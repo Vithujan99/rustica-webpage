@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { getDataByType } from "../../../data/productsStore";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 
@@ -63,11 +63,17 @@ const MenuItems = () => {
   const closeShowMenuBar = () => {
     handleShowMenuBar(false);
   };
+  //For Scrolling back menu-items-titel
+  const ref = useRef(null);
+
+  const handleRef = () => {
+    ref.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <div>
       <div className="menu-titel-container">
-        <div className="menu-items-titel">
+        <div ref={ref} className="menu-items-titel">
           <div className="white-background"></div>
           <h2 className="item-tiel">{titel}</h2>
         </div>
@@ -104,6 +110,8 @@ const MenuItems = () => {
               }
               onClick={() => {
                 setItems(item);
+                closeShowMenuBar();
+                handleRef();
               }}
             >
               {item}
@@ -119,6 +127,7 @@ const MenuItems = () => {
               }
               onClick={() => {
                 setItems(item);
+                handleRef();
               }}
             >
               {item}
@@ -141,6 +150,7 @@ const MenuItems = () => {
               }
               onClick={() => {
                 setItems(item);
+                handleRef();
               }}
             >
               {item}

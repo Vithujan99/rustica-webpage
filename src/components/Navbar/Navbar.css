@@ -226,7 +226,7 @@
   color: black;
 }
 
-@media (max-height: 450px) {
+@media (max-height: 550px) {
   .moving-nav-bar {
     display: grid;
     grid-template-rows: 1fr;
@@ -237,7 +237,7 @@
     display: none;
   }
 }
-@media (max-height: 300px) {
+@media (max-height: 450px) {
   .header-nav {
     position: relative;
   }

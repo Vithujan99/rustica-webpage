@@ -6,7 +6,14 @@
   flex-direction: column;
   align-items: center;
 }
-
+.item-card-content {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
 .item-name {
   font-size: 18px;
   font-weight: 600;
@@ -14,18 +21,20 @@
 .item-stoff {
 }
 .item-beschreibung {
-  text-align: center;
+  flex: 2;
+  width: 100%;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: left;
+  color: var(--color-accent2);
 }
 .item-preis {
-  position: absolute;
   font-size: 18px;
   font-weight: 500;
   bottom: 65px;
 }
 .item-kaufen {
-  position: absolute;
   width: 80%;
-  bottom: 20px;
   font-size: 17px;
   border-radius: 10px;
   border: 2px solid black;
@@ -35,22 +44,29 @@
 .item-kaufen:hover {
   background-color: rgb(252, 31, 31);
   color: white;
-  border: white;
+  border: 2px solid white;
   transition: all 0.2s ease;
 }
 
-@media (max-width: 800px) {
+@media (max-height: 450px) {
   .item-card {
     position: relative;
     padding: 0;
     height: auto;
+    min-height: 75px;
     display: flex;
     flex-direction: row;
     align-items: stretch;
   }
   .item-card-content {
     flex: 3;
+    height: auto;
     padding: 4px 2px 0px 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: normal;
+    gap: 2px;
   }
   .item-name {
     position: static;
@@ -68,7 +84,6 @@
     font-size: 14px;
     text-align: left;
     width: 100%;
-    margin-top: 2px;
     line-height: 1.1;
     word-wrap: normal;
   }
@@ -76,7 +91,72 @@
     position: static;
     font-size: 16px;
     font-weight: 500;
-    margin-top: 2px;
+    text-align: right;
+  }
+  .item-kaufen {
+    position: static;
+    flex: 1;
+    padding: 0 5px 0 5px;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 0 15px 15px 0;
+    border: 5px solid black;
+    border-left: 5px solid black;
+    background-color: white;
+    transition: all 0.2s ease;
+  }
+  .item-kaufen:hover {
+    border: 5px solid black;
+    border-left: 0px;
+    background-color: rgb(252, 31, 31);
+    color: white;
+    transition: all 0.2s ease;
+  }
+}
+
+@media (max-width: 800px) {
+  .item-card {
+    position: relative;
+    padding: 0;
+    height: auto;
+    min-height: 75px;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+  }
+  .item-card-content {
+    flex: 3;
+    height: auto;
+    padding: 4px 2px 0px 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: normal;
+    gap: 2px;
+  }
+  .item-name {
+    position: static;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.1;
+    word-wrap: normal;
+  }
+  .item-stoff {
+  }
+
+  .item-beschreibung {
+    position: static;
+    font-size: 14px;
+    text-align: left;
+    width: 100%;
+    line-height: 1.1;
+    word-wrap: normal;
+  }
+  .item-preis {
+    position: static;
+    font-size: 16px;
+    font-weight: 500;
     text-align: right;
   }
   .item-kaufen {
@@ -113,7 +193,6 @@
   }
   .item-preis {
     font-size: 10px;
-    margin-top: 2px;
   }
   .item-kaufen {
     padding: 0 2px 0 2px;

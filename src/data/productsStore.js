@@ -373,7 +373,7 @@ const productsArray = [
         id: 108,
         name: "Zingara",
         beschreibung:
-          "Thunfisch, Paprikaschoten,Vorderschinken, Champignons, Artischocken",
+          "Thunfisch, Paprikaschoten, Vorderschinken, Champignons, Artischocken",
         price: 8,
         zusatz: "Zusatz1",
       },

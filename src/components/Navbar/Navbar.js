@@ -26,7 +26,7 @@ const Navbar = () => {
     if (
       window.scrollY >= 90 &&
       window.innerWidth >= 800 &&
-      window.innerHeight >= 300
+      window.innerHeight >= 450
     ) {
       setScroll(true);
     } else {
