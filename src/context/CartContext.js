@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { getProductData } from "../data/productsStore";
+import { getPriceWithIngredientsData } from "../data/ingredientsData";
 
 //Function are not defined here, but this indicates that we have room for thease Function
 export const CartContext = createContext({
@@ -98,10 +99,18 @@ export function CartProvider({ children }) {
 
   function getTotalCost() {
     let totalCost = 0;
+    let ingCost = 0;
     // eslint-disable-next-line array-callback-return
     cartProducts.map((product) => {
       const productData = getProductData(product.id);
-      totalCost += productData.price * product.quantity;
+      if (product.ingredientsIds !== undefined) {
+        // eslint-disable-next-line array-callback-return
+        product.ingredientsIds.map((ing) => {
+          const ingData = getPriceWithIngredientsData(ing.ingredientId);
+          ingCost += ingData.price * ing.quantity;
+        });
+      }
+      totalCost += (productData.price + ingCost) * product.quantity;
     });
     return totalCost;
   }

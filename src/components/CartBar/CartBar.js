@@ -3,6 +3,7 @@ import { CartContext } from "../../context/CartContext";
 import { ServiceContext } from "../../context/ServiceContext";
 import { TimeContext } from "../../context/TimeContext";
 import { ShowContext } from "../../context/ShowContext";
+import CartCard from "./CartCard/CartCard";
 
 import "./CartBar.css";
 
@@ -38,7 +39,7 @@ const CartBar = () => {
 
                 {cart.items.map((currentProduct) => (
                   <h1 key={currentProduct.id}>
-                    {currentProduct.id + " " + currentProduct.quantity}
+                    <CartCard dataAll={currentProduct} />
                   </h1>
                 ))}
               </div>

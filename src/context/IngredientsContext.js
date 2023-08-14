@@ -19,6 +19,7 @@ export function IngredientsProvider({ children }) {
   function handleItemId(id) {
     if (itemId !== id) {
       setIngredients([]);
+      setItemId(id);
     }
     //Wichtig funktioniert so nicht(soll sich alte Ingredients merken damit user acuh zwischen Items wechseln kann)
     //if (itemId !== id) {

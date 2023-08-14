@@ -118,10 +118,16 @@ input[type="number"] {
 .ask-zusatz-head-header-arows {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .ask-zusatz-head-header-arow {
   width: 20px;
   height: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .ask-zusatz-head-item-kaufen {

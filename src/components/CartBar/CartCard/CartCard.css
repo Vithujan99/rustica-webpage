@@ -1,0 +1,11 @@
+.cart-card {
+  border: 2px solid white;
+}
+.cart-card-zusatz {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+}
+.cart-card-zusatz:hover {
+  background-color: greenyellow;
+}
