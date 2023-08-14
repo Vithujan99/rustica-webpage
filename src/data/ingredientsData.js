@@ -190,7 +190,6 @@ const ingredientsData = [
 ];
 
 function getZusatzIngredientstData(zusatz) {
-  console.log(ingredientsData.find((item) => item.name === zusatz));
   return ingredientsData.find((item) => item.name === zusatz);
 }
 
@@ -198,8 +197,6 @@ function getPriceWithIngredientsData(id) {
   let data = ingredientsData.find((data) =>
     data.items.find((item) => item.id === id)
   );
-
-  console.log(data);
   return data;
 }
 

@@ -57,6 +57,7 @@
 }
 .item-holder {
   width: 100%;
+  padding: 15px;
   background-image: url("../../../asset/white-ing-drawing-low.webp");
   background-size: contain;
   display: flex;

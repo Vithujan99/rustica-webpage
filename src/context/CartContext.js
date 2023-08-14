@@ -5,7 +5,7 @@ import { getProductData } from "../data/productsStore";
 export const CartContext = createContext({
   items: [],
   getProductQuantity: () => {},
-  addOneToCart: () => {},
+  addToCart: () => {},
   removeOneFromCart: () => {},
   deleteFromCart: () => {},
   deleteCart: () => {},
@@ -37,7 +37,7 @@ export function CartProvider({ children }) {
     return quantity;
   }
 
-  function addOneToCart(id, ingredientsIds, description) {
+  function addToCart(id, ingredientsIds, description, count) {
     if (ingredientsIds !== undefined) {
       ingredientsIds = [...ingredientsIds].sort(
         (a, b) => a.ingredientId - b.ingredientId
@@ -50,7 +50,7 @@ export function CartProvider({ children }) {
         ...currentCartProducts,
         {
           id: id,
-          quantity: 1,
+          quantity: count,
           ingredientsIds: ingredientsIds,
           description: description,
         },
@@ -64,7 +64,7 @@ export function CartProvider({ children }) {
           product.description === description
             ? {
                 ...product,
-                quantity: product.quantity + 1,
+                quantity: product.quantity + count,
                 ingredientsIds: ingredientsIds,
                 description: description,
               }
@@ -113,7 +113,7 @@ export function CartProvider({ children }) {
   const contextValue = {
     items: cartProducts,
     getProductQuantity,
-    addOneToCart,
+    addToCart,
     removeOneFromCart,
     deleteFromCart,
     deleteCart,

@@ -19,39 +19,46 @@
   position: fixed;
   width: 650px;
   height: 90%;
+  background-color: black;
   top: 5%;
   left: 50%;
   margin-left: -325px;
-  background-color: black;
-  border: 3px solid white;
-  color: white;
-  padding: 10px;
+  padding: 15px;
+  padding-top: 2px;
   padding-bottom: 0px;
+  border: 2px solid white;
+  color: white;
+
   display: flex;
   flex-direction: column;
 }
 
 .ask-zusatz-head {
-  margin-top: 25px;
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
+.ask-zusatz-head-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .ask-zusatz-head-titel {
-  position: absolute;
-  top: 3px;
-  left: 3px;
   font-size: 20px;
+  font-weight: 600;
+  margin-left: -12px;
+  width: 80%;
+  word-wrap: normal;
 }
 .ask-zusatz-close {
+  position: absolute;
   color: black;
   cursor: pointer;
-  position: absolute;
-  right: 0px;
-  top: 1px;
   width: 32px;
   height: 20px;
   opacity: 1;
+  right: 2px;
+  top: 2px;
 }
 .ask-zusatz-close:hover {
   opacity: 0.7;
@@ -80,14 +87,51 @@
   gap: 10px;
 }
 .ask-zusatz-head-header-summe {
-  font-size: 20px;
+  font-size: 18px;
+  margin-right: 10px;
 }
 .ask-zusatz-head-header-summe span {
   color: var(--color-accent1);
   font-weight: 600;
 }
+
+.ask-zusatz-head-header-counter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.ask-zusatz-head-header-count {
+  font-size: 20px;
+  text-align: center;
+  width: 40px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+.ask-zusatz-head-header-arows {
+  display: flex;
+  flex-direction: column;
+}
+.ask-zusatz-head-header-arow {
+  width: 20px;
+  height: 20px;
+}
+
 .ask-zusatz-head-item-kaufen {
   font-size: 18px;
+  background-color: white;
+  border: none;
+  border-radius: 15px;
+}
+.ask-zusatz-head-item-kaufen:hover {
+  box-shadow: 2px 2px 2px 1px var(--color-accent1);
 }
 .ask-zusatz-head-added-items {
   display: flex;
@@ -162,14 +206,15 @@
 }
 
 .ask-zusatz-item-button {
-  background-color: white;
-  color: black;
+  min-width: 20px;
+  min-height: 20px;
+  max-width: 20px;
+  max-height: 20px;
+  background-color: black;
   font-weight: 600;
   font-size: 20px;
   margin-top: 2px;
   margin-right: 2px;
-  width: 20px;
-  height: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
