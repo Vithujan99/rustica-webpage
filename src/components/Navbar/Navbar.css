@@ -240,6 +240,7 @@
 @media (max-height: 450px) {
   .header-nav {
     position: relative;
+    background-color: rgba(0, 0, 0, 1);
   }
 }
 @media (max-width: 1100px) {
@@ -409,18 +410,12 @@
   .infoa {
     margin-left: 10px;
   }
-  .infob img {
-    margin-top: 10px;
-    width: 125px;
-  }
   .infob .info-zeit {
     font-size: 15px;
   }
 }
-@media (max-width: 300px) {
-  .infob img {
-    margin-top: 5px;
-    width: 150px;
-    height: 50px;
+@media (max-width: 320px) {
+  .infob .info-zeit {
+    display: none;
   }
 }

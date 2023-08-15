@@ -39,6 +39,7 @@ export function CartProvider({ children }) {
     return quantity;
   }
 
+  //only for CartBar edit function
   function getProductQuantityInNewArray(ings, id, ingredientsIds, description) {
     const quantity = ings.find(
       (product) =>
@@ -90,14 +91,16 @@ export function CartProvider({ children }) {
     }
   }
 
-  function removeOneFromCart(id) {
-    const quantity = getProductQuantity(id, undefined);
+  function removeOneFromCart(id, ingredientsIds, description) {
+    const quantity = getProductQuantity(id, ingredientsIds, description);
     if (quantity === 1) {
-      deleteFromCart(id);
+      deleteFromCart(id, ingredientsIds, description);
     } else {
       setCartProducts(
         cartProducts.map((product) =>
-          product.id === id
+          product.id === id &&
+          product.ingredientsIds === ingredientsIds &&
+          product.description === description
             ? { ...product, quantity: product.quantity - 1 }
             : product
         )
@@ -115,11 +118,11 @@ export function CartProvider({ children }) {
     setCartProducts(cartProducts.filter((product) => product !== p));
   }
 
+  //only for CartBar edit function
   function delteOldAddNewToCart(
-    oldId,
+    id,
     oldIngredientsIds,
     OldDescription,
-    id,
     ingredientsIds,
     description,
     count
@@ -127,11 +130,10 @@ export function CartProvider({ children }) {
     var ings;
     const p = cartProducts.find(
       (product) =>
-        product.id === oldId &&
+        product.id === id &&
         product.ingredientsIds === oldIngredientsIds &&
         product.description === OldDescription
     );
-    console.log(p);
     ings = cartProducts.filter((product) => product !== p);
     if (ingredientsIds !== undefined) {
       ingredientsIds = [...ingredientsIds].sort(
@@ -144,7 +146,6 @@ export function CartProvider({ children }) {
       ingredientsIds,
       description
     );
-    console.log(quantity);
     if (quantity === 0) {
       setCartProducts([
         ...ings,

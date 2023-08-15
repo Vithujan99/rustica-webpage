@@ -136,8 +136,8 @@ const MenuItems = () => {
         </div>
         <div className="item-holder">
           {items.map((item) => (
-            <div className="menu-item" key={item.id}>
-              <MenuItem key={item.id} data={item} />
+            <div key={item.id} className="menu-item">
+              <MenuItem data={item} />
             </div>
           ))}
         </div>

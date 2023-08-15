@@ -15,6 +15,7 @@ const CartCard = ({ dataAll }) => {
   const data = getProductData(dataAll.id);
   const cart = useContext(CartContext);
   const ingredients = useContext(IngredientsContext);
+
   const [show, setShow] = useState(false);
   function handleZusatzShow() {
     setShow(true);
@@ -26,7 +27,7 @@ const CartCard = ({ dataAll }) => {
   function handleZusatzName(name) {
     setZusatzName(name);
   }
-  const [text, handleText] = useState(dataAll.description);
+  const [text, handleText] = useState("");
   function setText(newText) {
     handleText(newText.target.value);
   }
@@ -70,6 +71,8 @@ const CartCard = ({ dataAll }) => {
             handleZusatzShow();
             ingredients.handleItemId(data.id);
             handleZusatzName(data.zusatz);
+            handleItemCount(dataAll.quantity);
+            handleText(dataAll.description);
             if (data.zusatz === "Zusatz2") {
               // eslint-disable-next-line array-callback-return
               dataAll.ingredientsIds?.map((ingredient) => {
@@ -89,22 +92,31 @@ const CartCard = ({ dataAll }) => {
       )}
       <div className="cart-card-header">
         <div className="ask-zusatz-head-header-counter">
-          <input
-            className="ask-zusatz-head-header-count"
-            type="number"
-            pattern="[0-9]*"
-            value={itemCount}
-            onChange={(e) => setItemCount(e)}
-          ></input>
+          <div className="ask-zusatz-head-header-count">{dataAll.quantity}</div>
           <div className="ask-zusatz-head-header-arows">
             <div
-              onClick={() => addItemCount()}
+              onClick={() => {
+                cart.addToCart(
+                  data.id,
+                  dataAll.ingredientsIds,
+                  dataAll.description,
+                  1
+                );
+                handleItemCount(dataAll.quantity + 1);
+              }}
               className="ask-zusatz-head-header-arow"
             >
               <FaAngleUp size={20} />
             </div>
             <div
-              onClick={() => subItemCount()}
+              onClick={() => {
+                cart.removeOneFromCart(
+                  data.id,
+                  dataAll.ingredientsIds,
+                  dataAll.description
+                );
+                handleItemCount(dataAll.quantity - 1);
+              }}
               className="ask-zusatz-head-header-arow"
             >
               <FaAngleDown size={20} />
@@ -112,9 +124,7 @@ const CartCard = ({ dataAll }) => {
           </div>
         </div>
         <div className="cart-card-preis"></div>
-        <div className="cart-card-name">
-          {data.name + " " + dataAll.quantity}
-        </div>
+        <div className="cart-card-name">{data.name}</div>
         <div className="cart-car-delete"></div>
       </div>
       <div className="cart-card-ingredients"></div>
@@ -122,7 +132,13 @@ const CartCard = ({ dataAll }) => {
       <div
         className={show ? "ask-zusatz-container" : "ask-zusatz-container hide"}
       >
-        <div className="black-background" onClick={() => handleZusatzClose()} />
+        <div
+          className="black-background"
+          onClick={() => {
+            handleZusatzClose();
+            ingredients.handleItemId(0);
+          }}
+        />
         <div className="ask-zusatz-content">
           <div className="ask-zusatz-head">
             <div className="ask-zusatz-head-top">
@@ -131,7 +147,10 @@ const CartCard = ({ dataAll }) => {
               </div>
               <div
                 className="ask-zusatz-close"
-                onClick={() => handleZusatzClose()}
+                onClick={() => {
+                  handleZusatzClose();
+                  ingredients.handleItemId(0);
+                }}
               >
                 X
               </div>
@@ -176,15 +195,14 @@ const CartCard = ({ dataAll }) => {
                     data.id,
                     dataAll.ingredientsIds,
                     dataAll.description,
-                    data.id,
                     ingredients.ingredientsArray,
                     text,
                     isNaN(itemCount) ? 1 : itemCount
                   );
                   ingredients.removeItem(data.id);
-                  handleText("");
+                  handleText(dataAll.description);
                   handleZusatzClose();
-                  handleItemCount(1);
+                  handleItemCount(itemCount);
                 }}
               >
                 Hinzufügen
