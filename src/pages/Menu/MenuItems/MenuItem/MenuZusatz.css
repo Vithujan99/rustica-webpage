@@ -143,6 +143,7 @@ input[type="number"] {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  font-size: 16px;
   gap: 15px;
   border-top: 4px solid var(--color-accent1);
   border-left: 4px solid var(--color-accent1);

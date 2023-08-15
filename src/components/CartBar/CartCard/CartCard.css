@@ -9,3 +9,7 @@
 .cart-card-zusatz:hover {
   background-color: greenyellow;
 }
+.cart-card-header {
+  display: flex;
+  flex-direction: row;
+}

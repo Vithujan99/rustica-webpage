@@ -4,6 +4,7 @@ import { getPriceWithIngredientsData } from "../data/ingredientsData";
 export const IngredientsContext = createContext({
   ingredientsArray: [],
   handleItemId: () => {},
+  addAllIngredients: () => {},
   addIngredient: () => {},
   addDressingIngredient: () => {},
   removeIngredient: () => {},
@@ -49,7 +50,10 @@ export function IngredientsProvider({ children }) {
     }
     return quantity;
   }
-
+  function addAllIngredients(id, allIngredients) {
+    handleItemId(id);
+    setIngredients(allIngredients);
+  }
   function addIngredient(id, ingredientId) {
     handleItemId(id);
     const quantity = getIngridientQuantity(ingredientId);
@@ -123,6 +127,7 @@ export function IngredientsProvider({ children }) {
   const contextValue = {
     ingredientsArray: ingredients,
     handleItemId,
+    addAllIngredients,
     addIngredient,
     addDressingIngredient,
     removeIngredient,

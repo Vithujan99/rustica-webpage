@@ -26,7 +26,7 @@ const CartCard = ({ dataAll }) => {
   function handleZusatzName(name) {
     setZusatzName(name);
   }
-  const [text, handleText] = useState("");
+  const [text, handleText] = useState(dataAll.description);
   function setText(newText) {
     handleText(newText.target.value);
   }
@@ -63,56 +63,62 @@ const CartCard = ({ dataAll }) => {
   }
   return (
     <div className="cart-card">
-      <div
-        className="cart-card-zusatz"
-        onClick={() => {
-          handleZusatzShow();
-          ingredients.handleItemId(data.id);
-          handleZusatzName(data.zusatz);
-          if (data.zusatz === "Zusatz2") {
-            // eslint-disable-next-line array-callback-return
-            dataAll.ingredientsIds.map((ingredient) => {
-              ingredients.addDressingIngredient(
-                data.id,
-                ingredient.ingredientId
-              );
-            });
-          } else {
-            // eslint-disable-next-line array-callback-return
-            dataAll.ingredientsIds.map((ingredient) => {
-              let count = 0;
-              while (count < ingredient.quantity) {
-                ingredients.addIngredient(data.id, ingredient.ingredientId);
-                count++;
-              }
-            });
-          }
-        }}
-      />
-
+      {dataAll.ingredientsIds !== undefined ? (
+        <div
+          className="cart-card-zusatz"
+          onClick={() => {
+            handleZusatzShow();
+            ingredients.handleItemId(data.id);
+            handleZusatzName(data.zusatz);
+            if (data.zusatz === "Zusatz2") {
+              // eslint-disable-next-line array-callback-return
+              dataAll.ingredientsIds?.map((ingredient) => {
+                ingredients.addDressingIngredient(
+                  data.id,
+                  ingredient.ingredientId
+                );
+              });
+            } else {
+              // eslint-disable-next-line array-callback-return
+              ingredients.addAllIngredients(dataAll.id, dataAll.ingredientsIds);
+            }
+          }}
+        />
+      ) : (
+        <></>
+      )}
       <div className="cart-card-header">
         <div className="ask-zusatz-head-header-counter">
           <input
             className="ask-zusatz-head-header-count"
             type="number"
             pattern="[0-9]*"
+            value={itemCount}
+            onChange={(e) => setItemCount(e)}
           ></input>
           <div className="ask-zusatz-head-header-arows">
-            <div className="ask-zusatz-head-header-arow">
+            <div
+              onClick={() => addItemCount()}
+              className="ask-zusatz-head-header-arow"
+            >
               <FaAngleUp size={20} />
             </div>
-            <div className="ask-zusatz-head-header-arow">
+            <div
+              onClick={() => subItemCount()}
+              className="ask-zusatz-head-header-arow"
+            >
               <FaAngleDown size={20} />
             </div>
           </div>
         </div>
         <div className="cart-card-preis"></div>
-        <div className="cart-card-name"></div>
+        <div className="cart-card-name">
+          {data.name + " " + dataAll.quantity}
+        </div>
         <div className="cart-car-delete"></div>
       </div>
       <div className="cart-card-ingredients"></div>
       <div clasName="cart-card-beschreibung"></div>
-
       <div
         className={show ? "ask-zusatz-container" : "ask-zusatz-container hide"}
       >
@@ -166,7 +172,10 @@ const CartCard = ({ dataAll }) => {
               <button
                 className="ask-zusatz-head-item-kaufen"
                 onClick={() => {
-                  cart.addToCart(
+                  cart.delteOldAddNewToCart(
+                    data.id,
+                    dataAll.ingredientsIds,
+                    dataAll.description,
                     data.id,
                     ingredients.ingredientsArray,
                     text,

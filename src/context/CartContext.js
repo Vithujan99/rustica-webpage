@@ -9,6 +9,7 @@ export const CartContext = createContext({
   addToCart: () => {},
   removeOneFromCart: () => {},
   deleteFromCart: () => {},
+  delteOldAddNewToCart: () => {},
   deleteCart: () => {},
   getTotalCost: () => {},
   getTotalCount: () => {},
@@ -26,6 +27,20 @@ export function CartProvider({ children }) {
 
   function getProductQuantity(id, ingredientsIds, description) {
     const quantity = cartProducts.find(
+      (product) =>
+        product.id === id &&
+        JSON.stringify(product.ingredientsIds) ===
+          JSON.stringify(ingredientsIds) &&
+        product.description === description
+    )?.quantity; //If there exist no Product with id it wont call quantity.
+    if (quantity === undefined) {
+      return 0;
+    }
+    return quantity;
+  }
+
+  function getProductQuantityInNewArray(ings, id, ingredientsIds, description) {
+    const quantity = ings.find(
       (product) =>
         product.id === id &&
         JSON.stringify(product.ingredientsIds) ===
@@ -90,9 +105,75 @@ export function CartProvider({ children }) {
     }
   }
 
-  function deleteFromCart(id) {
-    setCartProducts(cartProducts.filter((product) => product.id !== id));
+  function deleteFromCart(id, ingredientsIds, description) {
+    const p = cartProducts.find(
+      (product) =>
+        product.id === id &&
+        product.ingredientsIds === ingredientsIds &&
+        product.description === description
+    );
+    setCartProducts(cartProducts.filter((product) => product !== p));
   }
+
+  function delteOldAddNewToCart(
+    oldId,
+    oldIngredientsIds,
+    OldDescription,
+    id,
+    ingredientsIds,
+    description,
+    count
+  ) {
+    var ings;
+    const p = cartProducts.find(
+      (product) =>
+        product.id === oldId &&
+        product.ingredientsIds === oldIngredientsIds &&
+        product.description === OldDescription
+    );
+    console.log(p);
+    ings = cartProducts.filter((product) => product !== p);
+    if (ingredientsIds !== undefined) {
+      ingredientsIds = [...ingredientsIds].sort(
+        (a, b) => a.ingredientId - b.ingredientId
+      );
+    }
+    const quantity = getProductQuantityInNewArray(
+      ings,
+      id,
+      ingredientsIds,
+      description
+    );
+    console.log(quantity);
+    if (quantity === 0) {
+      setCartProducts([
+        ...ings,
+        {
+          id: id,
+          quantity: count,
+          ingredientsIds: ingredientsIds,
+          description: description,
+        },
+      ]);
+    } else {
+      setCartProducts(
+        ings.map((product) =>
+          product.id === id &&
+          JSON.stringify(product.ingredientsIds) ===
+            JSON.stringify(ingredientsIds) &&
+          product.description === description
+            ? {
+                ...product,
+                quantity: product.quantity + count,
+                ingredientsIds: ingredientsIds,
+                description: description,
+              }
+            : product
+        )
+      );
+    }
+  }
+
   function deleteCart() {
     setCartProducts([]);
   }
@@ -125,6 +206,7 @@ export function CartProvider({ children }) {
     addToCart,
     removeOneFromCart,
     deleteFromCart,
+    delteOldAddNewToCart,
     deleteCart,
     getTotalCost,
     getTotalCount,
