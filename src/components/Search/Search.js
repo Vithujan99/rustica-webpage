@@ -45,7 +45,7 @@ function Search() {
           </div>
         ) : (
           searchedItem.map((item) => (
-            <div className="searched-item" key={item.id}>
+            <div className="searched-item">
               <MenuItem key={item.id} data={item} />
             </div>
           ))

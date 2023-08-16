@@ -27,7 +27,7 @@ const Hero = () => {
         </p>
         <p className="hero-text">
           Buche Online oder rufe
-          <span className="spacial-word"> 021668544178</span>
+          <span className="spacial-word"> 0216688844</span>
         </p>
       </div>
       {console.log(imgH)}

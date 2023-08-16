@@ -1,37 +1,70 @@
-.aboutus-content {
+.home-aboutus {
   padding-top: 50px;
   padding-bottom: 50px;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
-.aboutus-titel {
-  font-family: "Caprasimo", sans-serif;
-  font-weight: 400;
-  font-size: 50px;
-  width: 100%;
-  color: var(--color-accent2);
-  border: 5px solid white;
-  border-radius: 25px;
+.home-aboutus-titel-holder {
+  width: 300px;
+  height: 75px;
+  position: relative;
+  text-align: center;
+  border: 5px solid var(--color-accent2);
   padding: 4px 10px;
   transition: all 0.2s ease;
 }
-.aboutus-titel:hover {
-  border: 5px solid var(--color-accent2);
-  border-radius: 25px;
-  padding: 5px 15px;
-  transition: all 0.2s ease;
+.home-aboutus-titel {
+  font-family: "Caprasimo", sans-serif;
+  font-weight: 400;
+  font-size: 50px;
+  color: var(--color-accent2);
 }
-.aboutus {
+.home-aboutus-titel-holder:before {
+  content: "";
+  position: absolute;
+  height: 10px;
+  width: 301px;
+  background-color: white;
+  margin: auto;
+  left: -5px;
+  right: 0;
+  top: -5px;
+  transition: width 0.5s, height 0.5s 0.5s;
+}
+.home-aboutus-titel-holder:after {
+  content: "";
+  position: absolute;
+  height: 10px;
+  width: 301px;
+  background-color: white;
+  margin: auto;
+  left: -5px;
+  right: 0;
+  bottom: -5px;
+  transition: width 0.5s, height 0.5s 0.5s;
+}
+.home-aboutus-titel-holder:hover:before,
+.home-aboutus-titel-holder:hover:after {
+  width: 0;
+  height: 5px;
+  transition: height 0.5s, width 0.5s 0.5s;
+}
+
+.home-aboutus-content {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-.aboutus-text {
+.home-aboutus-content-text {
   height: 50px;
   width: 100%;
   margin: 0 10px 0 0;
   background-color: aqua;
 }
-.aboutus-map {
+.home-aboutus-content-map {
   height: 50px;
   width: 100%;
   margin: 0 10px 0 0;
@@ -39,14 +72,25 @@
 }
 
 @media (max-width: 800px) {
-  .aboutus {
+  .home-aboutus-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
 }
+
 @media (max-width: 500px) {
-  .aboutus-titel {
+  .home-aboutus-titel-holder {
+    width: 250px;
+    height: 55px;
+  }
+  .home-aboutus-titel {
     font-size: 35px;
+  }
+  .home-aboutus-titel-holder:before {
+    width: 251px;
+  }
+  .home-aboutus-titel-holder:after {
+    width: 251px;
   }
 }

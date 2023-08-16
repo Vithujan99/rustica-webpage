@@ -15,6 +15,7 @@
   border: 2px solid var(--color-accent1);
   border-radius: 30px;
   display: flex;
+  flex-direction: row;
   align-items: center;
   padding: 20px;
 }
@@ -62,15 +63,12 @@
     margin: 0;
     border-radius: 15px;
   }
-  .searched-item .item-kaufen {
-    background-color: black;
-    color: white;
-    border: 2px solid var(--color-accent1);
-    border-radius: 10px;
+  .searched-item .add-icon {
+    color: var(--color-accent1);
     transition: all 0.2s ease;
   }
-  .searched-item .item-kaufen:hover {
-    color: var(--color-accent1);
+  .searched-item .item-card-content:hover .add-icon {
+    color: red;
     transition: all 0.2s ease;
   }
 }
@@ -87,15 +85,32 @@
     margin: 0;
     border-radius: 15px;
   }
-  .searched-item .item-kaufen {
-    background-color: black;
-    color: white;
-    border: 2px solid var(--color-accent1);
-    border-radius: 10px;
-    transition: all 0.2s ease;
-  }
-  .searched-item .item-kaufen:hover {
+  .searched-item .add-icon {
     color: var(--color-accent1);
     transition: all 0.2s ease;
+  }
+  .searched-item .item-card-content:hover .add-icon {
+    color: red;
+    transition: all 0.2s ease;
+  }
+}
+@media (max-width: 450px) {
+  .search-bar {
+    width: 250px;
+    height: 40px;
+    background-color: white;
+    border: 2px solid var(--color-accent1);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+  }
+  .search-input {
+    flex: 1;
+    height: 40px;
+    border: none;
+    outline: none;
+    font-size: 13px;
+    padding-left: 10px;
   }
 }

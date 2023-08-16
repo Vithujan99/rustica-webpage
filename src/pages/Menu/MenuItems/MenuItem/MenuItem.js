@@ -8,6 +8,13 @@ import {
 } from "../../../../data/ingredientsData";
 import { IoMdAddCircle, IoMdRemoveCircle } from "react-icons/io";
 import { FaAngleUp, FaAngleDown } from "react-icons/fa";
+import {
+  BsPatchPlusFill,
+  BsPatchPlus,
+  BsPlusCircleFill,
+  BsPlusCircle,
+  BsPlus,
+} from "react-icons/bs";
 
 import "./MenuItem.css";
 import "./MenuZusatz.css";
@@ -64,7 +71,23 @@ export const MenuItem = ({ data }) => {
 
   return (
     <div className="item-card">
-      <div className="item-card-content">
+      <div
+        className="item-card-content"
+        onClick={() => {
+          if (window.innerWidth <= 800) {
+            if (data.zusatz === undefined) {
+              cart.addToCart(data.id, undefined, undefined, 1);
+            } else {
+              handleZusatzShow();
+              ingredients.handleItemId(data.id);
+              handleZusatzName(data.zusatz);
+            }
+          }
+        }}
+      >
+        <div className="add-icon">
+          <BsPlus size={30} />
+        </div>
         <div className="item-name">
           <span>{("0" + data.id).slice(-3)}.</span>
           {data.name.toUpperCase()}
@@ -96,7 +119,10 @@ export const MenuItem = ({ data }) => {
         >
           <div
             className="black-background"
-            onClick={() => handleZusatzClose()}
+            onClick={() => {
+              handleZusatzClose();
+              console.log(show);
+            }}
           />
           <div className="ask-zusatz-content">
             <div className="ask-zusatz-head">
