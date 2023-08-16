@@ -52,7 +52,7 @@ const Navbar = () => {
               </div>
               <li className="infoa">
                 <span>
-                  +02166 <b style={{ color: "#ffc300" }}>8544178</b>
+                  02166 <b style={{ color: "#ffc300" }}>88844</b>
                 </span>
               </li>
               <li className={scroll ? "moving-infob" : "infob"}>
