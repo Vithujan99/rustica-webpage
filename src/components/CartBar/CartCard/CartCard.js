@@ -127,7 +127,15 @@ const CartCard = ({ dataAll }) => {
         <div className="cart-card-name">{data.name}</div>
         <div className="cart-car-delete"></div>
       </div>
-      <div className="cart-card-ingredients"></div>
+      <div className="cart-card-ingredients">
+        {dataAll.ingredientsIds.map((ingredient) => (
+          <div>
+            {ingredient.quantity +
+              "" +
+              getIngredientstData(ingredient.ingredientId).name}
+          </div>
+        ))}
+      </div>
       <div clasName="cart-card-beschreibung"></div>
       <div
         className={show ? "ask-zusatz-container" : "ask-zusatz-container hide"}

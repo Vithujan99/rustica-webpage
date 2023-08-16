@@ -91,8 +91,11 @@ export const MenuItem = ({ data }) => {
         <div className="item-name">
           <span>{("0" + data.id).slice(-3)}.</span>
           {data.name.toUpperCase()}
+          <span className="item-stoff">
+            {data.stoff === undefined ? "" : "*" + data.stoff}
+          </span>
         </div>
-        <div className="item-stoff"></div>
+
         <div className="item-beschreibung">{data.beschreibung}</div>
 
         <div className="item-preis">{formatCurrency(data.price)}</div>

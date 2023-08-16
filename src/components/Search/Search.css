@@ -47,6 +47,9 @@
 .searched-item .item-name {
   color: var(--color-accent1);
 }
+.searched-item .item-stoff {
+  color: white;
+}
 .searched-item .item-beschreibung {
   color: white;
 }

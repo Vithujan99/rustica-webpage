@@ -20,8 +20,13 @@
 .item-name {
   font-size: 18px;
   font-weight: 600;
+  text-align: center;
 }
 .item-stoff {
+  font-size: 9px;
+  font-weight: 400;
+  color: black;
+  display: block;
 }
 .item-beschreibung {
   flex: 2;
@@ -85,13 +90,21 @@
   }
   .item-name {
     position: static;
+    padding-right: 40px;
     width: 100%;
+    text-align: left;
     font-size: 20px;
     font-weight: 600;
     line-height: 1.1;
     word-wrap: normal;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: first baseline;
   }
   .item-stoff {
+    display: inline;
+    margin-left: 10px;
   }
 
   .item-beschreibung {
@@ -148,13 +161,21 @@
   }
   .item-name {
     position: static;
+    padding-right: 40px;
     width: 100%;
+    text-align: left;
     font-size: 20px;
     font-weight: 600;
     line-height: 1.1;
     word-wrap: normal;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: first baseline;
   }
   .item-stoff {
+    display: inline;
+    margin-left: 10px;
   }
 
   .item-beschreibung {
@@ -199,8 +220,6 @@
   .item-name {
     font-size: 18px;
     line-height: 1.1;
-  }
-  .item-stoff {
   }
 
   .item-beschreibung {

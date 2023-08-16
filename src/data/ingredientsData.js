@@ -187,6 +187,16 @@ const ingredientsData = [
       },
     ],
   },
+  {
+    name: "Zusatz3",
+    price: 0.3,
+    items: [
+      {
+        id: 239,
+        name: "Scharf",
+      },
+    ],
+  },
 ];
 
 function getZusatzIngredientstData(zusatz) {

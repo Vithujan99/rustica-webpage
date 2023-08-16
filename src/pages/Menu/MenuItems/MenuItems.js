@@ -1,6 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
+import { CartContext } from "../../../context/CartContext";
+import { ShowContext } from "../../../context/ShowContext";
 import { getDataByType } from "../../../data/productsStore";
-import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
+import { FaAngleRight, FaAngleLeft, FaShoppingCart } from "react-icons/fa";
 
 import MenuItem from "./MenuItem/MenuItem";
 import "./MenuItems.css";
@@ -44,6 +46,8 @@ const rightButtons = [
   "Dessert",
 ];
 const MenuItems = () => {
+  const cart = useContext(CartContext);
+  const show = useContext(ShowContext);
   const [titel, handleTitel] = useState("Pizza");
   const [items, handleItems] = useState(getDataByType("Pizza"));
   const setItems = (clickedItem) => {
@@ -134,7 +138,19 @@ const MenuItems = () => {
             </button>
           ))}
         </div>
+
         <div className="item-holder">
+          <div
+            className="item-holder-shopping-cart-holder"
+            onClick={() => show.handleBarShow()}
+          >
+            <FaShoppingCart
+              className="item-holder-shpping-cart"
+              size={50}
+              style={{ color: "#ffc300" }}
+            />
+            <div className="items-in-shop">{cart.getTotalCount()}</div>
+          </div>
           {items.map((item) => (
             <div key={item.id} className="menu-item">
               <MenuItem data={item} />

@@ -6,7 +6,8 @@ import "./Hero.css";
 
 const Hero = () => {
   //change nav when scrolling
-  const [imgH, setImgH] = useState(HeroImg1);
+  const [imgH1, setImgH] = useState(HeroImg1);
+  const [imgH2] = useState(HeroImg2);
   const handleImgH = () => {
     if (window.innerWidth <= 800) {
       setImgH(HeroImg2);
@@ -30,11 +31,10 @@ const Hero = () => {
           <span className="spacial-word"> 0216688844</span>
         </p>
       </div>
-      {console.log(imgH)}
       <img
         className="hero-image"
         alt="Pizza auf Schwarzen Brett"
-        src={window.innerWidth <= 800 ? HeroImg2 : HeroImg1}
+        src={window.innerWidth <= 800 ? imgH2 : imgH1}
         style={{ objectFit: "cover" }}
       />
     </div>

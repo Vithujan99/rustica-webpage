@@ -2,15 +2,22 @@ const productsArray = [
   {
     type: "Pizza",
     items: [
-      { id: 54, name: "MARGHERITA", price: 5 },
+      { id: 54, name: "MARGHERITA", stoff: "(1)(7)", price: 5 },
       {
         id: 55,
         name: "UOVO",
+        stoff: "(13)",
         beschreibung: "Eier",
         price: 6,
         zusatz: "Zusatz1",
       },
-      { id: 56, name: "SALAMI", price: 6, zusatz: "Zusatz1" },
+      {
+        id: 56,
+        name: "SALAMI",
+        stoff: "(1)(2)(3)(4)(5)",
+        price: 6,
+        zusatz: "Zusatz1",
+      },
       { id: 57, name: "MAIS", price: 6, zusatz: "Zusatz1" },
       {
         id: 58,
@@ -569,6 +576,291 @@ const productsArray = [
         beschreibung: "mit grünem Salat, Vorderschinken, Käse und Anana",
         price: 7,
         zusatz: "Zusatz2",
+      },
+    ],
+  },
+  {
+    type: "Spaghetti",
+    items: [
+      {
+        id: 13,
+        name: "Spaghetti Napoli",
+        beschreibung: "mit Tomatensoße",
+        price: 6,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 14,
+        name: "Spaghetti Bologna",
+        beschreibung: "mit Fleischsoße",
+        price: 6.5,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 15,
+        name: "Spaghetti Carbonara",
+        beschreibung: "mit Speck, Ei, Sahne",
+        price: 6.5,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 16,
+        name: "Spaghetti Matriciane",
+        beschreibung: "mit Tomatens., Speck, Zwiebeln",
+        price: 6.5,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 17,
+        name: "Spaghetti Emilia",
+        beschreibung: "mit Sahne, Vordersch., Pilzen",
+        price: 6.5,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 18,
+        name: "Spaghetti Vongole",
+        beschreibung: "mit Tomatensoße und Babymuscheln",
+        price: 7,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 19,
+        name: "Spaghetti Holly (überbacken)",
+        beschreibung:
+          "mit Tomatensoße, Thunfisch, gemischte Gemüse, Knoblauch, pikant",
+        price: 8.5,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 20,
+        name: "Spaghetti Meerkamp",
+        beschreibung: "Pilzen, Putenbrust, Knoblauch und Weißweinsoße",
+        price: 8.5,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 21,
+        name: "Spaghetti alla Vesuviana",
+        beschreibung:
+          "mit Mozzarella, frische Tomaten, Basilikum und Tomatensoße",
+        price: 6.5,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 22,
+        name: "Spaghetti Pollo",
+        beschreibung:
+          "mit Hähnchen, Zwiebeln, Paprika, Champignons, Knoblauch, Tomaten, Sauce Hollandaise",
+        price: 8.5,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 23,
+        name: "paghetti Dario",
+        beschreibung:
+          "mit Champignons, Zwiebeln, Sahne, Tomatensoße, Knoblauch",
+        price: 6.5,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 24,
+        name: "Spaghetti Chef",
+        beschreibung: "mit Champignons, Erbsen, Vorderschinken und Sahnesoße",
+        price: 7,
+        zusatz: "Zusatz1",
+      },
+    ],
+  },
+  {
+    type: "Maccheroni",
+    items: [
+      {
+        id: 25,
+        name: "Maccheroni Gratinati (überbacken)",
+        stoff: "(4)(5)(7)(8)(11)(13)",
+        beschreibung:
+          "mit Ei, Vorderschinken, Champignons, Erbsen, Tomatensoße und Käse",
+        price: 7.5,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 26,
+        name: "Maccheroni Rustica",
+        beschreibung:
+          "Pilze, Zwiebeln, Brokkoli, Putenbrust, Knobl, Tomatensoße, Sahnesoße, pikant",
+        price: 8.5,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 27,
+        name: "Maccheroni Al Arrabiata",
+        stoff: "(4)(5)(7)(11)(13)",
+        beschreibung: "mit Vorderschinken, Tomatensoße, Knoblauch, pikant",
+        price: 6.5,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 28,
+        name: "Maccheroni Gorgonzola",
+        beschreibung: "mit Gorgonzolakäse, Sahne",
+        price: 7,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 29,
+        name: "Maccheroni quattro Formaggi (überbacken)",
+        stoff: "(1)(4)",
+        beschreibung: "mit vier Käsesorten, Sahnesoße",
+        price: 7.5,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 30,
+        name: "Maccheroni",
+        beschreibung:
+          "mit Putenfleisch, Brokkoli, Zwiebeln, Zuchini, Paprika, Knoblauch, Ei, Spezialsoße, Bolognesesoße",
+        price: 8.5,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 31,
+        name: "Maccheroni Mina",
+        beschreibung: "mit Champignons, Krabben, Knoblauch und Sahnesoße",
+        price: 8,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 32,
+        name: "Maccheroni Diavola",
+        beschreibung:
+          "mit Rindfleischstreifen, Paprika, Peperoni, Knoblauch und Spezialsoße",
+        price: 8,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 33,
+        name: "Maccheroni Ricca",
+        beschreibung: "mit Lachs, Spinat, Krabben, Sahne und Knoblauch",
+        price: 8.5,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 34,
+        name: "Maccheroni Brokkoli",
+        stoff: "(4)(5)(7)(8)(11)(13)",
+        beschreibung: "Vorderschinken, Sahne, Tomatensobe, Knoblauch",
+        price: 7,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 35,
+        name: "Maccheroni alla Casa",
+        beschreibung:
+          "mit Spinat, Parmaschinken, Sahne, Tomatensoße und Knoblauch",
+        price: 7,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 36,
+        name: "Maccheroni alla Francescana",
+        beschreibung:
+          "mit Schweinefleisch, Paprika, Knoblauch, Zwiebeln und Tomatensoße",
+        price: 7,
+        zusatz: "Zusatz1",
+      },
+    ],
+  },
+  {
+    type: "Tagliatelle",
+    items: [
+      {
+        id: 37,
+        name: "Tagliatelle al Forno",
+        stoff: "(4)(5)(7)(8)(11)(13)",
+        beschreibung:
+          "Bandnudeln mit Champignons, Vorderschinken, Sahne und Gewürzen",
+        price: 7.5,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 38,
+        name: "Tagliatelle Salmone",
+        beschreibung: "Bandnudeln mit Knoblauch, Lachs und Sahnesoße",
+        price: 8,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 39,
+        name: "Tagliatelle Paesana",
+        beschreibung: "Bandnudeln mit Krabben, Sahne, Brokkoli und Knoblauch",
+        price: 8,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 40,
+        name: "Tagliatelle Steinpilz",
+        beschreibung:
+          "Bandnudeln mit Steinpilzen, Zwiebeln, Sahnesoße und Knoblauch",
+        price: 8,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 41,
+        name: "Tagliatelle Rustica",
+        stoff: "(1)(4)",
+        beschreibung:
+          "Bandnudeln mit Lachs, Krabben, Brokkoli, Knoblauch und Käse",
+        price: 8.5,
+        zusatz: "Zusatz1",
+      },
+      {
+        id: 42,
+        name: "Tagliatelle Salmone Spinat",
+        beschreibung: "Bandnudeln mit Lachs, Spinat, Sahne und Knoblauch",
+        price: 8,
+        zusatz: "Zusatz1",
+      },
+    ],
+  },
+  {
+    type: "Reisgerichte",
+    items: [
+      {
+        id: 209,
+        name: "Reis Bombay",
+        beschreibung: "Gebratener Reis mit Hähnchenfleisch, Paprika, Curry",
+        price: 9,
+        zusatz: "Zusatz3",
+      },
+      {
+        id: 210,
+        name: "Reis Madros",
+        beschreibung: "mit Fleischsoße",
+        price: 9,
+        zusatz: "Zusatz3",
+      },
+      {
+        id: 211,
+        name: "Reis Kashmir",
+        beschreibung: "gebratener Reis mit Meeresfrüchten, Krabben, Zwiebeln",
+        price: 9,
+        zusatz: "Zusatz3",
+      },
+      {
+        id: 212,
+        name: "Reis Punjab",
+        beschreibung: "Gebratener Reis mit Gemüse und Chilli-Soße",
+        price: 8.5,
+        zusatz: "Zusatz3",
+      },
+      {
+        id: 213,
+        name: "Reis al Forno",
+        beschreibung:
+          "mit Rindfleisch, Gemüse, India-Curry-Soße und mit Käse überbacken",
+        price: 9,
+        zusatz: "Zusatz3",
       },
     ],
   },
