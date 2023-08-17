@@ -10,8 +10,7 @@ const container = document.getElementById("root");
 const root = createRoot(container);
 
 root.render(
-  //basename added becouse it shows a whitepage on the phone
-  <BrowserRouter basename={process.env.PUBLIC_URL}>
+  <BrowserRouter>
     <ScrollToTop />
     <App />
   </BrowserRouter>
