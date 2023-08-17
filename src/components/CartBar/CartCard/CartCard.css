@@ -7,7 +7,7 @@
   background-color: white;
 }
 .cart-card-zusatz:hover {
-  background-color: greenyellow;
+  background-color: var(--color-accent1);
 }
 .cart-card-header {
   display: flex;
