@@ -1,7 +1,7 @@
 {
   "name": "web-rus",
   "version": "0.1.0",
-  "homepage": "http://Vithujan99.github.io/rustica-webpage",
+  "homepage": "https://vithujan99.github.io/rustica-webpage/",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
