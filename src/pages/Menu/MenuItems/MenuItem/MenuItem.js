@@ -8,13 +8,7 @@ import {
 } from "../../../../data/ingredientsData";
 import { IoMdAddCircle, IoMdRemoveCircle } from "react-icons/io";
 import { FaAngleUp, FaAngleDown } from "react-icons/fa";
-import {
-  BsPatchPlusFill,
-  BsPatchPlus,
-  BsPlusCircleFill,
-  BsPlusCircle,
-  BsPlus,
-} from "react-icons/bs";
+import { BsPlus } from "react-icons/bs";
 
 import "./MenuItem.css";
 import "./MenuZusatz.css";

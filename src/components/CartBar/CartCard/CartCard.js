@@ -9,6 +9,7 @@ import {
 import { getProductData } from "../../../data/productsStore";
 import { FaAngleUp, FaAngleDown } from "react-icons/fa";
 import { IoMdAddCircle, IoMdRemoveCircle } from "react-icons/io";
+import { MdDeleteForever } from "react-icons/md";
 import "./CartCard.css";
 
 const CartCard = ({ dataAll }) => {
@@ -91,52 +92,83 @@ const CartCard = ({ dataAll }) => {
         <></>
       )}
       <div className="cart-card-header">
-        <div className="ask-zusatz-head-header-counter">
-          <div className="ask-zusatz-head-header-count">{dataAll.quantity}</div>
-          <div className="ask-zusatz-head-header-arows">
-            <div
-              onClick={() => {
-                cart.addToCart(
-                  data.id,
-                  dataAll.ingredientsIds,
-                  dataAll.description,
-                  1
-                );
-                handleItemCount(dataAll.quantity + 1);
-              }}
-              className="ask-zusatz-head-header-arow"
-            >
-              <FaAngleUp size={20} />
+        <div className="cart-card-header-left">
+          <div className="ask-zusatz-head-header-counter">
+            <div className="ask-zusatz-head-header-count">
+              {dataAll.quantity}
             </div>
-            <div
-              onClick={() => {
-                cart.removeOneFromCart(
+            <div className="ask-zusatz-head-header-arows">
+              <div
+                onClick={() => {
+                  cart.addToCart(
+                    data.id,
+                    dataAll.ingredientsIds,
+                    dataAll.description,
+                    1
+                  );
+                  handleItemCount(dataAll.quantity + 1);
+                }}
+                className="ask-zusatz-head-header-arow"
+              >
+                <FaAngleUp size={window.innerWidth <= 450 ? 15 : 20} />
+              </div>
+              <div
+                onClick={() => {
+                  cart.removeOneFromCart(
+                    data.id,
+                    dataAll.ingredientsIds,
+                    dataAll.description
+                  );
+                  handleItemCount(dataAll.quantity - 1);
+                }}
+                className="ask-zusatz-head-header-arow"
+              >
+                <FaAngleDown size={window.innerWidth <= 450 ? 15 : 20} />
+              </div>
+            </div>
+          </div>
+          <div className="cart-card-name">{data.name}</div>
+        </div>
+        <div className="cart-card-header-right">
+          <div className="cart-card-preis">
+            {formatCurrency(
+              cart.getCost(
+                dataAll.id,
+                dataAll.ingredientsIds,
+                dataAll.description
+              )
+            )}
+          </div>
+          <div className="cart-car-delete">
+            <MdDeleteForever
+              onClick={() =>
+                cart.deleteFromCart(
                   data.id,
                   dataAll.ingredientsIds,
                   dataAll.description
-                );
-                handleItemCount(dataAll.quantity - 1);
-              }}
-              className="ask-zusatz-head-header-arow"
-            >
-              <FaAngleDown size={20} />
-            </div>
+                )
+              }
+              size={window.innerWidth <= 450 ? 25 : 30}
+            />
           </div>
         </div>
-        <div className="cart-card-preis"></div>
-        <div className="cart-card-name">{data.name}</div>
-        <div className="cart-car-delete"></div>
       </div>
-      <div className="cart-card-ingredients">
-        {dataAll.ingredientsIds.map((ingredient) => (
-          <div>
-            {ingredient.quantity +
-              "" +
-              getIngredientstData(ingredient.ingredientId).name}
-          </div>
-        ))}
+      {dataAll.ingredientsIds !== undefined ? (
+        <div className="cart-card-ingredients">
+          {dataAll.ingredientsIds.map((ingredient) => (
+            <div>
+              <span>{ingredient.quantity}</span>
+              {getIngredientstData(ingredient.ingredientId).name}
+            </div>
+          ))}
+        </div>
+      ) : (
+        ""
+      )}
+
+      <div className="cart-card-beschreibung">
+        Beschreibung: {dataAll.description}
       </div>
-      <div clasName="cart-card-beschreibung"></div>
       <div
         className={show ? "ask-zusatz-container" : "ask-zusatz-container hide"}
       >

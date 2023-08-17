@@ -11,6 +11,7 @@ export const CartContext = createContext({
   deleteFromCart: () => {},
   delteOldAddNewToCart: () => {},
   deleteCart: () => {},
+  getCost: () => {},
   getTotalCost: () => {},
   getTotalCount: () => {},
 });
@@ -179,6 +180,26 @@ export function CartProvider({ children }) {
     setCartProducts([]);
   }
 
+  function getCost(id, ingredientsIds, description) {
+    let cost = 0;
+    let ingCost = 0;
+    const p = cartProducts.find(
+      (product) =>
+        product.id === id &&
+        product.ingredientsIds === ingredientsIds &&
+        product.description === description
+    );
+    if (p.ingredientsIds !== undefined) {
+      // eslint-disable-next-line array-callback-return
+      p.ingredientsIds.map((ing) => {
+        const ingData = getPriceWithIngredientsData(ing.ingredientId);
+        ingCost += ingData.price * ing.quantity;
+      });
+    }
+    cost += (getProductData(id).price + ingCost) * p.quantity;
+    return cost;
+  }
+
   function getTotalCost() {
     let totalCost = 0;
     let ingCost = 0;
@@ -209,6 +230,7 @@ export function CartProvider({ children }) {
     deleteFromCart,
     delteOldAddNewToCart,
     deleteCart,
+    getCost,
     getTotalCost,
     getTotalCount,
   };

@@ -53,11 +53,6 @@
   transition: height 0.5s, width 0.5s 0.5s;
 }
 
-.menu-titel:hover {
-  /* border: 5px solid var(--color-four);
-  border-radius: 25px;
-  transition: all 0.2s ease;*/
-}
 .home-cards-holder {
   width: 100%;
   display: flex;

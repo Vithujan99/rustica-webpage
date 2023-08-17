@@ -1,37 +1,75 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { TimeContext } from "../../../context/TimeContext";
 
 import "./AboutUs.css";
 
 const AboutUs = () => {
+  const time = useContext(TimeContext);
+  const day = time.getDay();
   return (
     <div class="home-aboutus">
+      {console.log(day)}
       <div className="home-aboutus-titel-holder">
         <Link className="home-aboutus-titel" to="/rustica-webpage/about">
           Über Uns
         </Link>
       </div>
-      <div className="container home-aboutus-content">
-        <div className="home-aboutus-content-text"></div>
-        <div className="home-aboutus-content-map">
-          <h2>ÖffnungsZeiten</h2>
-          <ul>
-            <li>
-              <span>Mo-Di:</span> 17:30-22:30
-            </li>
-            <li>
-              <span>Mi-Do:</span> 11:30-14:30 und 17:30 - 22:30
-            </li>
-            <li>
-              <span>Fr:</span> 11:30-14:30 und 17:30 - 23:00
-            </li>
-            <li>
-              <span>Sa:</span> 17:00-23:00
-            </li>
-            <li>
-              <span>So/Feiertags:</span> 17:00-22:30
-            </li>
-          </ul>
+      <div className="container home-aboutus-content-container">
+        <div className="home-aboutus-content-adresse">
+          <h2 className="home-dress-titel">Adresse</h2>
+          <address className="home-adress-content">
+            <span>Meerkamp 111</span>
+            <span> 41238 Mönchengladbach</span>
+            <a className="home-adress-conten-tel" href="tel:+49216688844">
+              02166 <span>888444</span>
+            </a>
+          </address>
+        </div>
+        <div className="home-aboutus-content-öffnungzeiten">
+          <h2 className="table-titel">ÖffnungsZeiten</h2>
+          <table class="öffnungzeiten-table">
+            <tr
+              className={
+                day === "Monday" || day === "Tuesday"
+                  ? "table-line-active"
+                  : "table-line"
+              }
+            >
+              <td>Mo-Di:</td>
+              <td>17:30-22:30</td>
+            </tr>
+            <tr
+              className={
+                day === "Wednesday" || day === "Thursday"
+                  ? "table-line-active"
+                  : "table-line"
+              }
+            >
+              <td>Mi-Do:</td>
+              <td>11:30-14:30 und 17:30 - 22:30</td>
+            </tr>
+            <tr
+              className={day === "Friday" ? "table-line-active" : "table-line"}
+            >
+              <td>Fr:</td>
+              <td>11:30-14:30 und 17:30 - 23:00</td>
+            </tr>
+            <tr
+              className={
+                day === "Saturday" ? "table-line-active" : "table-line"
+              }
+            >
+              <td>Sa:</td>
+              <td>17:00-23:00</td>
+            </tr>
+            <tr
+              className={day === "Sunday" ? "table-line-active" : "table-line"}
+            >
+              <td>So/Feiertags:</td>
+              <td>17:00-22:30</td>
+            </tr>
+          </table>
         </div>
       </div>
     </div>

@@ -3,7 +3,18 @@ import Holidays from "date-holidays";
 
 export const TimeContext = createContext({
   isOpen: () => {},
+  getDay: () => {},
 });
+
+var days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
 
 export function TimeProvider({ children }) {
   function isOpen() {
@@ -43,8 +54,19 @@ export function TimeProvider({ children }) {
     }
   }
 
+  function getDay() {
+    var hd = new Holidays("DE", "nw");
+    var now = new Date();
+    if (hd.isHoliday(now)) {
+      return "";
+    } else {
+      return days[now.getDay()];
+    }
+  }
+
   const contextValue = {
     isOpen,
+    getDay,
   };
 
   return (

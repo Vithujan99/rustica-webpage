@@ -3,7 +3,7 @@
 .blackBackground {
   position: fixed;
   top: 0;
-  z-index: 100;
+  z-index: 503;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.7);
@@ -16,7 +16,7 @@
   width: 450px;
   height: 100vh;
   background-color: black;
-  z-index: 105;
+  z-index: 504;
   position: fixed;
   top: 0;
   right: 0;
@@ -137,5 +137,10 @@
 @media (max-width: 450px) {
   .barShoppedItems {
     width: 300px;
+  }
+}
+@media (max-width: 300px) {
+  .barShoppedItems {
+    width: 275px;
   }
 }

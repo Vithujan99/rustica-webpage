@@ -51,7 +51,7 @@ const Navbar = () => {
                 )}
               </div>
               <li className="infoa">
-                <span>
+                <span href="tel:+49216688844">
                   02166 <b style={{ color: "#ffc300" }}>88844</b>
                 </span>
               </li>

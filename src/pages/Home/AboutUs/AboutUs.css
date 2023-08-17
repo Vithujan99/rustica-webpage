@@ -53,22 +53,58 @@
   transition: height 0.5s, width 0.5s 0.5s;
 }
 
-.home-aboutus-content {
+.home-aboutus-content-container {
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-top: 25px;
 }
-.home-aboutus-content-text {
-  height: 50px;
+.home-aboutus-content-adresse {
   width: 100%;
-  margin: 0 10px 0 0;
-  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
-.home-aboutus-content-map {
-  height: 50px;
+.home-adress-content {
+  font-style: normal;
+  font-size: 17px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.home-adress-conten-tel {
+  color: black;
+  transition: color 0.3s;
+}
+.home-adress-conten-tel:hover {
+  color: var(--color-four);
+  transition: color 0.3s;
+}
+.home-aboutus-content-öffnungzeiten {
   width: 100%;
-  margin: 0 10px 0 0;
-  background-color: violet;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.öffnungzeiten-table {
+  font-size: 17px;
+}
+.öffnungzeiten-table tr td:first-child {
+  font-weight: 600;
+}
+.öffnungzeiten-table tr td {
+  padding: 5px;
+}
+.table-line {
+  color: black;
+}
+.table-line-active {
+  color: var(--color-four);
+  font-weight: 600;
 }
 
 @media (max-width: 800px) {
