@@ -109,6 +109,7 @@
 
   .item-beschreibung {
     position: static;
+    padding-right: 40px;
     font-size: 14px;
     text-align: left;
     width: 100%;
@@ -180,6 +181,7 @@
 
   .item-beschreibung {
     position: static;
+    padding-right: 40px;
     font-size: 14px;
     text-align: left;
     width: 100%;
