@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/rustica-webpage/static/css/main.d53e1d12.css",
-    "main.js": "/rustica-webpage/static/js/main.0f2b03af.js",
+    "main.js": "/rustica-webpage/static/js/main.2eb55c39.js",
     "static/media/top-view-paghetti-carbonara-dish-sticker-white.jpg": "/rustica-webpage/static/media/top-view-paghetti-carbonara-dish-sticker-white.249b4c596b06704b832b.jpg",
     "static/media/pizza-time-tasty-homemade-traditional-pizza-italian-recipe-low.webp": "/rustica-webpage/static/media/pizza-time-tasty-homemade-traditional-pizza-italian-recipe-low.e73ec82d8a4e17ef866f.webp",
     "static/media/vintage-old-rustic-cutlery-dark-low.webp": "/rustica-webpage/static/media/vintage-old-rustic-cutlery-dark-low.cc04066758792b694049.webp",
@@ -11,10 +11,10 @@
     "static/media/rustica.webp": "/rustica-webpage/static/media/rustica.be7c9f76bccfea2962aa.webp",
     "index.html": "/rustica-webpage/index.html",
     "main.d53e1d12.css.map": "/rustica-webpage/static/css/main.d53e1d12.css.map",
-    "main.0f2b03af.js.map": "/rustica-webpage/static/js/main.0f2b03af.js.map"
+    "main.2eb55c39.js.map": "/rustica-webpage/static/js/main.2eb55c39.js.map"
   },
   "entrypoints": [
     "static/css/main.d53e1d12.css",
-    "static/js/main.0f2b03af.js"
+    "static/js/main.2eb55c39.js"
   ]
 }
