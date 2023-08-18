@@ -64,10 +64,15 @@ const CartCard = ({ dataAll }) => {
       handleItemCount(count - 1);
     }
   }
+  const [showExtra, setShowExtra] = useState(false);
+  function handleShowExtra(showE) {
+    setShowExtra(showE);
+  }
+
   return (
     <>
       <div className="cart-card">
-        {dataAll.ingredientsIds !== undefined ? (
+        {data.zusatz !== undefined ? (
           <div
             className="cart-card-zusatz"
             onClick={() => {
@@ -98,9 +103,9 @@ const CartCard = ({ dataAll }) => {
         )}
         <div
           className={
-            dataAll.ingredientsIds !== undefined && dataAll.description !== ""
-              ? "cart-card-header"
-              : "cart-card-header no-border"
+            dataAll.ingredientsIds.length === 0 && dataAll.description === ""
+              ? "cart-card-header no-border"
+              : "cart-card-header"
           }
         >
           <div className="cart-card-header-left">
@@ -164,35 +169,44 @@ const CartCard = ({ dataAll }) => {
             </div>
           </div>
         </div>
-        {console.log(dataAll.ingredientsIds)}
-        {console.log(dataAll.description)}
-        {(dataAll.ingredientsIds === undefined ||
-          dataAll.ingredientsIds.length === 0) &&
-        (dataAll.description === undefined || dataAll.description === "") ? (
+        {dataAll.ingredientsIds.length === 0 && dataAll.description === "" ? (
           ""
         ) : (
           <>
-            <div className="cart-card-extra-open">
-              <RxTriangleDown size={30} color="#ffc300" />
+            <div>
+              <RxTriangleDown
+                className={
+                  showExtra
+                    ? "cart-card-extra-show close"
+                    : "cart-card-extra-show open"
+                }
+                onClick={() => {
+                  showExtra ? handleShowExtra(false) : handleShowExtra(true);
+                }}
+                color="#ffc300"
+              />
             </div>
 
-            <div className="cart-card-extra">
-              {dataAll.ingredientsIds !== undefined ? (
-                <div className="cart-card-ingredients">
-                  {dataAll.ingredientsIds.map((ingredient) => (
-                    <div>
-                      <span>{ingredient.quantity}</span>
-                      {getIngredientstData(ingredient.ingredientId).name}
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                ""
-              )}
-
-              <div className="cart-card-beschreibung">
-                Beschreibung: {dataAll.description}
+            <div
+              className={
+                showExtra ? "cart-card-extra open" : "cart-card-extra close"
+              }
+            >
+              <div className="cart-card-ingredients">
+                {dataAll.ingredientsIds.map((ingredient) => (
+                  <div>
+                    <span>{ingredient.quantity}</span>
+                    {getIngredientstData(ingredient.ingredientId).name}
+                  </div>
+                ))}
               </div>
+              {dataAll.description === "" ? (
+                ""
+              ) : (
+                <div className="cart-card-beschreibung">
+                  Beschreibung: {dataAll.description}
+                </div>
+              )}
             </div>
           </>
         )}

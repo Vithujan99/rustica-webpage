@@ -70,7 +70,7 @@ export const MenuItem = ({ data }) => {
         onClick={() => {
           if (window.innerWidth <= 800) {
             if (data.zusatz === undefined) {
-              cart.addToCart(data.id, undefined, undefined, 1);
+              cart.addToCart(data.id, [], "", 1);
             } else {
               handleZusatzShow();
               ingredients.handleItemId(data.id);
@@ -98,7 +98,7 @@ export const MenuItem = ({ data }) => {
         className="item-kaufen"
         onClick={() => {
           if (data.zusatz === undefined) {
-            cart.addToCart(data.id, undefined, undefined, 1);
+            cart.addToCart(data.id, [], "", 1);
           } else {
             handleZusatzShow();
             ingredients.handleItemId(data.id);

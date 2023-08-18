@@ -4,6 +4,7 @@
   margin-top: 25px;
 }
 .cart-card-zusatz {
+  cursor: pointer;
   width: 20px;
   height: 20px;
   background-color: white;
@@ -49,21 +50,38 @@
   font-size: 17px;
 }
 .cart-car-delete {
+  cursor: pointer;
   display: flex;
   align-items: center;
 }
-.cart-card-extra {
-  height: 15px;
+.cart-card-extra.close {
+  height: 20px;
+  margin-bottom: 0px;
   overflow: hidden;
-  /*filter: blur(1px);*/
+  filter: blur(1px);
+  transition: all 0.4s;
 }
-.cart-card-extra-open {
+.cart-card-extra.open {
+  height: auto;
+  margin-bottom: 10px;
+  transition: all 0.4s;
+}
+.cart-card-extra-show {
+  cursor: pointer;
   position: absolute;
+  z-index: 1;
   width: 30px;
-  height: 30px;
-  padding-top: 7px;
+  height: 20px;
   bottom: 0px;
   right: 0px;
+}
+.cart-card-extra-show.open {
+  transform: rotate(0deg);
+  transition: transform 0.4s;
+}
+.cart-card-extra-show.close {
+  transform: rotate(180deg);
+  transition: transform 0.4s;
 }
 .cart-card-ingredients {
   padding: 5px 20px 0px;

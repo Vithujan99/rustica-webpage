@@ -56,11 +56,10 @@ export function CartProvider({ children }) {
   }
 
   function addToCart(id, ingredientsIds, description, count) {
-    if (ingredientsIds !== undefined) {
-      ingredientsIds = [...ingredientsIds].sort(
-        (a, b) => a.ingredientId - b.ingredientId
-      );
-    }
+    ingredientsIds = [...ingredientsIds].sort(
+      (a, b) => a.ingredientId - b.ingredientId
+    );
+
     var currentCartProducts = JSON.parse(localStorage.getItem("cartProducts"));
     const quantity = getProductQuantity(id, ingredientsIds, description);
     if (quantity === 0) {
@@ -136,11 +135,11 @@ export function CartProvider({ children }) {
         product.description === OldDescription
     );
     ings = cartProducts.filter((product) => product !== p);
-    if (ingredientsIds !== undefined) {
-      ingredientsIds = [...ingredientsIds].sort(
-        (a, b) => a.ingredientId - b.ingredientId
-      );
-    }
+
+    ingredientsIds = [...ingredientsIds].sort(
+      (a, b) => a.ingredientId - b.ingredientId
+    );
+
     const quantity = getProductQuantityInNewArray(
       ings,
       id,
@@ -189,13 +188,13 @@ export function CartProvider({ children }) {
         product.ingredientsIds === ingredientsIds &&
         product.description === description
     );
-    if (p.ingredientsIds !== undefined) {
-      // eslint-disable-next-line array-callback-return
-      p.ingredientsIds.map((ing) => {
-        const ingData = getPriceWithIngredientsData(ing.ingredientId);
-        ingCost += ingData.price * ing.quantity;
-      });
-    }
+
+    // eslint-disable-next-line array-callback-return
+    p.ingredientsIds.map((ing) => {
+      const ingData = getPriceWithIngredientsData(ing.ingredientId);
+      ingCost += ingData.price * ing.quantity;
+    });
+
     cost += (getProductData(id).price + ingCost) * p.quantity;
     return cost;
   }
@@ -206,13 +205,13 @@ export function CartProvider({ children }) {
     // eslint-disable-next-line array-callback-return
     cartProducts.map((product) => {
       const productData = getProductData(product.id);
-      if (product.ingredientsIds !== undefined) {
-        // eslint-disable-next-line array-callback-return
-        product.ingredientsIds.map((ing) => {
-          const ingData = getPriceWithIngredientsData(ing.ingredientId);
-          ingCost += ingData.price * ing.quantity;
-        });
-      }
+
+      // eslint-disable-next-line array-callback-return
+      product.ingredientsIds.map((ing) => {
+        const ingData = getPriceWithIngredientsData(ing.ingredientId);
+        ingCost += ingData.price * ing.quantity;
+      });
+
       totalCost += (productData.price + ingCost) * product.quantity;
     });
     return totalCost;
