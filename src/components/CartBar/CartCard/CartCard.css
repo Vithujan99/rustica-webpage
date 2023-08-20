@@ -58,7 +58,7 @@
   height: 20px;
   margin-bottom: 0px;
   overflow: hidden;
-  filter: blur(1px);
+  filter: blur(0.75px);
   transition: all 0.4s;
 }
 .cart-card-extra.open {

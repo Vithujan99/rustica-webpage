@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import MenuItem from "../../Menu/MenuItems/MenuItem/MenuItem";
 import { getDataByType } from "../../../data/productsStore";
 import PizzaImg from "../../../asset/homePage/top-view-italian-pizza-sticker-white-background-removebg.png";
-import SpaghettiImg from "../../../asset/homePage/top-view-paghetti-carbonara-dish-sticker-white.jpg";
+import SpaghettiImg from "../../../asset/homePage/top-view-paghetti-carbonara-dish-sticker-white-removebg.png";
 import ReisgerichteImg from "../../../asset/homePage/detailed-gopalkala-illustration-removebg.png";
 
 import "./MenuContent.css";
@@ -27,6 +27,7 @@ const MenuContent = () => {
       </div>
       <div class="home-cards-holder">
         <div className="home-item">
+          <div className="middle-circle" />
           <img className="pizza-img" alt="Pizza" src={PizzaImg}></img>
           <MenuItem
             key={getDataByType("Pizza")[randomPizza].id}
@@ -34,16 +35,18 @@ const MenuContent = () => {
           />
         </div>
         <div className="home-item">
-          <img className="pizza-img" alt="Pizza" src={SpaghettiImg}></img>
+          <div className="middle-circle" />
+          <img className="pizza-img" alt="Spaghetti" src={SpaghettiImg}></img>
           <MenuItem
             key={getDataByType("Spaghetti")[randomSpaghetti].id}
             data={getDataByType("Spaghetti")[randomSpaghetti]}
           />
         </div>
         <div className="home-item">
+          <div className="middle-circle" />
           <img
             className="pizza-img reis-img"
-            alt="Pizza"
+            alt="Reisgericht"
             src={ReisgerichteImg}
           ></img>
           <MenuItem
