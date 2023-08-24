@@ -97,7 +97,8 @@
 
 .cart-card-beschreibung {
   color: gainsboro;
-  padding: 0 20px;
+  text-align: left;
+  padding: 5px 20px;
   font-size: 12px;
 }
 

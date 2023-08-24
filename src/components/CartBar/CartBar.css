@@ -130,7 +130,12 @@
 
 .barFooterKaufen-button {
   width: 100%;
-
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  background-color: white;
+  color: black;
+  padding: 7px;
   border: 0;
 }
 

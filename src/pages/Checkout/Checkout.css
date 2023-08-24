@@ -1,0 +1,67 @@
+.checkout-page {
+  color: black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap-reverse;
+}
+.checkout-items-content-holder {
+  text-align: center;
+}
+.checkout-buyform {
+  height: 100vh;
+  width: 60%;
+  min-width: 300px;
+  background-color: white;
+  padding-top: 50px;
+}
+.checkout-cart-items {
+  height: 100vh;
+  width: 40%;
+  min-width: 300px;
+  background-color: rgb(249, 249, 249);
+  padding: 10px;
+  padding-top: 50px;
+}
+.checkout-cards-holder {
+  padding: 30px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+/*CartCard for chekout*/
+.checkout-page .cart-card {
+  border-color: black;
+  border: none;
+}
+.checkout-page .cart-card-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.checkout-page .cart-card-extra.close {
+  height: auto;
+  filter: blur(0px);
+}
+.checkout-page .cart-card-extra-show {
+  display: none;
+}
+.checkout-page .cart-card-ingredients span {
+  color: rgb(25, 182, 114);
+}
+.checkout-page .cart-card-beschreibung {
+  color: rgb(0, 0, 0);
+}
+
+@media (max-height: 600px) {
+  .checkout-cards-holder {
+    padding: 20px;
+    max-height: 400px;
+  }
+}
+@media (max-height: 500px) {
+  .checkout-cards-holder {
+    max-height: 300px;
+  }
+}
+@media (max-height: 400px) {
+  .checkout-cards-holder {
+    max-height: 250px;
+  }
+}

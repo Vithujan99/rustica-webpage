@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import CartProvider from "./context/CartContext";
 import ShowProvider from "./context/ShowContext";
 import IngredientsProvider from "./context/IngredientsContext";
@@ -12,8 +12,20 @@ import Menu from "./pages/Menu/Menu";
 import Rent from "./pages/Rent/Rent";
 import Checkout from "./pages/Checkout/Checkout";
 import About from "./pages/About/About";
+import { useEffect } from "react";
+import { useState } from "react";
 
 function App() {
+  const location = useLocation();
+  const [showNavbar, setShowNavbar] = useState(true);
+  useEffect(() => {
+    console.log(location);
+    if (location.pathname === "/rustica-webpage/checkout") {
+      setShowNavbar(false);
+    } else {
+      setShowNavbar(true);
+    }
+  }, [location]);
   return (
     //Everything hass access to the value inside ShppingCartProvider
     <TimeProvider>
@@ -21,17 +33,17 @@ function App() {
         <IngredientsProvider>
           <ServiceProvider>
             <ShowProvider>
-              <Navbar />
+              {showNavbar && <Navbar />}
               <AskService />
               <Routes>
                 <Route path="/rustica-webpage" element={<Home />} />
                 <Route path="/rustica-webpage/menu" element={<Menu />} />
                 <Route path="/rustica-webpage/rent" element={<Rent />} />
+                <Route path="/rustica-webpage/about" element={<About />} />
                 <Route
                   path="/rustica-webpage/checkout"
                   element={<Checkout />}
                 />
-                <Route path="/rustica-webpage/about" element={<About />} />
               </Routes>
             </ShowProvider>
           </ServiceProvider>

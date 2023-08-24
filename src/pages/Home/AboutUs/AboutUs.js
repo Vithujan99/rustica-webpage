@@ -9,7 +9,6 @@ const AboutUs = () => {
   const day = time.getDay();
   return (
     <div class="home-aboutus">
-      {console.log(day)}
       <div className="home-aboutus-titel-holder">
         <Link className="home-aboutus-titel" to="/rustica-webpage/about">
           Über Uns

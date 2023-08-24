@@ -6,6 +6,7 @@ import { ShowContext } from "../../context/ShowContext";
 import CartCard from "./CartCard/CartCard";
 
 import "./CartBar.css";
+import { NavLink } from "react-router-dom";
 
 const CartBar = () => {
   const cart = useContext(CartContext);
@@ -109,15 +110,23 @@ const CartBar = () => {
                     )}
                     <div className="barFooterKaufen">
                       {serv.service === "Abholung" ? (
-                        <button className="barFooterKaufen-button">
+                        <NavLink
+                          className="barFooterKaufen-button"
+                          to="/rustica-webpage/checkout"
+                          onClick={() => show.handleBarClose()}
+                        >
                           Zur Kasse
-                        </button>
+                        </NavLink>
                       ) : (
                         <>
                           {serv.testPlz() ? (
-                            <button className="barFooterKaufen-button">
+                            <NavLink
+                              className="barFooterKaufen-button"
+                              to="/rustica-webpage/checkout"
+                              onClick={() => show.handleBarClose()}
+                            >
                               Zur Kasse
-                            </button>
+                            </NavLink>
                           ) : (
                             <></>
                           )}
@@ -126,7 +135,10 @@ const CartBar = () => {
 
                       <button
                         className="barFooterKaufen-button"
-                        onClick={() => cart.deleteCart()}
+                        onClick={() => {
+                          cart.deleteCart();
+                          show.handleBarClose();
+                        }}
                       >
                         Wahrenkorb leeren
                       </button>

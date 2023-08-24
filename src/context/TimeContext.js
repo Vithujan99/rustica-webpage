@@ -32,7 +32,7 @@ export function TimeProvider({ children }) {
     } else if (Now.getDay() === 3 || Now.getDay() === 4) {
       if (time <= 1430 && time >= 1130) {
         return true;
-      } else if (time <= 1730 && time >= 2230) {
+      } else if (time <= 2230 && time >= 1730) {
         return true;
       }
     } else if (Now.getDay() === 5) {
