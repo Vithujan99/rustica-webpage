@@ -123,20 +123,42 @@
 .barFooterKaufen {
   margin-top: 20px;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
   gap: 10px;
 }
-
+.barFooterKaufen.row {
+  flex-direction: row;
+  justify-content: center;
+}
+.barFooterKaufen.col {
+  flex-direction: column;
+  align-items: center;
+}
 .barFooterKaufen-button {
-  width: 100%;
+  background-color: white;
+  border: 0;
+  border-radius: 7.5px;
+  color: black;
+  cursor: pointer;
   font-size: 14px;
   font-weight: 600;
   text-align: center;
-  background-color: white;
-  color: black;
-  padding: 7px;
-  border: 0;
+  transition: background-color 0.3s;
+}
+
+.barFooterKaufen.row .barFooterKaufen-button {
+  width: 100%;
+  padding: 8px;
+}
+.barFooterKaufen.col .barFooterKaufen-button {
+  width: 50%;
+  padding: 12px;
+}
+.barFooterKaufen-button:hover {
+  background-color: var(--color-accent1);
+  transition: background-color 0.3s;
+}
+.min-cost-red {
+  color: red;
 }
 
 @media (max-width: 450px) {

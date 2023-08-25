@@ -3,13 +3,39 @@ import "./Checkout.css";
 import { CartContext } from "../../context/CartContext";
 import { TimeContext } from "../../context/TimeContext";
 import CartCard from "../../components/CartBar/CartCard/CartCard";
+import { ServiceContext } from "../../context/ServiceContext";
+import { formatCurrency } from "../../utilities/formatCurrency";
 
 const Checkout = () => {
   const cart = useContext(CartContext);
+  const serv = useContext(ServiceContext);
   const time = useContext(TimeContext);
   return (
     <div className="checkout-page">
-      <div className="checkout-buyform"></div>
+      <div className="checkout-buyform">
+        <div className="checkout-select-service">
+          <button
+            className={
+              serv.service === "Lieferung"
+                ? "checkout-serv-button active"
+                : "checkout-serv-button"
+            }
+            onClick={() => serv.setService("Lieferung")}
+          >
+            Liefern
+          </button>
+          <button
+            className={
+              serv.service === "Abholung"
+                ? "checkout-serv-button active"
+                : "checkout-serv-button"
+            }
+            onClick={() => serv.setService("Abholung")}
+          >
+            Abholen
+          </button>
+        </div>
+      </div>
       <div className="checkout-cart-items">
         <div className="checkout-items-content-holder">
           {cart.getTotalCount() > 0 ? (
@@ -27,8 +53,25 @@ const Checkout = () => {
                   />
                 ))}
               </div>
-              {cart.getTotalCost() < 10.0 ? (
-                <p>Mindestbestellwert für Lieferung (ohne Getränke) 10,00€</p>
+              <div className="checkout-items-footer">
+                <div>Gesamt: </div>
+                <div>{formatCurrency(cart.getTotalCost().toFixed(2))}</div>
+              </div>
+
+              {serv.service === "Abholung" ? (
+                cart.getTotalCost() >= 8.0 ? (
+                  ""
+                ) : (
+                  <div className="min-cost-red">Mindestbestellwert 8,00€</div>
+                )
+              ) : serv.testPlz() ? (
+                cart.getTotalCost() >= 15.0 ? (
+                  ""
+                ) : (
+                  <div className="min-cost-red">
+                    Mindestbestellwert für Lieferung (ohne Getränke) 15,00€
+                  </div>
+                )
               ) : (
                 <></>
               )}

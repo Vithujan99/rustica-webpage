@@ -7,13 +7,31 @@
 .checkout-items-content-holder {
   text-align: center;
 }
+/*BuyForm side Left side*/
 .checkout-buyform {
   height: 100vh;
   width: 60%;
   min-width: 300px;
   background-color: white;
-  padding-top: 50px;
+  padding: 100px;
+  padding-top: 100px;
 }
+.checkout-select-service {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 50px;
+}
+.checkout-serv-button {
+  background-color: white;
+  color: black;
+  width: 200px;
+  border-radius: 3px;
+}
+.checkout-serv-button.active {
+  background-color: var(--color-accent1);
+}
+/*Cartitems Right side*/
 .checkout-cart-items {
   height: 100vh;
   width: 40%;
@@ -23,9 +41,22 @@
   padding-top: 50px;
 }
 .checkout-cards-holder {
-  padding: 30px;
+  padding: 0 30px 0;
   max-height: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   overflow-y: auto;
+}
+.checkout-items-footer {
+  margin: 30px 30px 0;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-top: 1px solid rgba(0, 0, 0, 0.327);
+  font-size: 18px;
+  font-weight: 600;
 }
 /*CartCard for chekout*/
 .checkout-page .cart-card {
@@ -34,6 +65,9 @@
 }
 .checkout-page .cart-card-header {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.checkout-page .cart-card-header.no-border {
+  border: 0;
 }
 .checkout-page .cart-card-extra.close {
   height: auto;

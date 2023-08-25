@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { getProductData } from "../data/productsStore";
+import { getDataByType, getProductData } from "../data/productsStore";
 import { getPriceWithIngredientsData } from "../data/ingredientsData";
 
 //Function are not defined here, but this indicates that we have room for thease Function
@@ -13,6 +13,7 @@ export const CartContext = createContext({
   deleteCart: () => {},
   getCost: () => {},
   getTotalCost: () => {},
+  getTotalCostNoDrinks: () => {},
   getTotalCount: () => {},
 });
 
@@ -216,6 +217,25 @@ export function CartProvider({ children }) {
     });
     return totalCost;
   }
+  function getTotalCostNoDrinks() {
+    let totalCost = 0;
+    let ingCost = 0;
+    // eslint-disable-next-line array-callback-return
+    cartProducts.map((product) => {
+      const type = getDataByType(product.id);
+      if (type !== "Drinks") {
+        const productData = getProductData(product.id);
+        // eslint-disable-next-line array-callback-return
+        product.ingredientsIds.map((ing) => {
+          const ingData = getPriceWithIngredientsData(ing.ingredientId);
+          ingCost += ingData.price * ing.quantity;
+        });
+
+        totalCost += (productData.price + ingCost) * product.quantity;
+      }
+    });
+    return totalCost;
+  }
 
   function getTotalCount() {
     return cartProducts.reduce((sum, product) => sum + product.quantity, 0);
@@ -231,6 +251,7 @@ export function CartProvider({ children }) {
     deleteCart,
     getCost,
     getTotalCost,
+    getTotalCostNoDrinks,
     getTotalCount,
   };
   //we are giving contextValue as Value so all the children can access these Functions
