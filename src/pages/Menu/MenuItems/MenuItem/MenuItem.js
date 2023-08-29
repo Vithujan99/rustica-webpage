@@ -241,7 +241,7 @@ export const MenuItem = ({ data }) => {
                     {ingredientsData.map((ingredientSection) =>
                       ingredientSection.name === zusatzName ? (
                         ingredientSection.items.map((ingredient) => (
-                          <option key={ingredient.id} value={ingredient.id}>
+                          <option key={ingredient._id} value={ingredient._id}>
                             {ingredient.name}
                           </option>
                         ))
@@ -265,7 +265,7 @@ export const MenuItem = ({ data }) => {
                         <div className="ask-zusatz-body-section-items">
                           {ingredientSection.items.map((ingredient) => (
                             <div
-                              key={ingredient.id}
+                              key={ingredient._id}
                               className="ask-zusatz-body-section-item"
                             >
                               <IoMdAddCircle
@@ -273,8 +273,9 @@ export const MenuItem = ({ data }) => {
                                 onClick={() => {
                                   ingredients.addIngredient(
                                     data.id,
-                                    ingredient.id
+                                    ingredient._id
                                   );
+                                  console.log(ingredient._id);
                                 }}
                                 className="ask-zusatz-item-button"
                               />

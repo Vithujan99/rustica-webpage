@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { getDataByType, getProductData } from "../data/productsStore";
+import { getTypeById, getProductData } from "../data/productsStore";
 import { getPriceWithIngredientsData } from "../data/ingredientsData";
 
 //Function are not defined here, but this indicates that we have room for thease Function
@@ -222,7 +222,7 @@ export function CartProvider({ children }) {
     let ingCost = 0;
     // eslint-disable-next-line array-callback-return
     cartProducts.map((product) => {
-      const type = getDataByType(product.id);
+      const type = getTypeById(product.id);
       if (type !== "Drinks") {
         const productData = getProductData(product.id);
         // eslint-disable-next-line array-callback-return

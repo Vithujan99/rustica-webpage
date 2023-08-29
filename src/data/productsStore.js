@@ -1,8 +1,9 @@
 import axios from "axios";
-var productsArray;
-await axios
-  .get("http://localhost:4000/users")
-  .then((res) => (productsArray = res.data));
+const productsArray = await axios
+  .get("http://localhost:4000/products")
+  .then((res) => {
+    return res.data;
+  });
 
 function getTypeById(id) {
   let data = productsArray.find((products) =>

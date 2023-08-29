@@ -348,7 +348,7 @@ const CartCard = ({ dataAll }) => {
                     {ingredientsData.map((ingredientSection) =>
                       ingredientSection.name === zusatzName ? (
                         ingredientSection.items.map((ingredient) => (
-                          <option key={ingredient.id} value={ingredient.id}>
+                          <option key={ingredient._id} value={ingredient._id}>
                             {ingredient.name}
                           </option>
                         ))
@@ -372,7 +372,7 @@ const CartCard = ({ dataAll }) => {
                         <div className="ask-zusatz-body-section-items">
                           {ingredientSection.items.map((ingredient) => (
                             <div
-                              key={ingredient.id}
+                              key={ingredient._id}
                               className="ask-zusatz-body-section-item"
                             >
                               <IoMdAddCircle
@@ -380,7 +380,7 @@ const CartCard = ({ dataAll }) => {
                                 onClick={() => {
                                   ingredients.addIngredient(
                                     data.id,
-                                    ingredient.id
+                                    ingredient._id
                                   );
                                 }}
                                 className="ask-zusatz-item-button"

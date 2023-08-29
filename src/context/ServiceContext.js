@@ -7,7 +7,6 @@ export const ServiceContext = createContext({
   setService: () => {},
   setPlz: () => {},
   setAskPlzShow: () => {},
-  getPlz: () => {},
   testPlz: () => {},
 });
 

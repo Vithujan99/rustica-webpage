@@ -31,6 +31,80 @@
 .checkout-serv-button.active {
   background-color: var(--color-accent1);
 }
+.checkout-form-holder {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 50px;
+}
+.checkout-form-name {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
+.checkout-form-name-input {
+  padding-left: 10px;
+  width: 50%;
+  height: 40px;
+  font-size: 18px;
+}
+.checkout-form-street-hnr {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.checkout-form-street {
+  padding-left: 10px;
+  width: 80%;
+  height: 40px;
+  font-size: 18px;
+}
+.checkout-form-hnr {
+  padding-left: 10px;
+  width: 20%;
+  height: 40px;
+  font-size: 18px;
+}
+.checkout-form-plz-city {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.checkout-form-plz {
+  padding-left: 10px;
+  width: 30%;
+  height: 40px;
+  font-size: 18px;
+}
+.checkout-form-city {
+  padding-left: 10px;
+  width: 70%;
+  height: 40px;
+  font-size: 18px;
+}
+.checkout-form-wrong-plz {
+  color: red;
+}
+.checkout-form-anmerkung-holder {
+  display: flex;
+  flex-direction: column;
+}
+.checkout-form-anmerkung {
+  height: 75px;
+}
+.form-submit-holder {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.form-submit {
+  font-size: 18px;
+  padding: 10px;
+  width: 150px;
+  background-color: black;
+  color: white;
+}
 /*Cartitems Right side*/
 .checkout-cart-items {
   height: 100vh;
