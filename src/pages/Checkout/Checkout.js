@@ -1,11 +1,17 @@
 import React, { useState, useContext } from "react";
-import "./Checkout.css";
+import axios from "axios";
 import { CartContext } from "../../context/CartContext";
 import { TimeContext } from "../../context/TimeContext";
 import CartCard from "../../components/CartBar/CartCard/CartCard";
 import { ServiceContext } from "../../context/ServiceContext";
 import { formatCurrency } from "../../utilities/formatCurrency";
-import axios from "axios";
+import {
+  PayPalScriptProvider,
+  PayPalButtons,
+  usePayPalScriptReducer,
+} from "@paypal/react-paypal-js";
+
+import "./Checkout.css";
 
 const Checkout = () => {
   const cart = useContext(CartContext);
@@ -18,12 +24,15 @@ const Checkout = () => {
   const [hnr, setHnr] = useState("");
   const [stadt, setStadt] = useState("");
   const [errorText, setErrorText] = useState(false);
+  const [anmerkung, setAnmerkung] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("");
   const [messageForClient, setMessageForClient] = useState("");
 
   const axiosPostAbholungData = async () => {
     const postData = {
       vorname: vorname,
       nachname: nachname,
+      anmerkung: anmerkung,
       ordered_items: cart.items,
     };
     await axios
@@ -43,6 +52,7 @@ const Checkout = () => {
       hausnummer: hnr,
       plz: serv.plz,
       stadt: stadt,
+      anmerkung: anmerkung,
       ordered_items: cart.items,
     };
     await axios
@@ -57,6 +67,74 @@ const Checkout = () => {
       setErrorText(false);
     }
     axiosPostLieferData();
+  };
+
+  // This value is from the props in the UI
+  const style = { layout: "vertical" };
+
+  function createOrder() {
+    // replace this url with your server
+    return fetch(
+      "https://react-paypal-js-storybook.fly.dev/api/paypal/create-order",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // use the "body" param to optionally pass additional order information
+        // like product ids and quantities
+        body: JSON.stringify({
+          cart: [
+            {
+              sku: "1blwyeo8",
+              quantity: 2,
+            },
+          ],
+        }),
+      }
+    )
+      .then((response) => response.json())
+      .then((order) => {
+        // Your code here after create the order
+        return order.id;
+      });
+  }
+  function onApprove(data) {
+    // replace this url with your server
+    return fetch(
+      "https://react-paypal-js-storybook.fly.dev/api/paypal/capture-order",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          orderID: data.orderID,
+        }),
+      }
+    )
+      .then((response) => response.json())
+      .then((orderData) => {
+        // Your code here after capture the order
+      });
+  }
+
+  // Custom component to wrap the PayPalButtons and show loading spinner
+  const ButtonWrapper = ({ showSpinner }) => {
+    const [{ isPending }] = usePayPalScriptReducer();
+    return (
+      <>
+        {showSpinner && isPending && <div className="spinner" />}
+        <PayPalButtons
+          style={style}
+          disabled={false}
+          forceReRender={[style]}
+          fundingSource={undefined}
+          createOrder={createOrder}
+          onApprove={onApprove}
+        />
+      </>
+    );
   };
 
   return (
@@ -188,9 +266,45 @@ const Checkout = () => {
                 className="checkout-form-anmerkung"
                 type="text"
                 name="anmerkung"
+                value={anmerkung}
+                onChange={(e) => setAnmerkung(e.target.value)}
               ></textarea>
             </div>
-            <div className="form-submit-holder">
+            <div className="payment-selct">
+              <div
+                className={
+                  paymentMethod === "PayPal"
+                    ? "payment-select-paypal active"
+                    : "payment-select-paypal"
+                }
+                onClick={() => setPaymentMethod("PayPal")}
+              >
+                PayPal
+              </div>
+              <div
+                className={
+                  paymentMethod === "Bargeld"
+                    ? "payment-select-bargeld active"
+                    : "payment-select-bargeld"
+                }
+                onClick={() => setPaymentMethod("Bargeld")}
+              >
+                Bargeld
+              </div>
+            </div>
+            {paymentMethod === "PayPal" ? (
+              <PayPalScriptProvider
+                options={{
+                  clientId:
+                    "Ae6AkHSOxxRGmcnex7dDSe0z72qg2NelkA3dWpog-AbgzwM6w-kCoWtQ-B62SdHARryHt2aS10eAwKAt",
+                  components: "buttons",
+                  currency: "USD",
+                  "disable-funding": "card,sofort,giropay,sepa",
+                }}
+              >
+                <ButtonWrapper showSpinner={false} />
+              </PayPalScriptProvider>
+            ) : paymentMethod === "Bargeld" ? (
               <button
                 className="form-submit"
                 type="submit"
@@ -198,7 +312,9 @@ const Checkout = () => {
               >
                 Bestellen
               </button>
-            </div>
+            ) : (
+              <></>
+            )}
           </form>
         )}
       </div>

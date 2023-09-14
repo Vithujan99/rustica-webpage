@@ -32,6 +32,7 @@ const ingredientSchema = new Schema({
 const orderAbholungSchema = new Schema({
   vorname: { type: String, required: true },
   nachname: { type: String, required: true },
+  anmerkung: { type: String },
   ordered_items: {
     type: [
       {
@@ -59,6 +60,7 @@ const orderLieferSchema = new Schema({
   hausnummer: { type: String, required: true },
   plz: { type: String, required: true },
   stadt: { type: String, required: true },
+  anmerkung: { type: String },
   ordered_items: {
     type: [
       {

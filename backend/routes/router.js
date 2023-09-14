@@ -56,10 +56,11 @@ router.get("/ingredients", async (req, res) => {
 });
 
 router.post("/orders/abholung", async (req, res) => {
-  const { vorname, nachname, ordered_items } = req.body;
+  const { vorname, nachname, anmerkung, ordered_items } = req.body;
   const orederAbholungData = {
     vorname: vorname,
     nachname: nachname,
+    anmerkung: anmerkung,
     ordered_items: ordered_items,
   };
   const newOrder = new schemas.OrderAbholung(orederAbholungData);
@@ -74,8 +75,16 @@ router.post("/orders/abholung", async (req, res) => {
 });
 
 router.post("/orders/liefer", async (req, res) => {
-  const { vorname, nachname, straße, hausnummer, plz, stadt, ordered_items } =
-    req.body;
+  const {
+    vorname,
+    nachname,
+    straße,
+    hausnummer,
+    plz,
+    stadt,
+    anmerkung,
+    ordered_items,
+  } = req.body;
   const orederLieferData = {
     vorname: vorname,
     nachname: nachname,
@@ -83,6 +92,7 @@ router.post("/orders/liefer", async (req, res) => {
     hausnummer: hausnummer,
     plz: plz,
     stadt: stadt,
+    anmerkung: anmerkung,
     ordered_items: ordered_items,
   };
   const newOrder = new schemas.OrderLiefer(orederLieferData);
