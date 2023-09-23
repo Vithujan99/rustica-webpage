@@ -4,10 +4,10 @@ import { ServiceContext } from "../../context/ServiceContext";
 import { TimeContext } from "../../context/TimeContext";
 import { ShowContext } from "../../context/ShowContext";
 import { formatCurrency } from "../../utilities/formatCurrency";
+import { NavLink } from "react-router-dom";
 import CartCard from "./CartCard/CartCard";
 
 import "./CartBar.css";
-import { NavLink } from "react-router-dom";
 
 const CartBar = () => {
   const cart = useContext(CartContext);

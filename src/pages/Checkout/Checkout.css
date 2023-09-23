@@ -7,6 +7,7 @@
 .checkout-items-content-holder {
   text-align: center;
 }
+
 /*BuyForm side Left side*/
 .checkout-buyform {
   height: 100vh;
@@ -49,6 +50,7 @@
   width: 50%;
   height: 40px;
   font-size: 18px;
+  border: 2px solid rgba(0, 0, 0, 0.378);
 }
 .checkout-form-street-hnr {
   display: flex;
@@ -94,6 +96,11 @@
 .checkout-form-anmerkung {
   height: 75px;
 }
+.error {
+  border: 3px solid rgb(255, 0, 0);
+}
+
+/*Buy Buttons*/
 .payment-selct {
   display: flex;
   flex-direction: row;

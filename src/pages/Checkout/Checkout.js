@@ -5,12 +5,7 @@ import { TimeContext } from "../../context/TimeContext";
 import CartCard from "../../components/CartBar/CartCard/CartCard";
 import { ServiceContext } from "../../context/ServiceContext";
 import { formatCurrency } from "../../utilities/formatCurrency";
-import {
-  PayPalScriptProvider,
-  PayPalButtons,
-  usePayPalScriptReducer,
-} from "@paypal/react-paypal-js";
-
+import { PayPalButtons } from "@paypal/react-paypal-js";
 import "./Checkout.css";
 
 const Checkout = () => {
@@ -68,73 +63,83 @@ const Checkout = () => {
     }
     axiosPostLieferData();
   };
-
-  // This value is from the props in the UI
-  const style = { layout: "vertical" };
-
-  function createOrder() {
-    // replace this url with your server
-    return fetch(
-      "https://react-paypal-js-storybook.fly.dev/api/paypal/create-order",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        // use the "body" param to optionally pass additional order information
-        // like product ids and quantities
-        body: JSON.stringify({
-          cart: [
-            {
-              sku: "1blwyeo8",
-              quantity: 2,
-            },
-          ],
-        }),
-      }
-    )
-      .then((response) => response.json())
-      .then((order) => {
-        // Your code here after create the order
-        return order.id;
-      });
+  function checkLieferData() {
+    if (
+      vorname.length === 0 ||
+      nachname.length === 0 ||
+      straße.length === 0 ||
+      hnr.length === 0 ||
+      !serv.testPlz() ||
+      stadt.length === 0
+    ) {
+      setPaymentMethod("");
+      return false;
+    } else {
+      return true;
+    }
   }
-  function onApprove(data) {
-    // replace this url with your server
-    return fetch(
-      "https://react-paypal-js-storybook.fly.dev/api/paypal/capture-order",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          orderID: data.orderID,
-        }),
-      }
-    )
-      .then((response) => response.json())
-      .then((orderData) => {
-        // Your code here after capture the order
-      });
+  const [formError, setFormError] = useState(false);
+  function clickCheckLieferData() {
+    if (
+      vorname.length === 0 ||
+      nachname.length === 0 ||
+      straße.length === 0 ||
+      hnr.length === 0 ||
+      !serv.testPlz() ||
+      stadt.length === 0
+    ) {
+      setPaymentMethod("");
+      setFormError(true);
+      return false;
+    } else {
+      setFormError(false);
+      return true;
+    }
   }
 
-  // Custom component to wrap the PayPalButtons and show loading spinner
-  const ButtonWrapper = ({ showSpinner }) => {
-    const [{ isPending }] = usePayPalScriptReducer();
-    return (
-      <>
-        {showSpinner && isPending && <div className="spinner" />}
-        <PayPalButtons
-          style={style}
-          disabled={false}
-          forceReRender={[style]}
-          fundingSource={undefined}
-          createOrder={createOrder}
-          onApprove={onApprove}
-        />
-      </>
-    );
+  const serverUrl = "http://localhost:4000";
+
+  const createOrder = (data) => {
+    // Order is created on the server and the order id is returned
+    return fetch(`${serverUrl}/my-server/create-paypal-order`, {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      // use the "body" param to optionally pass additional order information
+
+      // like product skus and quantities
+
+      body: JSON.stringify({
+        cart: [...cart.items],
+      }),
+    })
+      .then((response) => response.json())
+
+      .then((order) => order.id);
+  };
+
+  const onApprove = (data) => {
+    // Order is captured on the server and the response is returned to the browser
+
+    return fetch(`${serverUrl}/my-server/capture-paypal-order`, {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify({
+        orderID: data.orderID,
+      }),
+    })
+      .then((response) => {
+        console.log("Payment successfull");
+        return response.json();
+      })
+      .then((data) => console.log(data));
   };
 
   return (
@@ -172,6 +177,7 @@ const Checkout = () => {
                 className="checkout-form-name-input"
                 placeholder="Vorname"
                 type="text"
+                required="true"
                 value={vorname}
                 onChange={(e) => setVorname(e.target.value)}
               ></input>
@@ -180,6 +186,7 @@ const Checkout = () => {
                 className="checkout-form-name-input"
                 placeholder="Nachname"
                 type="text"
+                required="true"
                 value={nachname}
                 onChange={(e) => setNachname(e.target.value)}
               ></input>
@@ -200,17 +207,27 @@ const Checkout = () => {
             <div className="checkout-form-name">
               <input
                 name="vorname"
-                className="checkout-form-name-input"
+                className={
+                  formError && vorname.length === 0
+                    ? "checkout-form-name-input error"
+                    : "checkout-form-name-input"
+                }
                 placeholder="Vorname"
                 type="text"
+                required="true"
                 value={vorname}
                 onChange={(e) => setVorname(e.target.value)}
               ></input>
               <input
                 name="nachname"
-                className="checkout-form-name-input"
+                className={
+                  formError && nachname.length === 0
+                    ? "checkout-form-name-input error"
+                    : "checkout-form-name-input"
+                }
                 placeholder="Nachname"
                 type="text"
+                required="true"
                 value={nachname}
                 onChange={(e) => setNachname(e.target.value)}
               ></input>
@@ -218,17 +235,27 @@ const Checkout = () => {
             <div className="checkout-form-street-hnr">
               <input
                 name="straße"
-                className="checkout-form-street"
+                className={
+                  formError && straße.length === 0
+                    ? "checkout-form-street error"
+                    : "checkout-form-street"
+                }
                 placeholder="Straße"
                 type="text"
+                required="true"
                 value={straße}
                 onChange={(e) => setStraße(e.target.value)}
               ></input>
               <input
                 name="hausnummer"
-                className="checkout-form-hnr"
+                className={
+                  formError && hnr.length === 0
+                    ? "checkout-form-hnr error"
+                    : "checkout-form-hnr"
+                }
                 placeholder="Hnr."
                 type="text"
+                required="true"
                 value={hnr}
                 onChange={(e) => setHnr(e.target.value)}
               ></input>
@@ -236,17 +263,27 @@ const Checkout = () => {
             <div className="checkout-form-plz-city">
               <input
                 name="plz"
-                className="checkout-form-plz"
+                className={
+                  formError && (serv.plz.length === 0 || !serv.testPlz())
+                    ? "checkout-form-plz error"
+                    : "checkout-form-plz"
+                }
                 placeholder="Postleitzahl"
                 type="number"
+                required="true"
                 value={serv.plz}
                 onChange={(e) => serv.setPlz(e.target.value)}
               ></input>
               <input
                 name="stadt"
-                className="checkout-form-city"
+                className={
+                  formError && stadt.length === 0
+                    ? "checkout-form-city error"
+                    : "checkout-form-city"
+                }
                 placeholder="Stadt"
                 type="text"
+                required="true"
                 value={stadt}
                 onChange={(e) => setStadt(e.target.value)}
               ></input>
@@ -271,40 +308,43 @@ const Checkout = () => {
               ></textarea>
             </div>
             <div className="payment-selct">
-              <div
+              <button
                 className={
                   paymentMethod === "PayPal"
                     ? "payment-select-paypal active"
                     : "payment-select-paypal"
                 }
-                onClick={() => setPaymentMethod("PayPal")}
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (clickCheckLieferData()) {
+                    setPaymentMethod("PayPal");
+                  }
+                }}
               >
                 PayPal
-              </div>
-              <div
+              </button>
+              <button
                 className={
                   paymentMethod === "Bargeld"
                     ? "payment-select-bargeld active"
                     : "payment-select-bargeld"
                 }
-                onClick={() => setPaymentMethod("Bargeld")}
-              >
-                Bargeld
-              </div>
-            </div>
-            {paymentMethod === "PayPal" ? (
-              <PayPalScriptProvider
-                options={{
-                  clientId:
-                    "Ae6AkHSOxxRGmcnex7dDSe0z72qg2NelkA3dWpog-AbgzwM6w-kCoWtQ-B62SdHARryHt2aS10eAwKAt",
-                  components: "buttons",
-                  currency: "USD",
-                  "disable-funding": "card,sofort,giropay,sepa",
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (clickCheckLieferData()) {
+                    setPaymentMethod("Bargeld");
+                  }
                 }}
               >
-                <ButtonWrapper showSpinner={false} />
-              </PayPalScriptProvider>
-            ) : paymentMethod === "Bargeld" ? (
+                Bargeld
+              </button>
+            </div>
+            {paymentMethod === "PayPal" && checkLieferData() ? (
+              <PayPalButtons
+                createOrder={(data, actions) => createOrder(data, actions)}
+                onApprove={(data, actions) => onApprove(data, actions)}
+              />
+            ) : paymentMethod === "Bargeld" && checkLieferData() ? (
               <button
                 className="form-submit"
                 type="submit"

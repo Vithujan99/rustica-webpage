@@ -73,6 +73,16 @@ router.post("/orders/abholung", async (req, res) => {
   }
   res.end();
 });
+//Authentifizierung einbauen
+router.get("/orders/abholung", async (req, res) => {
+  try {
+    const orderAbholung = schemas.OrderAbholung;
+    const allOrderAbholung = await orderAbholung.find({}).exec();
+    res.send(JSON.stringify(allOrderAbholung));
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 router.post("/orders/liefer", async (req, res) => {
   const {
@@ -103,4 +113,15 @@ router.post("/orders/liefer", async (req, res) => {
   }
   res.end();
 });
+//Authentifizierung einbauen
+router.get("/orders/liefer", async (req, res) => {
+  try {
+    const orderLiefer = schemas.OrderLiefer;
+    const allOrderLiefer = await orderLiefer.find({}).exec();
+    res.send(JSON.stringify(allOrderLiefer));
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;
