@@ -1,3 +1,4 @@
+const axios = require("axios");
 const express = require("express");
 const fetch = require("node-fetch");
 const cors = require("cors"); //to access the Server from diffrent Domains
@@ -54,13 +55,49 @@ const generateAccessToken = async () => {
   }
 };
 
+function getPData(id, productsArray) {
+  for (const product of productsArray) {
+    return product.items.find((item) => item.id === id);
+  }
+}
+function getPriceWithIData(id, ingredientsData) {
+  return ingredientsData.find((data) =>
+    data.items.find((item) => item._id === id)
+  );
+}
+async function getPrice(cart) {
+  const productsArray = await axios
+    .get("http://localhost:4000/products")
+    .then((res) => {
+      return res.data;
+    });
+  const ingredientsData = await axios
+    .get("http://localhost:4000/ingredients")
+    .then((res) => {
+      return res.data;
+    });
+  var totalCost = 0;
+  var ingCost = 0;
+
+  cart.map((product) => {
+    const productData = getPData(product.id, productsArray);
+
+    product.ingredientsIds.map((ing) => {
+      const ingData = getPriceWithIData(ing.ingredientId, ingredientsData);
+      ingCost += ingData.price * ing.quantity;
+    });
+    totalCost += (productData.price + ingCost) * product.quantity;
+  });
+  return totalCost.toString();
+}
+
 const createOrder = async (cart) => {
   // use the cart information passed from the front-end to calculate the purchase unit details
   console.log(
     "shopping cart information passed from the frontend createOrder() callback:",
     cart
   );
-
+  const price = await getPrice(cart);
   const accessToken = await generateAccessToken();
   const url = `${base}/v2/checkout/orders`;
   const payload = {
@@ -69,7 +106,7 @@ const createOrder = async (cart) => {
       {
         amount: {
           currency_code: "EUR",
-          value: "100.00", //Needs to be changed!!!!!
+          value: price, //Needs to be changed!!!!!
         },
       },
     ],

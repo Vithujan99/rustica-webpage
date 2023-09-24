@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { getProductData, getProductDataByName } from "../../data/productsStore";
+import { getProductData, getProductDataByName } from "../../data/productsData";
 import MenuItem from "../../pages/Menu/MenuItems/MenuItem/MenuItem";
 import { FaSearch } from "react-icons/fa";
 import "./Search.css";

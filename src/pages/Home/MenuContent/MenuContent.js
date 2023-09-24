@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import MenuItem from "../../Menu/MenuItems/MenuItem/MenuItem";
-import { getDataByType } from "../../../data/productsStore";
+import { getDataByType } from "../../../data/productsData";
 import PizzaImg from "../../../asset/homePage/top-view-italian-pizza-sticker-white-background-removebg.png";
 import SpaghettiImg from "../../../asset/homePage/top-view-paghetti-carbonara-dish-sticker-white-removebg.png";
 import ReisgerichteImg from "../../../asset/homePage/detailed-gopalkala-illustration-removebg.png";

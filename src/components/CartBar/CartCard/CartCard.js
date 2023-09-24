@@ -6,7 +6,7 @@ import {
   getIngredientstData,
   ingredientsData,
 } from "../../../data/ingredientsData";
-import { getProductData } from "../../../data/productsStore";
+import { getProductData } from "../../../data/productsData";
 import { FaAngleUp, FaAngleDown } from "react-icons/fa";
 import { IoMdAddCircle, IoMdRemoveCircle } from "react-icons/io";
 import { MdDeleteForever } from "react-icons/md";

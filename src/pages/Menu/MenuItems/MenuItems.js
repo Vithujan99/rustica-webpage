@@ -1,7 +1,7 @@
 import React, { useState, useRef, useContext } from "react";
 import { CartContext } from "../../../context/CartContext";
 import { ShowContext } from "../../../context/ShowContext";
-import { getDataByType } from "../../../data/productsStore";
+import { getDataByType } from "../../../data/productsData";
 import { FaAngleRight, FaAngleLeft, FaShoppingCart } from "react-icons/fa";
 
 import MenuItem from "./MenuItem/MenuItem";

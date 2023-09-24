@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { getTypeById, getProductData } from "../data/productsStore";
+import { getTypeById, getProductData } from "../data/productsData";
 import { getPriceWithIngredientsData } from "../data/ingredientsData";
 
 //Function are not defined here, but this indicates that we have room for thease Function
