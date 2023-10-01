@@ -195,6 +195,7 @@ input[type="number"] {
 
 .ask-zusatz-body-section {
   margin-top: 15px;
+  text-align: left;
 }
 .ask-zusatz-body-section-name {
   font-size: 17px;
@@ -210,23 +211,15 @@ input[type="number"] {
 .ask-zusatz-body-section-item {
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
 }
 
 .ask-zusatz-item-button {
-  min-width: 20px;
-  min-height: 20px;
-  max-width: 20px;
-  max-height: 20px;
-  background-color: black;
-  font-weight: 600;
-  font-size: 20px;
-  margin-top: 2px;
-  margin-right: 2px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
+  background-color: black;
+}
+.ask-zusatz-item-name {
+  height: 100%;
 }
 .ask-zusatz-body-section-item-add:hover {
   background-color: var(--color-accent1);

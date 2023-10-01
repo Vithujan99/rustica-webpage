@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import { TimeContext } from "../../context/TimeContext";
 import CartCard from "../../components/CartBar/CartCard/CartCard";
@@ -15,6 +16,7 @@ const Checkout = () => {
 
   const [vorname, setVorname] = useState("");
   const [nachname, setNachname] = useState("");
+  const [telnr, setTelnr] = useState("");
   const [straße, setStraße] = useState("");
   const [hnr, setHnr] = useState("");
   const [stadt, setStadt] = useState("");
@@ -23,50 +25,73 @@ const Checkout = () => {
   const [paymentMethod, setPaymentMethod] = useState("");
   const [messageForClient, setMessageForClient] = useState("");
 
-  const axiosPostAbholungData = async () => {
-    const postData = {
-      vorname: vorname,
-      nachname: nachname,
-      anmerkung: anmerkung,
-      ordered_items: cart.items,
-    };
-    await axios
-      .post("http://localhost:4000/orders/abholung", postData)
-      .then((res) => setMessageForClient(<p>{res.data}</p>));
-  };
-  const handleAbholungSubmit = (e) => {
-    e.preventDefault();
-    axiosPostAbholungData();
-  };
-
-  const axiosPostLieferData = async () => {
-    const postData = {
-      vorname: vorname,
-      nachname: nachname,
-      straße: straße,
-      hausnummer: hnr,
-      plz: serv.plz,
-      stadt: stadt,
-      anmerkung: anmerkung,
-      ordered_items: cart.items,
-    };
-    await axios
-      .post("http://localhost:4000/orders/liefer", postData)
-      .then((res) => setMessageForClient(<p>{res.data}</p>));
-  };
-  const handleLieferSubmit = (e) => {
-    e.preventDefault();
-    if (!serv.testPlz()) {
+  function handlePlz(value) {
+    serv.setPlz(value);
+    if (!serv.testPlz() && serv.plz.length === 5) {
       setErrorText(true);
-    } else {
+    }
+    if (serv.testPlz()) {
       setErrorText(false);
     }
-    axiosPostLieferData();
+  }
+
+  const axiosPostData = async () => {
+    const postData = {
+      vorname: vorname,
+      nachname: nachname,
+      telefonnummer: telnr,
+      straße: straße,
+      hausnummer: hnr,
+      plz: serv.service === "Abholung" ? "" : serv.plz,
+      stadt: stadt,
+      anmerkung: anmerkung,
+      service: serv.service,
+      paymentMethod: paymentMethod,
+      ordered_items: cart.items,
+      entryDate: new Date(),
+    };
+    await axios.post("http://localhost:4000/orders", postData).then((res) =>
+      setMessageForClient(
+        <div className="order-fin-container">
+          <p className="danke-text">{res.data}</p>
+          {serv.service === "Abholung" ? (
+            <p className="abholung-zeit-text">
+              Sie können die Bestellung in 30 Minuten abholen.
+            </p>
+          ) : (
+            <></>
+          )}
+          <NavLink className="back-home-button" to="/rustica-webpage" end>
+            Zurück
+          </NavLink>
+        </div>
+      )
+    );
   };
+
+  function checkAbholData() {
+    if (vorname.length === 0 || nachname.length === 0 || telnr.length === 0) {
+      setPaymentMethod("");
+      return false;
+    } else {
+      return true;
+    }
+  }
+  function clickCheckAbholData() {
+    if (vorname.length === 0 || nachname.length === 0 || telnr.length === 0) {
+      setPaymentMethod("");
+      setFormError(true);
+      return false;
+    } else {
+      setFormError(false);
+      return true;
+    }
+  }
   function checkLieferData() {
     if (
       vorname.length === 0 ||
       nachname.length === 0 ||
+      telnr.length === 0 ||
       straße.length === 0 ||
       hnr.length === 0 ||
       !serv.testPlz() ||
@@ -83,6 +108,7 @@ const Checkout = () => {
     if (
       vorname.length === 0 ||
       nachname.length === 0 ||
+      telnr.length === 0 ||
       straße.length === 0 ||
       hnr.length === 0 ||
       !serv.testPlz() ||
@@ -134,12 +160,13 @@ const Checkout = () => {
       body: JSON.stringify({
         orderID: data.orderID,
       }),
-    })
-      .then((response) => {
-        console.log("Payment successfull");
-        return response.json();
-      })
-      .then((data) => console.log(data));
+    }).then((response) => {
+      console.log("Payment successfull");
+      axiosPostData();
+      //cart.deleteCart();
+      //return response.json();
+    });
+    //.then((data) => console.log(data));
   };
 
   return (
@@ -169,7 +196,7 @@ const Checkout = () => {
           </button>
         </div>
 
-        {serv.service === "Abholung" ? (
+        {serv.service === "Abholung" && cart.getTotalCost() >= 8.0 ? (
           <form className="checkout-form-holder">
             <div className="checkout-form-name">
               <input
@@ -191,17 +218,73 @@ const Checkout = () => {
                 onChange={(e) => setNachname(e.target.value)}
               ></input>
             </div>
-            <div className="form-submit-holder">
+            <input
+              name="telefonnummer"
+              className={
+                formError && telnr.length === 0
+                  ? "checkout-form-telnr-input error"
+                  : "checkout-form-telnr-input"
+              }
+              placeholder="Telefonnmmer"
+              type="text"
+              required="true"
+              value={telnr}
+              onChange={(e) => setTelnr(e.target.value)}
+            ></input>
+            <div className="payment-selct">
+              <button
+                className={
+                  paymentMethod === "PayPal"
+                    ? "payment-select-paypal active"
+                    : "payment-select-paypal"
+                }
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (clickCheckAbholData()) {
+                    setPaymentMethod("PayPal");
+                  }
+                }}
+              >
+                PayPal
+              </button>
+              <button
+                className={
+                  paymentMethod === "Bargeld"
+                    ? "payment-select-bargeld active"
+                    : "payment-select-bargeld"
+                }
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (clickCheckAbholData()) {
+                    setPaymentMethod("Bargeld");
+                  }
+                }}
+              >
+                Bargeld
+              </button>
+            </div>
+            {paymentMethod === "PayPal" && checkAbholData() ? (
+              <PayPalButtons
+                createOrder={(data, actions) => createOrder(data, actions)}
+                onApprove={(data, actions) => onApprove(data, actions)}
+              />
+            ) : paymentMethod === "Bargeld" && checkAbholData() ? (
               <button
                 className="form-submit"
                 type="submit"
-                onClick={handleAbholungSubmit}
+                onClick={(e) => {
+                  e.preventDefault();
+                  axiosPostData();
+                }}
               >
                 Bestellen
               </button>
-            </div>
+            ) : (
+              <></>
+            )}
           </form>
-        ) : (
+        ) : serv.service === "Lieferung" &&
+          cart.getTotalCostNoDrinks() >= 15.0 ? (
           <form className="checkout-form-holder">
             <h2>Lieferadresse</h2>
             <div className="checkout-form-name">
@@ -232,6 +315,21 @@ const Checkout = () => {
                 onChange={(e) => setNachname(e.target.value)}
               ></input>
             </div>
+
+            <input
+              name="telefonnummer"
+              className={
+                formError && telnr.length === 0
+                  ? "checkout-form-telnr-input error"
+                  : "checkout-form-telnr-input"
+              }
+              placeholder="Telefonnmmer"
+              type="text"
+              required="true"
+              value={telnr}
+              onChange={(e) => setTelnr(e.target.value)}
+            ></input>
+
             <div className="checkout-form-street-hnr">
               <input
                 name="straße"
@@ -272,7 +370,7 @@ const Checkout = () => {
                 type="number"
                 required="true"
                 value={serv.plz}
-                onChange={(e) => serv.setPlz(e.target.value)}
+                onChange={(e) => handlePlz(e.target.value)}
               ></input>
               <input
                 name="stadt"
@@ -348,7 +446,10 @@ const Checkout = () => {
               <button
                 className="form-submit"
                 type="submit"
-                onClick={handleLieferSubmit}
+                onClick={(e) => {
+                  e.preventDefault();
+                  axiosPostData();
+                }}
               >
                 Bestellen
               </button>
@@ -356,6 +457,8 @@ const Checkout = () => {
               <></>
             )}
           </form>
+        ) : (
+          <></>
         )}
       </div>
       <div className="checkout-cart-items">
@@ -387,7 +490,7 @@ const Checkout = () => {
                   <div className="min-cost-red">Mindestbestellwert 8,00€</div>
                 )
               ) : serv.testPlz() ? (
-                cart.getTotalCost() >= 15.0 ? (
+                cart.getTotalCostNoDrinks() >= 15.0 ? (
                   ""
                 ) : (
                   <div className="min-cost-red">

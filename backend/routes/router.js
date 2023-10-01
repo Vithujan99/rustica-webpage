@@ -55,70 +55,65 @@ router.get("/ingredients", async (req, res) => {
   }
 });
 
-router.post("/orders/abholung", async (req, res) => {
-  const { vorname, nachname, anmerkung, ordered_items } = req.body;
-  const orederAbholungData = {
+//Authentifizierung einbauen
+router.post("/orders", async (req, res) => {
+  const {
+    vorname,
+    nachname,
+    telefonnummer,
+    straße,
+    hausnummer,
+    plz,
+    stadt,
+    anmerkung,
+    service,
+    paymentMethod,
+    ordered_items,
+    entryDate,
+  } = req.body;
+  const orederData = {
     vorname: vorname,
     nachname: nachname,
+    telefonnummer: telefonnummer,
+    straße: straße,
+    hausnummer: hausnummer,
+    plz: plz,
+    stadt: stadt,
     anmerkung: anmerkung,
+    service: service,
+    paymentMethod: paymentMethod,
     ordered_items: ordered_items,
+    entryDate: entryDate,
   };
-  const newOrder = new schemas.OrderAbholung(orederAbholungData);
+  const newOrder = new schemas.Order(orederData);
   //always use await when interact with url|database
   const saveOrder = await newOrder.save();
   if (saveOrder) {
-    res.send("Ihre Bestellung wurde angenommen");
+    res.send("Vielen Dank für Ihre Bestellung");
   } else {
     res.send("Faliled to send");
   }
   res.end();
 });
 //Authentifizierung einbauen
-router.get("/orders/abholung", async (req, res) => {
+router.get("/orders", async (req, res) => {
   try {
-    const orderAbholung = schemas.OrderAbholung;
-    const allOrderAbholung = await orderAbholung.find({}).exec();
-    res.send(JSON.stringify(allOrderAbholung));
+    const order = schemas.Order;
+    const allOrder = await order.find({}).exec();
+    res.send(JSON.stringify(allOrder));
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.post("/orders/liefer", async (req, res) => {
-  const {
-    vorname,
-    nachname,
-    straße,
-    hausnummer,
-    plz,
-    stadt,
-    anmerkung,
-    ordered_items,
-  } = req.body;
-  const orederLieferData = {
-    vorname: vorname,
-    nachname: nachname,
-    straße: straße,
-    hausnummer: hausnummer,
-    plz: plz,
-    stadt: stadt,
-    anmerkung: anmerkung,
-    ordered_items: ordered_items,
-  };
-  const newOrder = new schemas.OrderLiefer(orederLieferData);
-  //always use await when interact with url|database
-  const saveOrder = await newOrder.save();
-  if (saveOrder) {
-    res.send("Ihre Bestellung wurde angenommen");
-  }
-  res.end();
-});
-//Authentifizierung einbauen
-router.get("/orders/liefer", async (req, res) => {
+router.delete("/orders/:id", async (req, res) => {
+  const id = req.params.id;
   try {
-    const orderLiefer = schemas.OrderLiefer;
-    const allOrderLiefer = await orderLiefer.find({}).exec();
-    res.send(JSON.stringify(allOrderLiefer));
+    const order = schemas.Order;
+    await order.deleteOne({ _id: id });
+    const answer = "Sucessfully Deleted _id: " + id;
+    console.log(answer);
+    res.send(answer);
   } catch (err) {
     res.status(500).json(err);
   }

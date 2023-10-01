@@ -29,9 +29,14 @@ const ingredientSchema = new Schema({
   },
 });
 
-const orderAbholungSchema = new Schema({
+const orderSchema = new Schema({
   vorname: { type: String, required: true },
   nachname: { type: String, required: true },
+  telefonnummer: { type: String, required: true },
+  straße: { type: String },
+  hausnummer: { type: String },
+  plz: { type: String },
+  stadt: { type: String },
   anmerkung: { type: String },
   ordered_items: {
     type: [
@@ -49,36 +54,11 @@ const orderAbholungSchema = new Schema({
         description: { type: String },
       },
     ],
+    required: true,
   },
-  entryDate: { type: Date, default: Date.now },
-});
-
-const orderLieferSchema = new Schema({
-  vorname: { type: String, required: true },
-  nachname: { type: String, required: true },
-  straße: { type: String, required: true },
-  hausnummer: { type: String, required: true },
-  plz: { type: String, required: true },
-  stadt: { type: String, required: true },
-  anmerkung: { type: String },
-  ordered_items: {
-    type: [
-      {
-        id: { type: Number },
-        quantity: { type: Number },
-        ingredientsIds: {
-          type: [
-            {
-              ingredientId: { type: Number },
-              quantity: { type: Number },
-            },
-          ],
-        },
-        description: { type: String },
-      },
-    ],
-  },
-  entryDate: { type: Date, default: Date.now },
+  service: { type: String, required: true },
+  paymentMethod: { type: String, required: true },
+  entryDate: { type: Date },
 });
 
 const Products = mongoose.model("Products", productSchema, "products");
@@ -87,22 +67,12 @@ const Ingredients = mongoose.model(
   ingredientSchema,
   "ingredients"
 );
-const OrderAbholung = mongoose.model(
-  "OrderAbholung",
-  orderAbholungSchema,
-  "order_abholung"
-);
-const OrderLiefer = mongoose.model(
-  "OrderLiefer",
-  orderLieferSchema,
-  "order_liefer"
-);
+const Order = mongoose.model("Order", orderSchema, "orders");
 
 const mySchemas = {
   Products: Products,
   Ingredients: Ingredients,
-  OrderAbholung: OrderAbholung,
-  OrderLiefer: OrderLiefer,
+  Order: Order,
 };
 
 module.exports = mySchemas;

@@ -198,6 +198,7 @@ export const MenuItem = ({ data }) => {
                   >
                     <IoMdRemoveCircle
                       color="#ffc300"
+                      size="25px"
                       onClick={() =>
                         ingredients.removeIngredient(
                           data.id,
@@ -206,7 +207,7 @@ export const MenuItem = ({ data }) => {
                       }
                       className="ask-zusatz-item-button"
                     />
-                    <p>
+                    <p className="ask-zusatz-item-name">
                       <b className="ask-zusatz-item-count">
                         {ingredient.quantity}
                       </b>
@@ -270,6 +271,7 @@ export const MenuItem = ({ data }) => {
                             >
                               <IoMdAddCircle
                                 color="#ffc300"
+                                size="25px"
                                 onClick={() => {
                                   ingredients.addIngredient(
                                     data.id,
@@ -279,7 +281,9 @@ export const MenuItem = ({ data }) => {
                                 }}
                                 className="ask-zusatz-item-button"
                               />
-                              <p>{ingredient.name}</p>
+                              <p className="ask-zusatz-item-name">
+                                {ingredient.name}
+                              </p>
                             </div>
                           ))}
                         </div>

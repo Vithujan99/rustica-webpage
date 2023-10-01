@@ -305,6 +305,7 @@ const CartCard = ({ dataAll }) => {
                   >
                     <IoMdRemoveCircle
                       color="#ffc300"
+                      size="25px"
                       onClick={() =>
                         ingredients.removeIngredient(
                           data.id,
@@ -377,6 +378,7 @@ const CartCard = ({ dataAll }) => {
                             >
                               <IoMdAddCircle
                                 color="#ffc300"
+                                size="25px"
                                 onClick={() => {
                                   ingredients.addIngredient(
                                     data.id,

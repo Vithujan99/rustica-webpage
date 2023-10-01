@@ -13,6 +13,7 @@ import Menu from "./pages/Menu/Menu";
 import Rent from "./pages/Rent/Rent";
 import Checkout from "./pages/Checkout/Checkout";
 import About from "./pages/About/About";
+import Admin from "./pages/Admin/Admin";
 import { useEffect } from "react";
 import { useState } from "react";
 
@@ -29,7 +30,7 @@ function App() {
   useEffect(() => {
     if (
       location.pathname === "/rustica-webpage/checkout" ||
-      location.pathname === "/rustica-webpage/checkout/final"
+      location.pathname === "/rustica-webpage/admin"
     ) {
       setShowNavbar(false);
     } else {
@@ -55,6 +56,7 @@ function App() {
                     path="/rustica-webpage/checkout"
                     element={<Checkout />}
                   />
+                  <Route path="/rustica-webpage/admin" element={<Admin />} />
                 </Routes>
               </ShowProvider>
             </ServiceProvider>

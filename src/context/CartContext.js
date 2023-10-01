@@ -176,10 +176,6 @@ export function CartProvider({ children }) {
     }
   }
 
-  function deleteCart() {
-    setCartProducts([]);
-  }
-
   function getCost(id, ingredientsIds, description) {
     let cost = 0;
     let ingCost = 0;
@@ -202,11 +198,11 @@ export function CartProvider({ children }) {
 
   function getTotalCost() {
     let totalCost = 0;
-    let ingCost = 0;
     // eslint-disable-next-line array-callback-return
     cartProducts.map((product) => {
       const productData = getProductData(product.id);
 
+      let ingCost = 0;
       // eslint-disable-next-line array-callback-return
       product.ingredientsIds.map((ing) => {
         const ingData = getPriceWithIngredientsData(ing.ingredientId);
@@ -219,12 +215,13 @@ export function CartProvider({ children }) {
   }
   function getTotalCostNoDrinks() {
     let totalCost = 0;
-    let ingCost = 0;
     // eslint-disable-next-line array-callback-return
     cartProducts.map((product) => {
       const type = getTypeById(product.id);
       if (type !== "Drinks") {
         const productData = getProductData(product.id);
+
+        let ingCost = 0;
         // eslint-disable-next-line array-callback-return
         product.ingredientsIds.map((ing) => {
           const ingData = getPriceWithIngredientsData(ing.ingredientId);
@@ -239,6 +236,10 @@ export function CartProvider({ children }) {
 
   function getTotalCount() {
     return cartProducts.reduce((sum, product) => sum + product.quantity, 0);
+  }
+
+  function deleteCart() {
+    setCartProducts([]);
   }
 
   const contextValue = {

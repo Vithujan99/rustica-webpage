@@ -56,9 +56,15 @@ const generateAccessToken = async () => {
 };
 
 function getPData(id, productsArray) {
+  let productData = undefined;
   for (const product of productsArray) {
-    return product.items.find((item) => item.id === id);
+    productData = product.items.find((item) => item.id === id);
+    if (productData !== undefined) {
+      return productData;
+    }
   }
+  console.log("Product data does not exist for Id:" + id);
+  return undefined;
 }
 function getPriceWithIData(id, ingredientsData) {
   return ingredientsData.find((data) =>
@@ -76,19 +82,19 @@ async function getPrice(cart) {
     .then((res) => {
       return res.data;
     });
-  var totalCost = 0;
-  var ingCost = 0;
+  let totalCost = 0;
 
   cart.map((product) => {
     const productData = getPData(product.id, productsArray);
-
+    let ingCost = 0;
     product.ingredientsIds.map((ing) => {
       const ingData = getPriceWithIData(ing.ingredientId, ingredientsData);
       ingCost += ingData.price * ing.quantity;
     });
     totalCost += (productData.price + ingCost) * product.quantity;
   });
-  return totalCost.toString();
+  var cost = Number(totalCost);
+  return cost.toFixed(2);
 }
 
 const createOrder = async (cart) => {
