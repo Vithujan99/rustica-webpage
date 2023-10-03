@@ -13,6 +13,17 @@ import { useNavigate } from "react-router-dom";
 const Admin = () => {
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
+  axios
+    .get("http://localhost:4000/orders", {
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+      },
+    })
+    .then((res) => {
+      if (!res.data.auth) {
+        navigate("/rustica-webpage/login");
+      }
+    });
   useEffect(() => {
     const interval = setInterval(() => {
       // Perform some repeated action
@@ -28,7 +39,7 @@ const Admin = () => {
               if (!res.data.auth) {
                 navigate("/rustica-webpage/login");
               }
-              return res.data;
+              return res.data.allOrder;
             })
             .then((data) => {
               setOrders(

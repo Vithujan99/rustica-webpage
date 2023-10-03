@@ -5,7 +5,6 @@ const schemas = require("../models/schemas");
 
 const verifyJWT = (req, res, next) => {
   const token = req.headers["x-access-token"];
-  console.log(token);
   if (!token) {
     res.send("Nicht Angemeldet");
   } else {
@@ -118,19 +117,18 @@ router.get("/orders", verifyJWT, async (req, res) => {
   try {
     const order = schemas.Order;
     const allOrder = await order.find({}).exec();
-    res.send(JSON.stringify(allOrder));
+    res.send({ auth: true, allOrder: allOrder });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.delete("/orders/:id", async (req, res) => {
+router.delete("/orders/:id", verifyJWT, async (req, res) => {
   const id = req.params.id;
   try {
     const order = schemas.Order;
     await order.deleteOne({ _id: id });
     const answer = "Sucessfully Deleted _id: " + id;
-    console.log(answer);
     res.send(answer);
   } catch (err) {
     res.status(500).json(err);
