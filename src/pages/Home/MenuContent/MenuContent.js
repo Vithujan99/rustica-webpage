@@ -19,13 +19,13 @@ const MenuContent = () => {
     Math.floor(Math.random() * getDataByType("Reisgerichte").length)
   );
   return (
-    <div class="home-menu">
+    <div className="home-menu">
       <div className="home-menu-titel-holder">
         <Link className="home-menu-menu-titel" to="/rustica-webpage/menu">
           Menu
         </Link>
       </div>
-      <div class="home-cards-holder">
+      <div className="home-cards-holder">
         <div className="home-item">
           <div className="middle-circle" />
           <img className="pizza-img" alt="Pizza" src={PizzaImg}></img>

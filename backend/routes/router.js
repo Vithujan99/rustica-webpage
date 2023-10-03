@@ -1,6 +1,24 @@
 const express = require("express");
+const jwt = require("jsonwebtoken");
 const router = express.Router();
 const schemas = require("../models/schemas");
+
+const verifyJWT = (req, res, next) => {
+  const token = req.headers["x-access-token"];
+  console.log(token);
+  if (!token) {
+    res.send("Nicht Angemeldet");
+  } else {
+    jwt.verify(token, process.env.SECRET, (err, decoded) => {
+      if (err) {
+        res.json({ auth: false, message: "Zugriff nicht erlaubt" });
+      } else {
+        req.userID = decoded.id;
+        next();
+      }
+    });
+  }
+};
 
 router.post("/products", async (req, res) => {
   const { type, items } = req.body;
@@ -96,7 +114,7 @@ router.post("/orders", async (req, res) => {
   res.end();
 });
 //Authentifizierung einbauen
-router.get("/orders", async (req, res) => {
+router.get("/orders", verifyJWT, async (req, res) => {
   try {
     const order = schemas.Order;
     const allOrder = await order.find({}).exec();
@@ -116,6 +134,22 @@ router.delete("/orders/:id", async (req, res) => {
     res.send(answer);
   } catch (err) {
     res.status(500).json(err);
+  }
+});
+router.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+  if (
+    username === process.env.ADMIN_USERNAME &&
+    password === process.env.ADMIN_PASSWORD
+  ) {
+    const id = process.env.ADMIN_ID;
+    const token = jwt.sign({ id }, process.env.SECRET, {
+      expiresIn: 300 * 96,
+    });
+
+    res.json({ auth: true, token: token });
+  } else {
+    res.json({ auth: false, message: "Wrong Credentials!" });
   }
 });
 

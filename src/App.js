@@ -14,13 +14,12 @@ import Rent from "./pages/Rent/Rent";
 import Checkout from "./pages/Checkout/Checkout";
 import About from "./pages/About/About";
 import Admin from "./pages/Admin/Admin";
+import Login from "./pages/Login/Login";
 import { useEffect } from "react";
 import { useState } from "react";
 
 function App() {
   const initialOptions = {
-    clientId:
-      "AQm3IT-QZ9zIZ3b1zlPy-SalBw9UD-6X1M6fXjWv_oymBhg5jkJhaoB3H2f9k68BHTb5jg4ywuVq2aIn",
     currency: "EUR",
     intent: "capture",
     "disable-funding": "credit,card,giropay,sepa,sofort",
@@ -30,7 +29,8 @@ function App() {
   useEffect(() => {
     if (
       location.pathname === "/rustica-webpage/checkout" ||
-      location.pathname === "/rustica-webpage/admin"
+      location.pathname === "/rustica-webpage/admin" ||
+      location.pathname === "/rustica-webpage/login"
     ) {
       setShowNavbar(false);
     } else {
@@ -48,6 +48,7 @@ function App() {
                 {showNavbar && <Navbar />}
                 <AskService />
                 <Routes>
+                  {/*public routes*/}
                   <Route path="/rustica-webpage" element={<Home />} />
                   <Route path="/rustica-webpage/menu" element={<Menu />} />
                   <Route path="/rustica-webpage/rent" element={<Rent />} />
@@ -56,6 +57,8 @@ function App() {
                     path="/rustica-webpage/checkout"
                     element={<Checkout />}
                   />
+                  <Route path="/rustica-webpage/login" element={<Login />} />
+                  {/*private routes*/}
                   <Route path="/rustica-webpage/admin" element={<Admin />} />
                 </Routes>
               </ShowProvider>

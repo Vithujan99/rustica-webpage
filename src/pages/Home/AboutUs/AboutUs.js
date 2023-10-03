@@ -28,46 +28,52 @@ const AboutUs = () => {
         <div className="home-aboutus-content-öffnungzeiten">
           <h2 className="table-titel">ÖffnungsZeiten</h2>
           <table class="öffnungzeiten-table">
-            <tr
-              className={
-                day === "Monday" || day === "Tuesday"
-                  ? "table-line-active"
-                  : "table-line"
-              }
-            >
-              <td>Mo-Di:</td>
-              <td>17:30-22:30</td>
-            </tr>
-            <tr
-              className={
-                day === "Wednesday" || day === "Thursday"
-                  ? "table-line-active"
-                  : "table-line"
-              }
-            >
-              <td>Mi-Do:</td>
-              <td>11:30-14:30 und 17:30 - 22:30</td>
-            </tr>
-            <tr
-              className={day === "Friday" ? "table-line-active" : "table-line"}
-            >
-              <td>Fr:</td>
-              <td>11:30-14:30 und 17:30 - 23:00</td>
-            </tr>
-            <tr
-              className={
-                day === "Saturday" ? "table-line-active" : "table-line"
-              }
-            >
-              <td>Sa:</td>
-              <td>17:00-23:00</td>
-            </tr>
-            <tr
-              className={day === "Sunday" ? "table-line-active" : "table-line"}
-            >
-              <td>So/Feiertags:</td>
-              <td>17:00-22:30</td>
-            </tr>
+            <tbody>
+              <tr
+                className={
+                  day === "Monday" || day === "Tuesday"
+                    ? "table-line-active"
+                    : "table-line"
+                }
+              >
+                <td>Mo-Di:</td>
+                <td>17:30-22:30</td>
+              </tr>
+              <tr
+                className={
+                  day === "Wednesday" || day === "Thursday"
+                    ? "table-line-active"
+                    : "table-line"
+                }
+              >
+                <td>Mi-Do:</td>
+                <td>11:30-14:30 und 17:30 - 22:30</td>
+              </tr>
+              <tr
+                className={
+                  day === "Friday" ? "table-line-active" : "table-line"
+                }
+              >
+                <td>Fr:</td>
+                <td>11:30-14:30 und 17:30 - 23:00</td>
+              </tr>
+              <tr
+                className={
+                  day === "Saturday" ? "table-line-active" : "table-line"
+                }
+              >
+                <td>Sa:</td>
+                <td>17:00-23:00</td>
+              </tr>
+              <tr
+                className={
+                  day === "Sunday" ? "table-line-active" : "table-line"
+                }
+              >
+                <td>So/Feiertags:</td>
+                <td>17:00-22:30</td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>

@@ -129,4 +129,11 @@
   .home-aboutus-titel-holder:after {
     width: 251px;
   }
+  .home-aboutus-content-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 50px;
+  }
 }

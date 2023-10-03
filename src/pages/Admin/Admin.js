@@ -8,24 +8,45 @@ import {
 } from "../../data/ingredientsData";
 
 import "./Admin.css";
+import { useNavigate } from "react-router-dom";
 
 const Admin = () => {
+  const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios
-          .get("http://localhost:4000/orders")
-          .then((res) => {
-            return res.data;
-          });
-        setOrders(response);
-      } catch (error) {
-        console.log(error.message);
-      }
+    const interval = setInterval(() => {
+      // Perform some repeated action
+      const fetchData = async () => {
+        try {
+          await axios
+            .get("http://localhost:4000/orders", {
+              headers: {
+                "x-access-token": localStorage.getItem("token"),
+              },
+            })
+            .then((res) => {
+              if (!res.data.auth) {
+                navigate("/rustica-webpage/login");
+              }
+              return res.data;
+            })
+            .then((data) => {
+              setOrders(
+                data.sort(function (a, b) {
+                  return new Date(b.entryDate) - new Date(a.entryDate);
+                })
+              );
+            });
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
+      fetchData();
+    }, 1000);
+    return () => {
+      clearInterval(interval); // Clean up the interval
     };
-    fetchData();
-  }, []);
+  });
   function getTotalCost(order) {
     let totalCost = 0;
     // eslint-disable-next-line array-callback-return
@@ -43,6 +64,16 @@ const Admin = () => {
     });
     return totalCost;
   }
+
+  const handleDelete = async (id) => {
+    try {
+      const res = await axios.delete("http://localhost:4000/orders/" + id);
+      setOrders(orders.filter((order) => order._id !== id));
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className="orders-container">
       <h1 className="orders-title">Orders</h1>
@@ -72,8 +103,8 @@ const Admin = () => {
               </td>
               <td>
                 {order.ordered_items.map((item) => (
-                  <div key={item._id}>
-                    <p key={item.id}>
+                  <div key={item._id} className="orders-table-order">
+                    <div key={item.id}>
                       {item.quantity + "x"}
                       <b className="item-name">
                         {getProductData(item.id).name}
@@ -88,11 +119,16 @@ const Admin = () => {
                       ))}
 
                       {item.description ? (
-                        " Beschreibung: " + item.description
+                        <>
+                          Beschreibung:{" "}
+                          <div className="item-description">
+                            {item.description}
+                          </div>
+                        </>
                       ) : (
                         <></>
                       )}
-                    </p>
+                    </div>
                   </div>
                 ))}
                 <p className="orders-table-order-betrag">
@@ -102,7 +138,7 @@ const Admin = () => {
               <td>{order.anmerkung}</td>
               <td>{new Date(order.entryDate).toLocaleString()}</td>
               <td>
-                <button>Löschen</button>
+                <button onClick={() => handleDelete(order._id)}>Löschen</button>
               </td>
             </tr>
           ))}

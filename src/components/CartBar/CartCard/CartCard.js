@@ -194,7 +194,7 @@ const CartCard = ({ dataAll }) => {
             >
               <div className="cart-card-ingredients">
                 {dataAll.ingredientsIds.map((ingredient) => (
-                  <div>
+                  <div key={ingredient.ingredientId}>
                     <span>{ingredient.quantity}</span>
                     {getIngredientstData(ingredient.ingredientId).name}
                   </div>
