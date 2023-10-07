@@ -3,6 +3,7 @@ import { ServiceContext } from "../../context/ServiceContext";
 import { TbTruckDelivery } from "react-icons/tb";
 import { BsShop } from "react-icons/bs";
 import "./AskService.css";
+import { useLocation } from "react-router-dom";
 
 const AskService = () => {
   const serv = useContext(ServiceContext);
@@ -10,10 +11,15 @@ const AskService = () => {
   const handleClose = () => {
     setShow(false);
   };
+  let location = useLocation();
   return (
     <div
       className={
-        sessionStorage.getItem("ser") === "Abholung" || serv.askPlz
+        sessionStorage.getItem("ser") === "Abholung" ||
+        serv.askPlz ||
+        location.pathname === "/rustica-webpage/orders" ||
+        location.pathname === "/rustica-webpage/login" ||
+        location.pathname === "/rustica-webpage/admin/orders"
           ? "askServiceContainer hide"
           : "askServiceContainer"
       }

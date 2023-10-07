@@ -67,11 +67,13 @@ const Ingredients = mongoose.model(
   ingredientSchema,
   "ingredients"
 );
+const AdminOrder = mongoose.model("AdminOrder", orderSchema, "admin_orders");
 const Order = mongoose.model("Order", orderSchema, "orders");
 
 const mySchemas = {
   Products: Products,
   Ingredients: Ingredients,
+  AdminOrder: AdminOrder,
   Order: Order,
 };
 

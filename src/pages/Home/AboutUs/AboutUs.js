@@ -8,7 +8,7 @@ const AboutUs = () => {
   const time = useContext(TimeContext);
   const day = time.getDay();
   return (
-    <div class="home-aboutus">
+    <div className="home-aboutus">
       <div className="home-aboutus-titel-holder">
         <Link className="home-aboutus-titel" to="/rustica-webpage/about">
           Über Uns
@@ -27,7 +27,7 @@ const AboutUs = () => {
         </div>
         <div className="home-aboutus-content-öffnungzeiten">
           <h2 className="table-titel">ÖffnungsZeiten</h2>
-          <table class="öffnungzeiten-table">
+          <table className="öffnungzeiten-table">
             <tbody>
               <tr
                 className={

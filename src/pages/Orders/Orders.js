@@ -7,29 +7,31 @@ import {
   getPriceWithIngredientsData,
 } from "../../data/ingredientsData";
 
-import "./Admin.css";
+import "./Orders.css";
 import { useNavigate } from "react-router-dom";
 
 const Admin = () => {
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
-  axios
-    .get("http://localhost:4000/orders", {
-      headers: {
-        "x-access-token": localStorage.getItem("token"),
-      },
-    })
-    .then((res) => {
-      if (!res.data.auth) {
-        navigate("/rustica-webpage/login");
-      }
-    });
+  const [action, setAction] = useState([]);
   useEffect(() => {
+    axios
+      .get("http://localhost:4000/orders", {
+        headers: {
+          "x-access-token": localStorage.getItem("token"),
+        },
+      })
+      .then((res) => {
+        if (!res.data.auth) {
+          navigate("/rustica-webpage/login");
+        }
+      });
+    //Code above only for auth
     const interval = setInterval(() => {
       // Perform some repeated action
       const fetchData = async () => {
         try {
-          await axios
+          const data = await axios
             .get("http://localhost:4000/orders", {
               headers: {
                 "x-access-token": localStorage.getItem("token"),
@@ -40,14 +42,12 @@ const Admin = () => {
                 navigate("/rustica-webpage/login");
               }
               return res.data.allOrder;
-            })
-            .then((data) => {
-              setOrders(
-                data.sort(function (a, b) {
-                  return new Date(b.entryDate) - new Date(a.entryDate);
-                })
-              );
             });
+          setOrders(
+            await data.sort(function (a, b) {
+              return new Date(b.entryDate) - new Date(a.entryDate);
+            })
+          );
         } catch (error) {
           console.log(error.message);
         }
@@ -76,10 +76,32 @@ const Admin = () => {
     return totalCost;
   }
 
+  /*const handleAction = (id) => {
+    const actionOrder = action.find((order) => order.id === id);
+    if (!actionOrder) {
+      setAction([...action, { id: id }]);
+      return;
+    }
+    handleDelete(id);
+  };
+  const checkAction = (id) => {
+    const actionOrder = action.find((order) => order.id === id);
+    if (!actionOrder) {
+      return false;
+    } else {
+      return true;
+    }
+  };*/
+
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete("http://localhost:4000/orders/" + id);
+      const res = await axios.delete("http://localhost:4000/orders/" + id, {
+        headers: {
+          "x-access-token": localStorage.getItem("token"),
+        },
+      });
       setOrders(orders.filter((order) => order._id !== id));
+      setAction(action.filter((a) => a.id !== id));
       console.log(res);
     } catch (err) {
       console.log(err);
@@ -102,7 +124,7 @@ const Admin = () => {
         </thead>
         <tbody>
           {orders.map((order) => (
-            <tr key={order._id}>
+            <tr key={order._id} className="order-table-row">
               <td>{order.service}</td>
               <td>{order.paymentMethod}</td>
               <td>
@@ -146,7 +168,7 @@ const Admin = () => {
                   {formatCurrency(getTotalCost(order.ordered_items))}
                 </p>
               </td>
-              <td>{order.anmerkung}</td>
+              <td className="orders-table-anmerkung">{order.anmerkung}</td>
               <td>{new Date(order.entryDate).toLocaleString()}</td>
               <td>
                 <button onClick={() => handleDelete(order._id)}>Löschen</button>

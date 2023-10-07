@@ -16,8 +16,13 @@ const Login = () => {
       .then((res) => {
         if (res.data.auth) {
           setError(false);
-          localStorage.setItem("token", res.data.token);
-          navigate("/rustica-webpage/admin");
+          localStorage.setItem("token", "Barear " + res.data.token);
+          if (res.data.role === "employee") {
+            navigate("/rustica-webpage/orders");
+          }
+          if (res.data.role === "admin") {
+            navigate("/rustica-webpage/admin/orders");
+          }
         } else {
           setError(true);
         }
@@ -26,7 +31,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="login-wrapper">
-        <h1>Als Admin Anmelden</h1>
+        <h1>Anmelden</h1>
         {error ? (
           <span className="login-wrong">Fehler bei der Anmeldung</span>
         ) : (

@@ -14,12 +14,17 @@
   outline: 0;
   border-bottom: 1px solid black;
 }
-td:nth-child(5) {
-  min-width: 350px;
-  max-width: 400px;
+.orders-table-anmerkung {
+  min-width: 250px;
+  max-width: 350px;
   font-size: 14px;
 }
-
+.order-table-row {
+  background-color: white;
+}
+.order-table-row-fin {
+  background-color: rgba(69, 239, 8, 0.644);
+}
 .orders-table-order {
   border-bottom: 1px solid black;
 }
