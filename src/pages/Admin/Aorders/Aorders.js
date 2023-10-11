@@ -35,7 +35,7 @@ const Aorders = () => {
           })
           .then((res) => {
             if (!res.data.auth) {
-              navigate("/rustica-webpage/login");
+              navigate("/login");
             }
             return res.data.allOrder;
           });
@@ -96,14 +96,17 @@ const Aorders = () => {
     days.map((d) => {
       orders[week][d]?.map(async (order) => {
         try {
-          const res = await axios.delete(
-            "http://localhost:4000/admin/orders/" + order._id,
-            {
+          const res = await axios
+            .delete("http://localhost:4000/admin/orders/" + order._id, {
               headers: {
                 "x-access-token": localStorage.getItem("token"),
               },
-            }
-          );
+            })
+            .then((res) => {
+              if (!res.data.auth) {
+                navigate("/login");
+              }
+            });
           console.log(res);
         } catch (err) {
           console.log(err);
@@ -116,14 +119,17 @@ const Aorders = () => {
   const handleDeleteDay = async (week, day) => {
     orders[week][day]?.map(async (order) => {
       try {
-        const res = await axios.delete(
-          "http://localhost:4000/admin/orders/" + order._id,
-          {
+        const res = await axios
+          .delete("http://localhost:4000/admin/orders/" + order._id, {
             headers: {
               "x-access-token": localStorage.getItem("token"),
             },
-          }
-        );
+          })
+          .then((res) => {
+            if (!res.data.auth) {
+              navigate("/login");
+            }
+          });
         console.log(res);
       } catch (err) {
         console.log(err);

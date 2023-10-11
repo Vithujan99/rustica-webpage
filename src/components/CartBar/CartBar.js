@@ -35,16 +35,19 @@ const CartBar = () => {
                 {time.isOpen() ? (
                   <></>
                 ) : (
-                  <p>zur Zeit geschlossen - nur Vorbestellung möglich</p>
+                  <p className="barBody-closed">
+                    zur Zeit geschlossen - nur Vorbestellung möglich
+                  </p>
                 )}
-                <p>Aktuell im Wagen:</p>
-
-                {cart.items.map((currentProduct) => (
-                  <CartCard
-                    key={JSON.stringify(currentProduct)}
-                    dataAll={currentProduct}
-                  />
-                ))}
+                <p className="barbody-imWagen-text">Aktuell im Wagen:</p>
+                <div className="barBody-cards-holder">
+                  {cart.items.map((currentProduct) => (
+                    <CartCard
+                      key={JSON.stringify(currentProduct)}
+                      dataAll={currentProduct}
+                    />
+                  ))}
+                </div>
               </div>
               <div className="barFooter">
                 <h3>
@@ -120,7 +123,7 @@ const CartBar = () => {
                     cart.getTotalCost() >= 8.0 ? (
                       <NavLink
                         className="barFooterKaufen-button"
-                        to="/rustica-webpage/checkout"
+                        to="/checkout"
                         onClick={() => show.handleBarClose()}
                       >
                         Zur Kasse
@@ -134,7 +137,7 @@ const CartBar = () => {
                     cart.getTotalCost() >= 15.0 ? (
                       <NavLink
                         className="barFooterKaufen-button"
-                        to="/rustica-webpage/checkout"
+                        to="/checkout"
                         onClick={() => show.handleBarClose()}
                       >
                         Zur Kasse

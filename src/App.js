@@ -7,6 +7,7 @@ import TimeProvider from "./context/TimeContext";
 import ServiceProvider from "./context/ServiceContext";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 import AskService from "./components/AskService/AskService";
 import Home from "./pages/Home/Home";
 import Menu from "./pages/Menu/Menu";
@@ -18,9 +19,15 @@ import Orders from "./pages/Orders/Orders";
 import Login from "./pages/Login/Login";
 import { useEffect } from "react";
 import { useState } from "react";
+import Impressum from "./pages/FooterP/Impressum/Impressum";
+import Datenschutz from "./pages/FooterP/Datenschutz/Datenschutz";
+import ZusatzstoffeUndAllergene from "./pages/FooterP/ZusatzstoffeUndAllergene/ZusatzstoffeUndAllergene";
 
 function App() {
+  //client-id ist erlaubt in public
   const initialOptions = {
+    "client-id":
+      "AQm3IT-QZ9zIZ3b1zlPy-SalBw9UD-6X1M6fXjWv_oymBhg5jkJhaoB3H2f9k68BHTb5jg4ywuVq2aIn",
     currency: "EUR",
     intent: "capture",
     "disable-funding": "credit,card,giropay,sepa,sofort",
@@ -29,10 +36,13 @@ function App() {
   const [showNavbar, setShowNavbar] = useState(true);
   useEffect(() => {
     if (
-      location.pathname === "/rustica-webpage/checkout" ||
-      location.pathname === "/rustica-webpage/orders" ||
-      location.pathname === "/rustica-webpage/admin/orders" ||
-      location.pathname === "/rustica-webpage/login"
+      location.pathname === "/checkout" ||
+      location.pathname === "/orders" ||
+      location.pathname === "/admin/orders" ||
+      location.pathname === "/login" ||
+      location.pathname === "/impressum" ||
+      location.pathname === "/datenschutz" ||
+      location.pathname === "/zusatzstoffe-und-allergene"
     ) {
       setShowNavbar(false);
     } else {
@@ -51,22 +61,23 @@ function App() {
                 <AskService />
                 <Routes>
                   {/*public routes*/}
-                  <Route path="/rustica-webpage" element={<Home />} />
-                  <Route path="/rustica-webpage/menu" element={<Menu />} />
-                  <Route path="/rustica-webpage/rent" element={<Rent />} />
-                  <Route path="/rustica-webpage/about" element={<About />} />
+                  <Route path="/" element={<Home />} />
+                  <Route path="/menu" element={<Menu />} />
+                  <Route path="/rent" element={<Rent />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/checkout" element={<Checkout />} />
+                  <Route path="/impressum" element={<Impressum />} />
+                  <Route path="/datenschutz" element={<Datenschutz />} />
                   <Route
-                    path="/rustica-webpage/checkout"
-                    element={<Checkout />}
+                    path="/zusatzstoffe-und-allergene"
+                    element={<ZusatzstoffeUndAllergene />}
                   />
-                  <Route path="/rustica-webpage/login" element={<Login />} />
+                  <Route path="/login" element={<Login />} />
                   {/*private routes*/}
-                  <Route
-                    path="/rustica-webpage/admin/orders"
-                    element={<Aorders />}
-                  />
-                  <Route path="/rustica-webpage/orders" element={<Orders />} />
+                  <Route path="/admin/orders" element={<Aorders />} />
+                  <Route path="/orders" element={<Orders />} />
                 </Routes>
+                {showNavbar && <Footer />}
               </ShowProvider>
             </ServiceProvider>
           </IngredientsProvider>

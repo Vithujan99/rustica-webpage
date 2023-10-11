@@ -21,7 +21,7 @@ const MenuContent = () => {
   return (
     <div className="home-menu">
       <div className="home-menu-titel-holder">
-        <Link className="home-menu-menu-titel" to="/rustica-webpage/menu">
+        <Link className="home-menu-menu-titel" to="/menu">
           Menu
         </Link>
       </div>

@@ -10,7 +10,7 @@ const AboutUs = () => {
   return (
     <div className="home-aboutus">
       <div className="home-aboutus-titel-holder">
-        <Link className="home-aboutus-titel" to="/rustica-webpage/about">
+        <Link className="home-aboutus-titel" to="/about">
           Über Uns
         </Link>
       </div>

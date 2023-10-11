@@ -56,7 +56,7 @@ const Navbar = () => {
                 </span>
               </li>
               <li className={scroll ? "moving-infob" : "infob"}>
-                <Link className={"nav-link info-logo"} to="/rustica-webpage">
+                <Link className={"nav-link info-logo"} to="/">
                   <img
                     className="logo"
                     src={logo}
@@ -90,7 +90,7 @@ const Navbar = () => {
               <li className="item-a" onClick={handleClick}>
                 <NavLink
                   className={scroll ? "moving-nav-link" : "nav-link"}
-                  to="/rustica-webpage"
+                  to="/"
                   end
                 >
                   Home
@@ -99,7 +99,7 @@ const Navbar = () => {
               <li className="item-b" onClick={handleClick}>
                 <NavLink
                   className={scroll ? "moving-nav-link" : "nav-link"}
-                  to="/rustica-webpage/menu"
+                  to="/menu"
                 >
                   Menu
                 </NavLink>
@@ -107,7 +107,7 @@ const Navbar = () => {
               <li className="item-c" onClick={handleClick}>
                 <NavLink
                   className={scroll ? "moving-nav-link" : "nav-link"}
-                  to="/rustica-webpage/rent"
+                  to="/rent"
                 >
                   Raum Buchen
                 </NavLink>
@@ -115,7 +115,7 @@ const Navbar = () => {
               <li className="item-d" onClick={handleClick}>
                 <NavLink
                   className={scroll ? "moving-nav-link" : "nav-link"}
-                  to="/rustica-webpage/about"
+                  to="/about"
                 >
                   Über uns
                 </NavLink>

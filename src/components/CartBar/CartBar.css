@@ -73,6 +73,32 @@
 .barBody {
   padding-top: 15px;
 }
+.barBody-closed {
+  color: red;
+  text-align: center;
+}
+.barbody-imWagen-text {
+  font-weight: 600;
+  font-size: 18px;
+  padding: 2px 0 0 0;
+}
+.barBody-cards-holder {
+  max-height: 250px;
+  padding-right: 3px;
+  overflow-y: auto;
+}
+.barBody-cards-holder::-webkit-scrollbar-track {
+  background-color: white;
+}
+
+.barBody-cards-holder::-webkit-scrollbar {
+  width: 8px;
+  background-color: white;
+}
+
+.barBody-cards-holder::-webkit-scrollbar-thumb {
+  background-color: var(--color-accent1);
+}
 .barFooter {
   padding-top: 10px;
 }
@@ -110,10 +136,13 @@
   font-weight: 500;
 }
 .bar-plz-input {
-  font-size: 17px;
-  width: 25%;
+  font-size: 18px;
+  padding: 3px;
+  width: 30%;
   text-align: center;
   outline: 0;
+  border-radius: 10px;
+  border: 0;
 }
 .bar-plz-error-text {
   color: red;
@@ -141,7 +170,10 @@
   cursor: pointer;
   font-size: 14px;
   font-weight: 600;
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   transition: background-color 0.3s;
 }
 
@@ -169,5 +201,8 @@
 @media (max-width: 300px) {
   .barShoppedItems {
     width: 275px;
+  }
+  .barBody-cards-holder {
+    max-height: 200px;
   }
 }

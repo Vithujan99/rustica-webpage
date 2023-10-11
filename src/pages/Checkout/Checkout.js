@@ -61,7 +61,7 @@ const Checkout = () => {
           ) : (
             <></>
           )}
-          <NavLink className="back-home-button" to="/rustica-webpage" end>
+          <NavLink className="back-home-button" to="/" end>
             Zurück
           </NavLink>
         </div>
@@ -201,7 +201,11 @@ const Checkout = () => {
             <div className="checkout-form-name">
               <input
                 name="vorname"
-                className="checkout-form-name-input"
+                className={
+                  formError && vorname.length === 0
+                    ? "checkout-form-name-input error"
+                    : "checkout-form-name-input"
+                }
                 placeholder="Vorname"
                 type="text"
                 required="true"
@@ -210,7 +214,11 @@ const Checkout = () => {
               ></input>
               <input
                 name="nachname"
-                className="checkout-form-name-input"
+                className={
+                  formError && nachname.length === 0
+                    ? "checkout-form-name-input error"
+                    : "checkout-form-name-input"
+                }
                 placeholder="Nachname"
                 type="text"
                 required="true"
@@ -468,7 +476,9 @@ const Checkout = () => {
               {time.isOpen() ? (
                 <></>
               ) : (
-                <p>zur Zeit geschlossen - nur Vorbestellung möglich</p>
+                <p className="checkout-items-content-close-text">
+                  zur Zeit geschlossen - nur Vorbestellung möglich
+                </p>
               )}
               <div className="checkout-cards-holder">
                 {cart.items.map((currentProduct) => (

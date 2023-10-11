@@ -23,7 +23,7 @@ const Admin = () => {
       })
       .then((res) => {
         if (!res.data.auth) {
-          navigate("/rustica-webpage/login");
+          navigate("/login");
         }
       });
     //Code above only for auth
@@ -39,7 +39,7 @@ const Admin = () => {
             })
             .then((res) => {
               if (!res.data.auth) {
-                navigate("/rustica-webpage/login");
+                navigate("/login");
               }
               return res.data.allOrder;
             });
@@ -58,6 +58,7 @@ const Admin = () => {
       clearInterval(interval); // Clean up the interval
     };
   });
+
   function getTotalCost(order) {
     let totalCost = 0;
     // eslint-disable-next-line array-callback-return

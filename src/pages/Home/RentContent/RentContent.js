@@ -8,7 +8,7 @@ const RentContent = () => {
   return (
     <div className="home-rent">
       <div className="home-rent-titel-holder">
-        <Link className="home-rent-titel" to="/rustica-webpage/rent">
+        <Link className="home-rent-titel" to="/rent">
           Raum Buchen
         </Link>
       </div>
