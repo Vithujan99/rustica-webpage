@@ -99,9 +99,28 @@
   align-items: center;
 }
 .rent-form-titel {
-  margin-bottom: 25px;
+  margin-bottom: 5px;
+  font-size: 30px;
+  font-weight: 700;
+}
+.rent-form-holder-contact {
+  font-size: 22px;
+  font-weight: 600;
+}
+.rent-form-holder-contact span {
+  font-size: 25px;
+  font-weight: 700;
+  color: var(--color-accent3);
+}
+.rent-form-holder-or {
+  font-size: 30px;
+  font-weight: 700;
+  color: black;
+  margin-bottom: 5px;
 }
 .rent-form {
+  padding-top: 40px;
+  border-top: 10px dotted black;
   display: flex;
   flex-direction: column;
   gap: 5px;

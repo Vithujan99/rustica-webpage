@@ -1,12 +1,17 @@
 import React from "react";
-import { motion } from "framer-motion";
 import data from "../../data/carouselData.json";
+import { motion } from "framer-motion";
 
 import "./Rent.css";
 
 const Rent = () => {
   return (
-    <div className="rent-page">
+    <motion.div
+      className="rent-page"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { duration: 0.5 } }}
+      exit={{ opacity: 0 }}
+    >
       <div className="rent-page-showcase">
         <div className="rent-page-showcase-section">
           <div className="rent-page-showcase-section-img-holder">
@@ -71,6 +76,10 @@ const Rent = () => {
       </div>
       <div className="rent-form-holder">
         <h1 className="rent-form-titel">Kontaktiere uns</h1>
+        <p className="rent-form-holder-contact">
+          über <span>02166 88844</span>
+        </p>
+        <p className="rent-form-holder-or">oder</p>
         <form
           className="rent-form"
           action="https://formsubmit.co/9fb23e074e30e87073e9cf50cadd0b8f"
@@ -103,12 +112,17 @@ const Rent = () => {
             name="Nachricht"
             required
           ></textarea>
-          <button className="rent-form-button" type="submit">
+          <motion.button
+            className="rent-form-button"
+            type="submit"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
             Senden
-          </button>
+          </motion.button>
         </form>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -9,11 +9,7 @@ import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import AskService from "./components/AskService/AskService";
-import Home from "./pages/Home/Home";
-import Menu from "./pages/Menu/Menu";
-import Rent from "./pages/Rent/Rent";
 import Checkout from "./pages/Checkout/Checkout";
-import About from "./pages/About/About";
 import Aorders from "./pages/Admin/Aorders/Aorders";
 import Orders from "./pages/Orders/Orders";
 import Login from "./pages/Login/Login";
@@ -22,6 +18,7 @@ import { useState } from "react";
 import Impressum from "./pages/FooterP/Impressum/Impressum";
 import Datenschutz from "./pages/FooterP/Datenschutz/Datenschutz";
 import ZusatzstoffeUndAllergene from "./pages/FooterP/ZusatzstoffeUndAllergene/ZusatzstoffeUndAllergene";
+import AnimatedRoutes from "./AnimatedRoutes";
 
 function App() {
   //client-id ist erlaubt in public
@@ -59,12 +56,9 @@ function App() {
               <ShowProvider>
                 {showNavbar && <Navbar />}
                 <AskService />
+                <AnimatedRoutes />
                 <Routes>
                   {/*public routes*/}
-                  <Route path="/" element={<Home />} />
-                  <Route path="/menu" element={<Menu />} />
-                  <Route path="/rent" element={<Rent />} />
-                  <Route path="/about" element={<About />} />
                   <Route path="/checkout" element={<Checkout />} />
                   <Route path="/impressum" element={<Impressum />} />
                   <Route path="/datenschutz" element={<Datenschutz />} />

@@ -67,6 +67,7 @@ const MenuItems = () => {
   const closeShowMenuBar = () => {
     handleShowMenuBar(false);
   };
+
   //For Scrolling back menu-items-titel
   const ref = useRef(null);
 

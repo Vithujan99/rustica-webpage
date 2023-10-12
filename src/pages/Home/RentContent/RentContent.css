@@ -1,7 +1,7 @@
 .home-rent {
   padding-top: 50px;
   padding-bottom: 100px;
-  background-color: var(--color-orginal);
+  background-color: #ffc38e;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,7 +28,7 @@
   position: absolute;
   height: 15px;
   width: 401px;
-  background-color: var(--color-orginal);
+  background-color: #ffc38e;
   margin: auto;
   left: -5px;
   right: 0;
@@ -40,7 +40,7 @@
   position: absolute;
   height: 15px;
   width: 401px;
-  background-color: var(--color-orginal);
+  background-color: #ffc38e;
   margin: auto;
   left: -5px;
   right: 0;
