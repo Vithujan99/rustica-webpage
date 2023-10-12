@@ -9,6 +9,7 @@ import {
 import { getProductData } from "../../../data/productsData";
 import { FaAngleUp, FaAngleDown } from "react-icons/fa";
 import { IoMdAddCircle, IoMdRemoveCircle } from "react-icons/io";
+import { AiFillEdit } from "react-icons/ai";
 import { MdDeleteForever } from "react-icons/md";
 import { RxTriangleDown } from "react-icons/rx";
 import "./CartCard.css";
@@ -72,7 +73,7 @@ const CartCard = ({ dataAll }) => {
   return (
     <div className="cart-card">
       {data.zusatz !== undefined ? (
-        <div
+        <AiFillEdit
           className="cart-card-zusatz"
           onClick={() => {
             handleZusatzShow();
